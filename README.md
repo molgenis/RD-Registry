@@ -11,7 +11,6 @@ ERN involved are:
 * [CRANIO](https://ern-cranio.eu)
 
 DISCLAIMER: work in progress!! 
-
 ## Getting Started
 
 This repository should make it possible for people to set-up their own RD registry. Keep in mind there are several building blocks to choose from. And that if specific needs are not represented in the given building blocks the MOLGENIS app is customizable. So it is possible to add self-generated blocks that are needed for your own registry. For more information go to our [gitbook](https://molgenis.gitbook.io/molgenis/).
@@ -24,10 +23,10 @@ Step 3: If elements are NOT present, make your own.
 The building blocks are focussed around patient information. So person information is embedded in patient/subject information.
 
 Building blocks:
-* Common data elements (JRC)
-* Other controlled Vocabularies (available at [BioPortal](https://bioportal.bioontology.org))
-* ERN specific elements (provided by ERNs that are involved in this project)
+* [Common data elements (JRC)]()
+* [Other controlled Vocabularies (available at [BioPortal](https://bioportal.bioontology.org))]()
+* [ERN specific elements (provided by ERNs that are involved in this project)]()
 
 ### Feedback
-Feedback on our repository or how to improve our model is more than welcome. Please use [github issues]() to provide feedback on specific element.
+Feedback on our repository or how to improve our model is more than welcome. Please use [github issues](https://github.com/molgenis/RD-Registry/issues) to provide feedback on specific element.
 
