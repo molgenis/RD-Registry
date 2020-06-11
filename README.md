@@ -18,14 +18,14 @@ This repository should make it possible for people to set-up their own RD regist
 - Step 2: Look at building blocks and take parts that are needed for registry
 - Step 3: If elements are NOT present, make your own.
 
-### Building Blocks
+## Building Blocks
 The building blocks are focussed around patient information. So person information is embedded in patient/subject information.
 
 Building blocks:
 * [Common data elements (JRC)](/JRC)
-* [Other controlled Vocabularies]() (available at [BioPortal](https://bioportal.bioontology.org)
+* [Other controlled Ontologies](/Biomedical_Ontologies) (available at [BioPortal](https://bioportal.bioontology.org))
 * [ERN specific elements (provided by ERNs that are involved in this project)]()
 
-### Feedback
+## Feedback
 Feedback on our repository or how to improve our model is more than welcome. Please use [github issues](https://github.com/molgenis/RD-Registry/issues) to provide feedback on specific element.
 
