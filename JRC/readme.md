@@ -11,7 +11,8 @@ Basic view on how data elements are represented in Molgenis RD registry.
 ![JRC](/JRC/JRC_CDE.png)
 
 
-### Common Data Elements
+## Common Data Elements
+To make the RD registry Interoperable (the 'I' in FAIR), it is important to use standard ontologies and use the value types of the ontologies. Therefore In this view all data elements are represented with their Preferred ontology term and if applicable the value types are pointing to the preferred ontology code. Some values are not complied with preferred ontologies, they were supplied by the JRC in this [document](https://eu-rd-platform.jrc.ec.europa.eu/sites/default/files/CDS/EU_RD_Platform_CDS_Final.pdf).
 
 | Data element   | Compulsory / optional | Preferred ontology term| Value types | Issue Number |
 |---------------|-----------------------|----------------------------|-------------|--------------|
