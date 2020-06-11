@@ -4,4 +4,11 @@ Biomedical ontologies can help management and analysis of data derived from comp
 
 | Data element   | Description | Link to ontology |Version | Issue Number |
 |---------------|-----------------------|----------------------------|-------------|--------------|
-|ICD-10 | International Classification of Diseases  | [ICD10](http://bioportal.bioontology.org/ontologies/ICD10)|Version 10 |.|
+| ICD-10 | International Classification of Diseases  | [ICD10](http://bioportal.bioontology.org/ontologies/ICD10)|Version 10 |. |
+| ICD-O-3-T |International Classification of Diseases for Oncology Topography | [ICDO3T](http://bioportal.bioontology.org/ontologies/ICD-O-3-T)|1.0.0| . |
+| ICD-O-3-M | International Classification of Diseases for Oncology Morphology | [ICDO3M](http://bioportal.bioontology.org/ontologies/ICD-O-3-M)|1.0.0| . |
+| OMIM | Online Mendelian Inheritance in Man | [OMIM](http://bioportal.bioontology.org/ontologies/OMIM) | 2019AB | . |
+| MIMTYPEMEANING | Textual description of the mimType, extracted from OMIM documentation | [OMIM](http://bioportal.bioontology.org/ontologies/OMIM) | 2019AB | . |
+|Family relationship | Subset of [Eagle-I Research Resource Ontology](http://bioportal.bioontology.org/ontologies/ERO/?p=summary)| [ERO:0002033](https://www.ebi.ac.uk/ols/ontologies/ero/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FERO_0002033) | 2013-08-02|.|
+|Material Types | Subset of [MIABIS](https://www.ebi.ac.uk/ols/ontologies/omiabis) | [MIABIS-2.0-14](https://github.com/MIABIS/miabis/wiki/Structured-data-and-lists#material-type) | 2.0 | . |
+|Tissue Types |
