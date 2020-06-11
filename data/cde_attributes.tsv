@@ -1,27 +1,27 @@
 name	label	entity	dataType	idAttribute	nillable	visible	refEntity	rangeMin	rangeMax	partOfAttribute
-EU1	1. Pseudonym 	cde	compound							
+EU1	1. Pseudonym	cde	compound							
 individualid	EUPID (Individual ID)	cde	string	TRUE	FALSE					EU1
-EU2	2. Personal information 	cde	compound							
+EU2	2. Personal information	cde	compound							
 biologicalsex	Sex	cde	categorical	FALSE	FALSE		package_cde_codebook_sex			EU2
 datebirth	Date of Birth	cde	date	FALSE	FALSE					EU2
-EU3	3. Patient Status 	cde	compound							
+EU3	3. Patient Status	cde	compound							
 patientstatus	Patient Status	cde	categorical	FALSE	TRUE		package_cde_codebook_patientstatus			EU3
 ageatdeath	Age at death	cde	int	FALSE	TRUE			0	150	EU3
-EU4	4. Care pathway 		compound							
+EU4	4. Care pathway		compound							
 firstconwspeccenter	First contact with specialised center	cde	date	FALSE	TRUE					EU4
-EU5	5. Disease history 	cde	compound							
+EU5	5. Disease history	cde	compound							
 ageonset	Age at onset	cde	categorical	FALSE	TRUE		package_cde_codebook_onset			EU5
 onsetdate	Date of onset	cde	date	FALSE	TRUE	$('ageonset').value().indexOf('Date')>-1				EU5
 agediagnose	Age at diagnosis	cde	categorical	FALSE	TRUE		package_cde_codebook_onset			EU5
 diagnosedate	Date of diagnose	cde	date	FALSE	TRUE	$('agediagnose').value().indexOf('Date')>-1				EU5
-EU6	6 Diagnosis 	cde	compound							
+EU6	6 Diagnosis	cde	compound							
 ordo	Diagnosis of the rare disease	cde	mref	FALSE	TRUE		package_cde_codebook_ordo			EU6
-hgnc	Genetic diagnosis 	cde	mref	FALSE	TRUE		package_cde_codebook_hgnc			EU6
+hgnc	Genetic diagnosis	cde	mref	FALSE	TRUE		package_cde_codebook_hgnc			EU6
 hpo	Clinical symptoms and physical findings in patient(HPO)	cde	mref	FALSE	TRUE		package_cde_codebook_hpo			EU6
-EU7	7. Research 	cde	compound							
+EU7	7. Research	cde	compound							
 consentRegistry	Consent for research	cde	bool	FALSE	FALSE					EU7
 consentReuse	Consent to the reuse of data	cde	bool	FALSE	FALSE					EU7
-sampleBool	Patient's biological sample available for research 	cde	bool	FALSE	TRUE					EU7
+sampleBool	Patient's biological sample available for researche	cde	bool	FALSE	TRUE					EU7
 biobank	Link to Biobank	cde	mref	FALSE	TRUE		package_cde_codebook_biobanks			EU7
-EU8	8.Disability 	cde	compound							
-ICF	Classification of functioning/disability (ICF)	cde	mref	FALSE	TRUE		package_cde_codebook_icf			EU8
+EU8	8.Disability	cde	compound							
+ICF	Classification of functioning/disability(ICF)	cde	mref	FALSE	TRUE		package_cde_codebook_icf			EU8
