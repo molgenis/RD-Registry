@@ -4,11 +4,21 @@ Biomedical ontologies can help management and analysis of data derived from comp
 
 | Data element   | Description | Link to ontology |Version | Codebook_EMX | Issue Number |
 |---------------|--------------|-----------------|---------|--------------|--------------|
-| ICD-10 | International Classification of Diseases  | [ICD10](http://bioportal.bioontology.org/ontologies/ICD10)|Version 10 |[codebook_icd10](/data/codebook_icd10.tsv) |. |
+| ICD-10 | International Classification of Diseases  | [ICD10](http://bioportal.bioontology.org/ontologies/ICD10)| 10 |[codebook_icd10](/data/codebook_icd10.tsv) |. |
 | ICD-O-3-T |International Classification of Diseases for Oncology Topography | [ICDO3T](http://bioportal.bioontology.org/ontologies/ICD-O-3-T)|1.0.0|[codebook_icdO3](/data/codebook_icdO3.tsv) |. |
 | ICD-O-3-M | International Classification of Diseases for Oncology Morphology | [ICDO3M](http://bioportal.bioontology.org/ontologies/ICD-O-3-M)|1.0.0|[codebook_icdO3](/data/codebook_icdO3.tsv) |. |
 | OMIM | Online Mendelian Inheritance in Man | [OMIM](http://bioportal.bioontology.org/ontologies/OMIM) | 2019AB |[codebook_omim](/data/codebook_omim.tsv) |. |
-| MIMTYPEMEANING | Textual description of the mimType, extracted from OMIM documentation | [OMIM](http://bioportal.bioontology.org/ontologies/OMIM) | 2019AB | [codebook_omimType](/data/codebook_omimType.tsv)|. |
+| MIMTYPEMEANING | Textual description of the mimType, extracted from OMIM documentation | [OMIM](http://bioportal.bioontology.org/ontologies/OMIM) | 2019AB | [vocab_omimType](/data/vocab_omimType.tsv)|. |
 |Family relationship | Subset of [Eagle-I Research Resource Ontology](http://bioportal.bioontology.org/ontologies/ERO/?p=summary)| [ERO:0002033](https://www.ebi.ac.uk/ols/ontologies/ero/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FERO_0002033) | 2013-08-02| [codebook_familyRelation](/data/codebook_familyRelation.tsv)|.|
 |Material Types | Subset of [MIABIS](https://www.ebi.ac.uk/ols/ontologies/omiabis) | [MIABIS-2.0-14](https://github.com/MIABIS/miabis/wiki/Structured-data-and-lists#material-type) | 2.0 |[codebook_materialTypes](/data/codebook_materialTypes.tsv)  |. |
-|Tissue Types |
+|Tissue Types | Subset of [NCIT](http://bioportal.bioontology.org/ontologies/NCIT) | [NCIT:C13442](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C13442&viewMode=All&siblings=false) | 20.04d | [codebook_tissueType](/data/codebook_tissueTupes.tsv) | .|
+| ATC | Anatomical Therapeutic Chemical Classification | [ATC](https://bioportal.bioontology.org/ontologies/ATC) | 2019AB | [codebook_atc](/data/codebook_atc.tsv)|. |
+| HGNC |HUGO Gene Nomenclature | [HGNC](https://bioportal.bioontology.org/ontologies/HGNC) | July2010 | [codebook_hgnc](/data/codebook_hgnc.tsv)|. |
+|locusType | Specifies type as defined by [HGNC](https://bioportal.bioontology.org/ontologies/HGNC) (e.g., RNA, transfer) | July2010 | [vocab_locusType](/data/vocab_locusType.tsv)|. |
+|COSMIC | Catalogue Of Somatic Mutations In Cancer [ENSGLOSSARY:0000251](https://www.ebi.ac.uk/ols/ontologies/ensemblglossary/terms?iri=http%3A%2F%2Fensembl.org%2Fglossary%2FENSGLOSSARY_0000251) | [Cancer Gene Census](https://cancer.sanger.ac.uk/census#cl_search) | 2020 | [codebook_cosmic](/data/codebook_cosmic)|. |
+|GRCH | [Genome Assembly Version] (https://www.ncbi.nlm.nih.gov/grc/human) | [NCIT:C164815](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C164815)| 2020 | [vocab_grch](/data/vocab_grch)|. |
+|variantClass | ACMG (recommended) five-tier [classification system](https://www.acmg.net/docs/Standards_Guidelines_for_the_Interpretation_of_Sequence_Variants.pdf) | [NCIT:C118969](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C118969) | 2020 | [vocab_variantClass](/data/vocab_variantClass)|. |
+|allelicState | Subset of [GENO](https://bioportal.bioontology.org/ontologies/GENO) (combination of disomic zygosity and organellar plasmy) | [GENO:0000391](https://bioportal.bioontology.org/ontologies/GENO/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGENO_0000391&jump_to_nav=true) and [GENO:0000918](https://bioportal.bioontology.org/ontologies/GENO/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGENO_0000918&jump_to_nav=true) | 2020 | [vocab_allelicState](/data/vocab_allelicState)|. |
+|mutationType | Subset of [NCIT](http://bioportal.bioontology.org/ontologies/NCIT) Mutation Abnormality | [NCIT:C45576](http://bioportal.bioontology.org/ontologies/NCIT/?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C45576&jump_to_nav=true) |20.04d| [codebook_mutationType](data/codebook_mutationType.tsv) | .|
+
+
