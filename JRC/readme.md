@@ -23,9 +23,9 @@ To make the RD registry Interoperable (the 'I' in FAIR), it is important to use 
 |Date of Death | optional| [NCIT:C70810](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C70810)|YYYY-MM-DD| [cde_attributes](/data/cde_attributes.tsv)|.|
 |First contact with specialised center | optional | [LOINC:MTHU048806](https://bioportal.bioontology.org/ontologies/LOINC?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FLNC%2FMTHU048806) | YYYY-MM-DD | [cde_attributes](/data/cde_attributes.tsv)|.|
 |Age at onset | optional | [HP:0003674](http://bioportal.bioontology.org/ontologies/HP/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0003674) | Antenatal [HP:0030674](http://bioportal.bioontology.org/ontologies/HP/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0030674)  <br> At birth [HP:0003577](http://bioportal.bioontology.org/ontologies/HP/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0003577) <br> Date [NCIT:C25164](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C25164) <br> Undetermined |[codebook_onset](/data/codebook_onset.tsv)|.|
-| Date at onset | optional | xx | YYYY-MM-DD | [cde_attributes](/data/cde_attributes.tsv)|.|
+| Date at onset | optional | [NCIT:C93613](https://bioportal.bioontology.org/ontologies/NCIT/?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C93613&jump_to_nav=true) | YYYY-MM-DD | [cde_attributes](/data/cde_attributes.tsv)|.|
 |Age at diagnosis | optional | [SNOMEDCT:423493009](http://bioportal.bioontology.org/ontologies/SNOMEDCT/?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F423493009) |Antenatal [HP:0030674](http://bioportal.bioontology.org/ontologies/HP/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0030674)  <br> At birth [HP:0003577](http://bioportal.bioontology.org/ontologies/HP/?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0003577) <br> Date [NCIT:C25164](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C25164) <br> Undetermined |[codebook_onset](/data/codebook_onset.tsv)|.|
-| Date at diagnosis | optional | xx | YYYY-MM-DD | [cde_attributes](/data/cde_attributes.tsv)|.|
+| Date of diagnosis | optional | [NCIT:C164339](https://bioportal.bioontology.org/ontologies/NCIT/?p=classes&conceptid=http%3A%2F%2Fncicb.nci.nih.gov%2Fxml%2Fowl%2FEVS%2FThesaurus.owl%23C164339&jump_to_nav=true) | YYYY-MM-DD | [cde_attributes](/data/cde_attributes.tsv)|.|
 |Orpha code (Diagnosis rare disease)| optional |[ORDO](http://bioportal.bioontology.org/ontologies/ORDO)|Codebook based on ontological terms|[codebook_ordo](/data/codebook_ordo.tsv)|.|
 |HGNC (Genetic diagnosis)| optional| [HGNC](http://bioportal.bioontology.org/ontologies/HGNC)|Codebook based on ontological terms| [codebook_hgnc](/data/codebook_hgnc.tsv)|.|
 | HPO (Phenotype) | optional | [HPO](http://bioportal.bioontology.org/ontologies/HOOM)|Codebook based on ontological terms| [codebook_hpo](/data/codebook_hpo.tsv)|.|
@@ -34,3 +34,9 @@ To make the RD registry Interoperable (the 'I' in FAIR), it is important to use 
 | Biological sample available | optional |[NCIT:C70699](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C70699)| [boolean]()| [cde_attributes](/data/cde_attributes.tsv)|.|
 |Biobank| optional| [OMIABIS:0000000](https://www.ebi.ac.uk/ols/ontologies/omiabis/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIABIS_0000000)| Codebook based on [BBMRI-ERIC directory](https://directory.bbmri-eric.eu/menu/main/app-molgenis-app-biobank-explorer/biobankexplorer)| [codebook_biobanks](/data/codebook_biobanks.tsv)|.|
 |ICF (Classifiaction disability) | optional|[ICF](http://bioportal.bioontology.org/ontologies/ICF)|Codebook based on ontological terms| [codebook_icf](/data/codebook_icf.tsv)|.|
+
+### Other Links about CDE (common data elements)
+
+* [ERN Semantic data model](https://github.com/ejp-rd-vp/ERN-common-data-elements/wiki)
+* [EJP-RD Ontology](https://github.com/EBISPOT/EJP-Ontology/tree/master/docs)
+* [Interoperability of population-based patient registries](https://osf.io/u23vc/)
