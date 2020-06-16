@@ -17,6 +17,8 @@ This repository should make it possible for people to set-up their own RD regist
 - Step 1: Collect input on registry (what needs to be registered).
 - Step 2: Look at building blocks and take parts that are needed for registry
 - Step 3: If elements are NOT present, make your own.
+- Step 4: Set-up docker with molgenis instance. [Docker](/docker)
+- Step 5: Set-up molgenis commander to connect to just set-up molgenis instance
 
 ## Building Blocks
 The building blocks are focussed around patient information. So person information is embedded in patient/subject information.
