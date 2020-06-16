@@ -1,0 +1,6 @@
+value_en	description_en	codesystem	code	description_code
+Gene with known sequence	Gene with known sequence	OMIM	MIMTYPEMEANINGÊ	http://purl.bioontology.org/ontology/OMIM/MIMTYPEMEANINGÊ
+Gene with known sequence and phenotype	Gene with known sequence and phenotype	OMIM	MIMTYPEMEANINGÊ	http://purl.bioontology.org/ontology/OMIM/MIMTYPEMEANINGÊ
+Mendelian phenotype or locus, molecular basis unknown	Mendelian phenotype or locus, molecular basis unknown	OMIM	MIMTYPEMEANINGÊ	http://purl.bioontology.org/ontology/OMIM/MIMTYPEMEANINGÊ
+Other, mainly phenotypes with suspected mendelian basis	Other, mainly phenotypes with suspected mendelian basis	OMIM	MIMTYPEMEANINGÊ	http://purl.bioontology.org/ontology/OMIM/MIMTYPEMEANINGÊ
+Phenotype description, molecular basis known	Phenotype description, molecular basis known	OMIM	MIMTYPEMEANINGÊ	http://purl.bioontology.org/ontology/OMIM/MIMTYPEMEANINGÊ
