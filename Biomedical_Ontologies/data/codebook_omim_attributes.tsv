@@ -1,0 +1,11 @@
+name	label	entity	dataType	idAttribute	nillable	visible	labelAttribute	refEntity
+code	Code	omim	string	TRUE	FALSE	FALSE		
+value_en	Value (English)	omim	string	FALSE	FALSE	TRUE	TRUE	
+synonym	Synonym	omim	string	FALSE	TRUE	TRUE		
+parents	Subclass of	omim	mref	FALSE	TRUE	TRUE		PACKAGE_codebook1_omim
+allelicVariant	Allelic Variant of	omim	mref	FALSE	TRUE	TRUE		PACKAGE_codebook1_omim
+geneLocus	Gene Locus	omim	string	FALSE	TRUE	TRUE		
+geneSymbol	Gene Symbol	omim	string	FALSE	TRUE	TRUE		
+omimType	Textual description of the mimType, extracted from OMIM documentation	omim	xref	FALSE	TRUE	TRUE		PACKAGE_codebook1_subClassomim
+description_code	Description of code	omim	text	FALSE	TRUE	TRUE		
+codesystem	Codesystem	omim	string	FALSE	TRUE	TRUE		
