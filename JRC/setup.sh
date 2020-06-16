@@ -66,6 +66,7 @@ cd ..
 cd codebook2
 sh importGenericCodebook2AttributesAs.sh codebook2_hpo
 sh importGenericCodebook2AttributesAs.sh codebook2_ordo
+cd ..
 
 # Fourth, import "special" codebooks.
 mcmd import -p codebook_biobanks_attributes.tsv --as attributes --in $package
