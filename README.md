@@ -2,8 +2,9 @@
 
 Rare Disease (RD) patient registries are spread across Europe. The EU set out to make it possible for all European Reference Networks (ERNs) to develop RD registries to provide researchers, healthcare providers, patients and policy-makers with a consistent instrument to improve knowledge, diagnosis and treatment of rare diseases. This work is part of the [3rd Health Programme Work Plan](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/pj-01-2019).
 
-[MOLGENIS](https://www.molgenis.org) is a tool to make RD registries. For 4 ERNs we started working on implementing their needs to make a ERN specific RD registry.
-ERN involved are:
+[MOLGENIS](https://www.molgenis.org) is a tool to make RD registries. For 4 ERNs we started working on implementing their needs to make a ERN specific RD registry. 
+
+The use cases are:
 * [Genturis](https://www.genturis.eu/l=eng/Home.html)
 * [SKIN](https://ern-skin.eu)
 * [ITHACA](https://ern-ithaca.eu)
@@ -26,7 +27,7 @@ The building blocks are focussed around patient information. So person informati
 Building blocks:
 * [Common data elements (JRC)](/JRC)
 * [Other controlled Ontologies](/Biomedical_Ontologies) (available at [BioPortal](https://bioportal.bioontology.org))
-* [ERN specific elements (provided by ERNs that are involved in this project)]()
+* [4 Use cases](/Use_case) (Each represented by an ERNs involved in this project)
 
 ## Feedback
 Feedback on our repository or how to improve our model is more than welcome. Please use [github issues](https://github.com/molgenis/RD-Registry/issues) to provide feedback on specific element.
