@@ -1,19 +1,19 @@
 name	label	entity	dataType	idAttribute	nillable	visible	refEntity	rangeMin	rangeMax	partOfAttribute
 EU1	1. Pseudonym 	cde	compound							
-individualid	EUPID (Individual ID)	cde	string	TRUE	FALSE					EU1
+pseudonymID	EUPID (Individual ID)	cde	string	TRUE	FALSE					EU1
 EU2	2. Personal information 	cde	compound							
-biologicalsex	Sex	cde	categorical	FALSE	FALSE		PACKAGE_codebook1_sex			EU2
-datebirth	Date of Birth	cde	date	FALSE	FALSE					EU2
+biologicalSex	Sex	cde	categorical	FALSE	FALSE		PACKAGE_codebook1_sex			EU2
+dateBirth	Date of Birth	cde	date	FALSE	FALSE					EU2
 EU3	3. Patient Status 	cde	compound							
-patientstatus	Patient Status	cde	categorical	FALSE	TRUE		PACKAGE_codebook1_patientstatus			EU3
-ageatdeath	Age at death	cde	int	FALSE	TRUE			0	150	EU3
+patientStatus	Patient Status	cde	categorical	FALSE	TRUE		PACKAGE_codebook1_patientstatus			EU3
+dateDeath	Date of death	cde	date	FALSE	TRUE					EU3
 EU4	4. Care pathway 	cde	compound							
-firstconwspeccenter	First contact with specialised center	cde	date	FALSE	TRUE					EU4
+firstContactHCP	First contact with specialised center	cde	date	FALSE	TRUE					EU4
 EU5	5. Disease history 	cde	compound							
-ageonset	Age at onset	cde	categorical	FALSE	TRUE		PACKAGE_codebook1_onset			EU5
-onsetdate	Date of onset	cde	date	FALSE	TRUE	$('ageonset').value().indexOf('Date')>-1				EU5
-agediagnose	Age at diagnosis	cde	categorical	FALSE	TRUE		PACKAGE_codebook1_onset			EU5
-diagnosedate	Date of diagnose	cde	date	FALSE	TRUE	$('agediagnose').value().indexOf('Date')>-1				EU5
+ageOnset	Age at onset	cde	categorical	FALSE	TRUE		PACKAGE_codebook1_onset			EU5
+dateOnset	Date of onset	cde	date	FALSE	TRUE	$('ageOnset').value().indexOf('Date')>-1				EU5
+ageDiagnose	Age at diagnosis	cde	categorical	FALSE	TRUE		PACKAGE_codebook1_onset			EU5
+dateDiagnose	Date of diagnose	cde	date	FALSE	TRUE	$('ageDiagnose').value().indexOf('Date')>-1				EU5
 EU6	6 Diagnosis 	cde	compound							
 ordo	Diagnosis of the rare disease	cde	mref	FALSE	TRUE		PACKAGE_codebook2_ordo			EU6
 hgnc	Genetic diagnosis 	cde	mref	FALSE	TRUE		PACKAGE_codebook_hgnc			EU6
