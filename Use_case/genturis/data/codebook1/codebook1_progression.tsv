@@ -1,0 +1,6 @@
+value_en	description_en	codesystem	code	description_code
+Nonprogressive 	Nonprogressive 	HPO	HP:0003680	Subclass of pace of progression
+Variable progression rate	Variable progression rate	HPO	HP:0003682	Subclass of pace of progression
+Rapidly progressive 	Rapidly progressive 	HPO	HP:0003678 	Subclass of pace of progression
+Slow progression 	Slow progression 	HPO	HP:0003677	Subclass of pace of progression
+Progressive 	Progressive 	HPO	HP:0003676	Subclass of pace of progression

@@ -1,0 +1,5 @@
+value_en	description_en	codesystem	code	description_code
+Distal 	Localized away from the central point of the body.	HPO	HP:0012839	Localized away from the central point of the body.
+Proximal	Localized close to the central point of the body.	HPO	HP:0012840 	Localized close to the central point of the body.
+Localized 	Being confined or restricted to a particular location.	HPO	HP:0012838	Being confined or restricted to a particular location.
+Generalized 	Affecting all regions without specificity of distribution.	HPO	HP:0012837	Affecting all regions without specificity of distribution.

@@ -1,0 +1,5 @@
+name	label	description	entity	dataType	refEntity	nillable	unique	visible	idAttribute	labelAttribute	readOnly	aggregateable	lookupAttribute	enumOptions	partOfAttribute	rangeMax	rangeMin	mappedBy	expression	validationExpression	defaultValue	tags	auto	label-en	description-en	label-nl	description-nl	label-de	description-de	label-es	description-es	label-it	description-it	label-pt	description-pt	label-fr	description-fr	label-xx	description-xx
+id	Family Number (unique for family)		family	string		FALSE			TRUE	TRUE																													
+index	ID of index		family	string		TRUE																																	
+MID	ID mother		family	string		TRUE																																	
+PID	ID of Father		family	string		TRUE																																	

@@ -1,0 +1,4 @@
+name	label	entity	dataType	refEntity	nillable	unique	visible	idAttribute	labelAttribute	readOnly	aggregateable	lookupAttribute	enumOptions	partOfAttribute	rangeMax	rangeMin	mappedBy	expression	validationExpression	defaultValue	tags	auto	label-en	description-en	label-nl	description-nl	label-de	description-de	label-es	description-es	label-it	description-it	label-pt	description-pt	label-fr	description-fr	label-xx	description-xx
+id	id	variant	string		FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	TRUE										FALSE																
+mutationAbnormality	Mutation Abnormality	variant	mref	genturis_codebook1_mutationAbnormality	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE											FALSE															
+class	Class of variant	variant	mref	genturis_codebook1_classVariant	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE											FALSE															

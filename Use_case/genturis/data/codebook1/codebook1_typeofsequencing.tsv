@@ -1,0 +1,9 @@
+value_en	description_en	codesystem	code	description_code
+Next Generation Sequencing	Next Generation Sequencing	NCIT	NCIT_C101293	Next Generation Sequencing
+Whole Genome Sequencing	Whole Genome Sequencing	NCIT	NCIT_C101294	Whole Genome Sequencing
+Whole Exome Sequencing	Whole Exome Sequencing	NCIT	NCIT_C101295	Whole Exome Sequencing
+Complete Genomics Sequencing	Complete Genomics Sequencing	NCIT	NCIT_C146815	Complete Genomics Sequencing
+Targeted Genome Sequencing	Targeted Genome Sequencing	NCIT	NCIT_C158253	Targeted Genome Sequencing
+Next Generation Targeted Sequencing	Next Generation Targeted Sequencing	NCIT	NCIT_C130177	Next Generation Targeted Sequencing
+DNA Sequencing	DNA Sequencing	NCIT	NCIT_C153598	DNA Sequencing
+Other	Other	NCIT	NCIT_C17649	Different than the one(s) previously specified or mentioned.

@@ -1,0 +1,29 @@
+code	value_en	synonyms	description_en	parents	codesystem	description_code
+ERO_0002061	non-biological family relationship		A family relationship between persons linked through marraige or adoption.	ERO_0002033	ERO	http://purl.obolibrary.org/obo/ERO_0002061
+ERO_0002037	biological family relationship		A family relationship between persons linked through descent from a common ancestor.	ERO_0002033	ERO	http://purl.obolibrary.org/obo/ERO_0002037
+ERO_0002033	family relationship		A relationship between persons related as members of a domestic group, or a number of domestic groups linked through descent from a common ancestor, marriage, or adoption		ERO	http://purl.obolibrary.org/obo/ERO_0002033
+ERO_0002063	relationship by marriage			ERO_0002061	ERO	http://purl.obolibrary.org/obo/ERO_0002063
+ERO_0002062	adopted relationship			ERO_0002061	ERO	http://purl.obolibrary.org/obo/ERO_0002062
+ERO_0002051	collateral family relationship		A biological family relationship between persons whoe are not linked through a direct line of descent.	ERO_0002037	ERO	http://purl.obolibrary.org/obo/ERO_0002051
+ERO_0002038	lineal family relationship		A biological family relationship between persons linked through a direct line of descent.	ERO_0002037	ERO	http://purl.obolibrary.org/obo/ERO_0002038
+ERO_0002052	cousin relationship		A collateral family relationship of a person to thier cousin.	ERO_0002051	ERO	http://purl.obolibrary.org/obo/ERO_0002052
+ERO_0002058	niece/nephew relationship		A collateral family relationship of a person to thier niece or nephew.	ERO_0002051	ERO	http://purl.obolibrary.org/obo/ERO_0002058
+ERO_0002055	aunt/uncle relationship		A collateral family relationship of a person to thier aunt or uncle.	ERO_0002051	ERO	http://purl.obolibrary.org/obo/ERO_0002055
+ERO_0002053	maternal cousin relationship		A collateral family relationship of a person to thier maternal cousin.	ERO_0002052	ERO	http://purl.obolibrary.org/obo/ERO_0002053
+ERO_0002054	paternal cousin relationship		A collateral family relationship of a person to thier paternal cousin.	ERO_0002052	ERO	http://purl.obolibrary.org/obo/ERO_0002054
+ERO_0002060	paternal niece/nephew relationship		A collateral family relationship of a person to thier paternal niece or nephew.	ERO_0002058	ERO	http://purl.obolibrary.org/obo/ERO_0002060
+ERO_0002059	maternal niece/nephew relationship		A collateral family relationship of a person to thier maternal niece or nephew.	ERO_0002058	ERO	http://purl.obolibrary.org/obo/ERO_0002059
+ERO_0002057	paternal aunt/uncle relationship		A collateral family relationship of a person to thier paternal aunt or uncle.	ERO_0002055	ERO	http://purl.obolibrary.org/obo/ERO_0002057
+ERO_0002056	maternal aunt/uncle relationship		A collateral family relationship of a person to thier maternal aunt or uncle.	ERO_0002055	ERO	http://purl.obolibrary.org/obo/ERO_0002056
+ERO_0002039	sibling relationship		A lineal family relationship between two persons with at least one shared parent.	ERO_0002038	ERO	http://purl.obolibrary.org/obo/ERO_0002039
+ERO_0002049	great grandchild relationship		A lineal family relationship from a person to their biological great grandparent.	ERO_0002038	ERO	http://purl.obolibrary.org/obo/ERO_0002049
+ERO_0002047	child relationship		A lineal family relationship from a person to their biological parent.	ERO_0002038	ERO	http://purl.obolibrary.org/obo/ERO_0002047
+ERO_0002046	nth great grandparent relationship		A lineal family relationship from a person and their descendent who is more than three generations removed (e.g. subsequent to a great grandchild)	ERO_0002038	ERO	http://purl.obolibrary.org/obo/ERO_0002046
+ERO_0002050	nth great grandchild relationship		A lineal family relationship from a person and an ancestor who is more than three generations removed (e.g. preceding a great grandparent)	ERO_0002038	ERO	http://purl.obolibrary.org/obo/ERO_0002050
+ERO_0002048	grandchild relationship		A lineal family relationship from a person to their biological grandparent.	ERO_0002038	ERO	http://purl.obolibrary.org/obo/ERO_0002048
+ERO_0002044	grandparent relationship		A lineal family relationship from a person and their biological grandchild.	ERO_0002038	ERO	http://purl.obolibrary.org/obo/ERO_0002044
+ERO_0002043	parent relationship		A lineal family relationship from a parent to their biological offspring.	ERO_0002038	ERO	http://purl.obolibrary.org/obo/ERO_0002043
+ERO_0002045	great grandparent relationship		A lineal family relationship from a person and their biological great grandchild.	ERO_0002038	ERO	http://purl.obolibrary.org/obo/ERO_0002045
+ERO_0002040	twin relationship		A sibling relationship between twins.	ERO_0002039	ERO	http://purl.obolibrary.org/obo/ERO_0002040
+ERO_0002041	identical twin relationship		A sibling relationship between paternal twins.	ERO_0002040	ERO	http://purl.obolibrary.org/obo/ERO_0002041
+ERO_0002042	fraternal twin relationship		A sibling relationship between fraternal twins.	ERO_0002040	ERO	http://purl.obolibrary.org/obo/ERO_0002042
