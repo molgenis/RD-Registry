@@ -54,7 +54,7 @@ typeDiagnostic	Type of genetic diagnostic (sequencing)		subject	mref	genturis_co
 geneticCause	Genetic cause identified		subject	enum		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE	No,Yes,Uncertain	diagnostic								FALSE																
 cosmic	Genes (cosmic)		subject	mref	genturis_codebook_cosmic	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		diagnostic								FALSE																
 variant	Variant		subject	mref	hcp14_variant	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		diagnostic								FALSE																
-sampleBool	Patient's biological sample available for research (in specific Biobank)		subject	bool		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE																										
+sampleBool	Patient's biological sample available for research(in specific Biobank)		subject	bool		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE																										
 biobank	Which Biobank(s) has sample(s)	List of BBMRI-ERIC biobanks	subject	mref	genturis_codebook_biobanks	TRUE	FALSE	$('sampleBool').eq(true).value()	FALSE		FALSE	FALSE	FALSE										FALSE																
 materialTypes	Material types available for research		subject	mref	genturis_codebook1_materialtype	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
 recontact	Patient re-contact		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
