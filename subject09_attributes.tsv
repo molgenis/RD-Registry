@@ -1,0 +1,62 @@
+name	label	description	entity	dataType	refEntity	nillable	unique	visible	idAttribute	labelAttribute	readOnly	aggregateable	lookupAttribute	enumOptions	partOfAttribute	rangeMax	rangeMin	mappedBy	expression	validationExpression	defaultValue	tags	auto	label-en	description-en	label-nl	description-nl	label-de	description-de	label-es	description-es	label-it	description-it	label-pt	description-pt	label-fr	description-fr	label-xx	description-xx
+pseudonymID	EUPID/ Person ID		subject	string		FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE										FALSE																
+famID	Family ID		subject	xref	genturis_family	TRUE	TRUE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+consent	Consent		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+consentRegistry	Consent for registry (Y/N)		subject	bool		FALSE	FALSE	TRUE	FALSE		FALSE	TRUE	FALSE		consent								FALSE																
+consentResearch	Consent for research (Y/N)		subject	bool		FALSE	FALSE	TRUE	FALSE		FALSE	TRUE	FALSE		consent								FALSE																
+consentCare	Consent for care (Y/N)		subject	bool		FALSE	FALSE	TRUE	FALSE		FALSE	TRUE	FALSE		consent								FALSE																
+consentOther	Informed consent for other studies (Y/N)		subject	bool		FALSE	FALSE	TRUE	FALSE		FALSE	TRUE	FALSE		consent								FALSE																
+specifyOther	If yes, specify for which study		subject	text		TRUE	FALSE	$('consentOther').eq(true).value()	FALSE		FALSE	FALSE	FALSE		consent								FALSE																
+demographic	Demographics		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+yearBirth	Year of birth		subject	int		FALSE	FALSE	TRUE	FALSE		FALSE	TRUE	FALSE		demographic	2100	1900						FALSE																
+biologicalsex	Sex at birth		subject	categorical	genturis_codebook1_sex	FALSE	FALSE	TRUE	FALSE		FALSE	TRUE	FALSE		demographic								FALSE																
+indexStatus	Index status		subject	enum		FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE	Index,Relative	demographic								FALSE																
+familyRelation	Relation to index	What type of relative of index case (e.g. brother)	subject	xref	genturis_codebook2_ERO	TRUE	FALSE	$('indexStatus').eq('Relative').value()	FALSE		FALSE	FALSE	FALSE		demographic								FALSE																
+country	Country of residence		subject	xref	genturis_codebook1_countryofresidence	FALSE	FALSE	TRUE	FALSE		FALSE	TRUE	FALSE		demographic								FALSE																
+patientStatus	Vital status		subject	categorical	genturis_codebook1_patientstatus	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		demographic								FALSE																
+yearDeath	Year of death		subject	int		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		demographic	2100	1900						FALSE																
+HCPcontact	HCP contact		subject	xref	genturis_person	FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+firstContactHCP	Date of data entry		subject	date		FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+diseaserelated	Disease-related		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+diseaseGroup	Type of disease group	Beloninging to which type of genturis' disease groups	subject	xref	genturis_diseaseGroup	FALSE	FALSE	TRUE	FALSE		FALSE	TRUE	FALSE		diseaserelated								FALSE																
+ordo	Orpha-code(s)		subject	mref	genturis_codebook2_ordo	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		diseaserelated								FALSE																
+diagnosisStatus	Status of diagnosis		subject	categorical	genturis_codebook1_diagnosisstatus	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		diseaserelated								FALSE																
+symptomatic	Symptomatic (Y/N)		subject	bool		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		diseaserelated								FALSE																
+diagnosisData	Data available		subject	categoricalmref	genturis_codebook1_diagnosisData	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		diseaserelated								FALSE																
+phenotype	Clinical symptoms and physical findings (HPO) devided in subcategories		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+healtyBool	This patient is clinically normal		subject	bool		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoGrowth	Growth parameters		subject	mref	genturis_hpoGrowth	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpocranio	Craniofacial		subject	mref	genturis_hpoCranio	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoEye	Eye Defects		subject	mref	genturis_hpoEye	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoEar	Ear Defects		subject	mref	genturis_hpoEar	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoCutan	Cutaneous		subject	mref	genturis_hpoCutan	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoCardio	Cardiovascular		subject	mref	genturis_hpoCardio	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoRespitory	Respiratory		subject	mref	genturis_hpoRespitory	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoMusco	Musculoskeletal		subject	mref	genturis_hpoMusco	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoGastro	Gastrointestinal		subject	mref	genturis_hpoGastro	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoGenito	Genitourinary		subject	mref	genturis_hpoGenito	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoBehaviour	Behavior, Cognition and Development		subject	mref	genturis_hpoBehaviour	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpoNeuro	Neurological		subject	mref	genturis_hpoNeuro	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+notHpo	Negated phenotypes	Clinical symptoms and physical findings that were NOT present in patient(HPO)	subject	mref	genturis_codebook2_hpo	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype								FALSE																
+hpo	All HPO terms collected	AUTO-generated (DO NOT FILL)	subject	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		phenotype				"{""template"":""{{ear.combined}}  {{growth.combined}} {{cranio.combined}} {{eye.combined}} {{cutan.combined}} {{cardio.combined}} {{respitory.combined}} {{musco.combined}} {{gastro.combined}} {{genito.combined}} {{behaviour.combined}} {{neuro.combined}} ""}"																				
+affected	Information on cancer history		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+basisDiagnosis	Basis of diagnosis	IARC-IACR Basis of Diagnosis Codes. For more information: http://www.iacr.com.fr/images/doc/basis.pdf	subject	xref	genturis_codebook_basisDiagnosis	FALSE	FALSE	TRUE	FALSE		FALSE	TRUE	FALSE		affected								FALSE																
+ageOnset	Age at onset		subject	int		FALSE	FALSE	TRUE	FALSE		FALSE	TRUE	FALSE		affected	150	0						FALSE																
+ageDiagnose	Age at diagnosis		subject	int		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		affected	150	0						FALSE																
+modeDiagnosis	Mode of diagnosis		subject	xref	genturis_codebook1_modeDiagnosis	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		affected								FALSE																
+progression	Pace of progression		subject	xref	genturis_codebook1_progression	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		affected								FALSE																
+oncoCode	ICD-O-3-M		subject	mref	genturis_codebook2_icdO3	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		affected								FALSE																
+tumor	Information tumor(s)		subject	mref	hcp09_tumor	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		affected								FALSE																
+famHistory	Positive Family History		subject	enum		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE	No,Yes,Unclear	affected								FALSE																
+diagnostic	Diagnostics		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+geneticTest	Genetic diagnostics performed		subject	enum		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE	No,Yes,Unknown	diagnostic								FALSE																
+typeDiagnostic	Type of genetic diagnostic (sequencing)		subject	mref	genturis_codebook1_typeofsequencing	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		diagnostic								FALSE																
+geneticCause	Genetic cause identified		subject	enum		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE	No,Yes,Uncertain	diagnostic								FALSE																
+cosmic	Genes (cosmic)		subject	mref	genturis_codebook_cosmic	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		diagnostic								FALSE																
+variant	Variant		subject	mref	hcp09_variant	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		diagnostic								FALSE																
+sampleBool	Patient's biological sample available for research(in specific Biobank)		subject	bool		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE																										
+biobank	Which Biobank(s) has sample(s)	List of BBMRI-ERIC biobanks	subject	mref	genturis_codebook_biobanks	TRUE	FALSE	$('sampleBool').eq(true).value()	FALSE		FALSE	FALSE	FALSE										FALSE																
+materialTypes	Material types available for research		subject	mref	genturis_codebook1_materialtype	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+recontact	Patient re-contact		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+recall	Patient recall		subject	enum		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE	"Conditions,Limitations,Procedure; not possible"	recontact								FALSE																
+recallRemarks	Patient recall Remarks		subject	text		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		recontact								FALSE																
