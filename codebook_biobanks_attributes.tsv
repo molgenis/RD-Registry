@@ -1,8 +1,0 @@
-name	label	entity	dataType	idAttribute	nillable	labelAttribute	visible	description
-id	ID -Biobank	codebook_biobanks	string	TRUE	FALSE	FALSE	FALSE	Unique biobank ID within BBMRI-ERIC based on MIABIS 2.0 standard (ISO 3166-1 alpha-2 + underscore + biobank national ID or name), prefixed with bbmri-eric:ID: string - MIABIS-2.0-01.
-name	Name Biobank	codebook_biobanks	string	FALSE	FALSE	TRUE	TRUE	Biobank name according to MIABIS 2.0 - MIABIS-2.0-03.
-acronym	Acronym	codebook_biobanks	string	FALSE	TRUE		TRUE	Biobank acronym - MIABIS-2.0-02.
-description	Description Biobank	codebook_biobanks	text	FALSE	TRUE		FALSE	Biobank description - MIABIS-2.0-08.
-bioresource_reference	Bioresource reference	codebook_biobanks	text	FALSE	TRUE		FALSE	Bioresource reference to be cited when the bioresource (biobank/collection) is used for research.
-url	Website biobank	codebook_biobanks	hyperlink	FALSE	TRUE		TRUE	Biobank URL - MIABIS-2.0-04.
-country	Country - code	codebook_biobanks	string	FALSE	FALSE		TRUE	Country hosting the biobank according to MIABIS 2.0 - MIABIS-2.0-06.
