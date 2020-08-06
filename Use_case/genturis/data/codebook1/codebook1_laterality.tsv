@@ -1,5 +1,5 @@
 value_en	description_en	codesystem	code	description_code
-Right 	Being located on the right side of the body.	HPO	HP:0012834 	Being located on the right side of the body.
-Bilateral 	Being present on both sides of the body.	HPO	HP:0012832	Being present on both sides of the body.
-Left	Being located on the left side of the body.	HPO	HP:0012835 	Being located on the left side of the body.
-Unilateral 	Being present on only the left or only the right side of the body.	HPO	HP:0012833	Being present on only the left or only the right side of the body.
+Right	Being located on the right side of the body.	HPO	HP:0012834	Being located on the right side of the body.
+Bilateral	Being present on both sides of the body.	HPO	HP:0012832	Being present on both sides of the body.
+Left	Being located on the left side of the body.	HPO	HP:0012835	Being located on the left side of the body.
+Unilateral	Being present on only the left or only the right side of the body.	HPO	HP:0012833	Being present on only the left or only the right side of the body.
