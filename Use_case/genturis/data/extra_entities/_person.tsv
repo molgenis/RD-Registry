@@ -1,7 +1,7 @@
 id	first_name	last_name	full_name	department	email	city	phone	address	zip	country
 ES01	Ignacio	Bianco Guillermo	Ignacio Bianco Guillermo		iblanco.germanstrias@gencat.cat					Spain
-ES02	Joan	Brunet Vidal	Joan Brunet Vidal		Jbrunet@iconcologia.net	Gabriel Capella		Conxi Lázaro		Spain
-ES03	Judith	Balmaña	Judith Balmaña	Vall d'Hebron Institute of Oncology, Barcelona	jbalmana@vhio.net					Spain
+ES02	Joan	Brunet Vidal	Joan Brunet Vidal		Jbrunet@iconcologia.net	Gabriel Capella		Conxi Lazaro		Spain
+ES03	Judith	Balmana	Judith Balmana	Vall d'Hebron Institute of Oncology, Barcelona	jbalmana@vhio.net					Spain
 ES04	C	lazaro	clazaro		clazaro@iconcologia.net					Spain
 ES05	G	capella	gcapella		gcapella@iconcologia.net					Spain
 ES06	Hector	Salvador Hernandez	Hector Salvador Hernandez		hsalvador@sjdhospitalbarcelona.org					Spain
@@ -17,7 +17,7 @@ NL01	Rolf	Sijmons	Rolf Sijmons		r.h.sijmons@umcg.nl					TheNetherlands
 PT01	Carla	Oliveira	Carla Oliveira		carlaol@ipatimup.pt					Portugal
 PT03	Manuel	Teixeira	Manuel Teixeira		mateixeira@icbas.up.pt					Portugal
 PT02	Fatima	Carneiro	Fatima Carneiro		fcarneiro@ipatimup.pt					Portugal
-FI01	Sirkku	Peltonen	Sirkku Peltonen		sipelto@utu.fi			Tyks, T-hospital (building 18), Main entrance 18A, Hämeentie 11, Turku	PO Box 52,20521 Turku	Finland
+FI01	Sirkku	Peltonen	Sirkku Peltonen		sipelto@utu.fi			Tyks, T-hospital (building 18), Main entrance 18A, Hameentie 11, Turku	PO Box 52,20521 Turku	Finland
 FI02	Marja	Hietala	Marja Hietala		mahehi@utu.fi					Finland
 NO01	Hildegunn	Hoberg-Vetti	Hildegunn Hoberg-Vetti		hildegunn.hoberg.vetti@helse-bergen.no					Norway
 PT04	Liliana	Sousa	Liliana Sousa		lsousa@ipatimup.pt					Portugal
@@ -44,14 +44,14 @@ NL02	Nicoline	Hoogerbrugge	Nicoline Hoogerbrugge		Nicoline.Hoogerbrugge@radboudu
 NL03	Marjolijn	Ligtenberg	Marjolijn Ligtenberg		Marjolijn.Ligtenberg@radboudumc.nl		31 (0)24 3617749			TheNetherlands
 NL04	Gwendolyn	Woldringh	Gwendolyn Woldringh		Gwendolyn.Woldringh@radboudumc.nl					TheNetherlands
 NL05	Janet	Vos	Janet Vos		janet.vos@radboudumc.nl					TheNetherlands
-FR01	Pierre	Wolkenstein	Pierre Wolkenstein		pierre.wolkenstein@aphp.fr		01 49 81 45 13		94010 Créteil Cedex	France
+FR01	Pierre	Wolkenstein	Pierre Wolkenstein		pierre.wolkenstein@aphp.fr		01 49 81 45 13		94010 Creteil Cedex	France
 FR03	Thierry	Frebourg	Thierry Frebourg		Thierry.Frebourg@chu-rouen.fr					France
-HU02	Judit	Ágnes Bene	Judit Ágnes Bene		bene.judit@pte.hu					Hungary
+HU02	Judit	Agnes Bene	Judit Agnes Bene		bene.judit@pte.hu					Hungary
 FR02	Chrystelle	Colas	Chrystelle Colas		chrystelle.colas@curie.fr					France
 HU01	Bela	Melegh	Bela Melegh		melegh.bela@pte.hu					Hungary
 FR05	Sophie	Oger	Sophie Oger		sophie.oger-hodge@curie.fr					France
-HU04	Réka	Ripszám	Réka Ripszám		ripszam.reka@pte.hu					Hungary
-FR04	Claude 	Houdayer	Claude  Houdayer		Claude.Houdayer@chu-rouen.fr					France
+HU04	Reka	Ripszam	Reka Ripszam		ripszam.reka@pte.hu					Hungary
+FR04	Claude	Houdayer	Claude Houdayer		Claude.Houdayer@chu-rouen.fr					France
 HU03	Anita	Maasz	Anita Maasz		maasz.anita@pte.hu					Hungary
 SI01	Mateja	Kraj	Mateja Kraj		mkrajc@onko-i.si					Slovenia
 SE02	Emma	Tham	Emma Tham		emma.tham@karolinska.se					Sweden
