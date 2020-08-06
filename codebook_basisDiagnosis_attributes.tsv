@@ -1,7 +1,0 @@
-name	label	entity	dataType	idAttribute	labelAttribute	nillable	visible	enumOptions
-code	Code	codebook_basisDiagnosis	string	TRUE		FALSE	TRUE	
-value_en	Value (English)	codebook_basisDiagnosis	string	FALSE	TRUE	FALSE	TRUE	
-criteria	Criteria	codebook_basisDiagnosis	string	FALSE		TRUE	TRUE	
-group	Microscopic or non-microscopic	codebook_basisDiagnosis	enum	FALSE		TRUE	TRUE	Non-microscopic,Microscopic
-codesystem	Codesystem	codebook_basisDiagnosis	string	FALSE		TRUE	TRUE	
-description_code	Description of code	codebook_basisDiagnosis	text	FALSE		TRUE	TRUE	
