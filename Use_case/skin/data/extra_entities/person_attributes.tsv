@@ -1,0 +1,12 @@
+name	label	description	entity	dataType	refEntity	nillable	unique	visible	idAttribute	labelAttribute	readOnly	aggregateable	lookupAttribute	enumOptions	partOfAttribute	rangeMax	rangeMin	mappedBy	expression	validationExpression	defaultValue	tags	auto	label-en	description-en	label-nl	description-nl	label-de	description-de	label-es	description-es	label-it	description-it	label-pt	description-pt	label-fr	description-fr	label-xx	description-xx
+id	ID		person	string		FALSE	TRUE	TRUE	TRUE		TRUE	FALSE	TRUE										TRUE																
+first_name	First name		person	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+last_name	Last name		person	string		FALSE	FALSE	TRUE	FALSE	TRUE	FALSE	FALSE	TRUE										FALSE																
+full_name	Full name		person	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+department	Department		person	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+email	e-Mail		person	email		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+city	City		person	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+phone	Phone number		person	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+address	Address		person	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+zip	Postal code		person	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+country	Country		person	categorical	skin_codebook1_countryofresidence	FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																

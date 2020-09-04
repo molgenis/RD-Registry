@@ -1,0 +1,11 @@
+name	label	description	entity	dataType	refEntity	nillable	unique	visible	idAttribute	labelAttribute	readOnly	aggregateable	lookupAttribute	enumOptions	partOfAttribute	rangeMax	rangeMin	mappedBy	expression	validationExpression	defaultValue	tags	auto	label-en	description-en	label-nl	description-nl	label-de	description-de	label-es	description-es	label-it	description-it	label-pt	description-pt	label-fr	description-fr	label-xx	description-xx
+id	ERN number		organisation	string		FALSE	TRUE	TRUE	TRUE		TRUE	FALSE	TRUE										TRUE																
+name	Institution name ERN		organisation	string		FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	TRUE										FALSE																
+acronym	acronym		organisation	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+principal_investigators	ERN main contact		organisation	mref	skin_person	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+contact_person	ERN other contactperson (s)		organisation	mref	skin_person	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+description	Description		organisation	text		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+website	Website ERN		organisation	hyperlink		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+city	City		organisation	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+country	Country		organisation	categorical	skin_codebook1_countryofresidence	FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+expertise	Expertise in		organisation	categoricalmref	skin_codebook1_expertise	FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																

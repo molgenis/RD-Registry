@@ -1,0 +1,58 @@
+name	label	description	entity	dataType	refEntity	nillable	unique	visible	idAttribute	labelAttribute	readOnly	aggregateable	lookupAttribute	enumOptions	partOfAttribute	rangeMax	rangeMin	mappedBy	expression	validationExpression	defaultValue	tags	auto	label-en	description-en	label-nl	description-nl	label-de	description-de	label-es	description-es	label-it	description-it	label-pt	description-pt	label-fr	description-fr	label-xx	description-xx
+EU1	1. Pseudonym		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+individualid	EUPID (Individual ID)		subject	string		FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	TRUE		EU1								FALSE																
+altID	Alternative ID	Alternative ID (peronID, HCP_ID, familyID,etc.)	subject	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU1																								
+EU2	2. Personal information		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+biologicalsex	Sex		subject	categorical	skin_codebook1_sex	FALSE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU2								FALSE																
+datebirth	Date of Birth		subject	date		FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU2								FALSE																
+country	Country of Birth		subject	xref	skin_codebook1_countofbirth	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU2																								
+EU3	3. Patient Status		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+patientstatus	Patient Status		subject	categorical	skin_codebook1_patientstatus	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU3								FALSE																
+ageatdeath	Age at death	When death is in months, age of death zero (0), month can be added.	subject	int		TRUE	FALSE	$('patientstatus').eq('Dead').value()	FALSE	FALSE	FALSE	FALSE	FALSE		EU3	150	0						FALSE																
+deathmonth	Months of death	Only whole month can be added	subject	int		TRUE	FALSE	$('ageatdeath').eq(0).value()	FALSE	FALSE	FALSE	FALSE	FALSE		EU3	12	1																						
+EU4	4. Care pathway		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+firstconwspeccenter	First contact with specialised center		subject	date		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU4								FALSE																
+EU5	5. Disease history		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+ageonset	Age at onset		subject	categorical	skin_codebook1_onset	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU5								FALSE																
+onsetdate	Date of onset	Date first contact with specialised center/Date of data entry	subject	date		TRUE	FALSE	$('ageonset').eq('Date').value()	FALSE	FALSE	FALSE	FALSE	FALSE		EU5								FALSE																
+agediagnose	Age at diagnosis		subject	categorical	skin_codebook1_onset	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU5								FALSE																
+diagnosedate	Date of diagnose		subject	date		TRUE	FALSE	$('agediagnose').('Date').value()	FALSE	FALSE	FALSE	FALSE	FALSE		EU5								FALSE																
+EU6	6 Diagnosis		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+ordo	Diagnosis of the rare disease	Orpha-code(s) and ICD-10	subject	mref	skin_codebook1_clinicaldiagn	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU6								FALSE																
+hgnc	Genetic diagnosis	HGNC (genes)	subject	mref	skin_hgnc	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU6								FALSE																
+hpo	Clinical symptoms and physical findings in patient(HPO)	HPO	subject	mref	skin_codebook2_hpo	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU6								FALSE																
+nothpo	Negative phenotype annotations 		subject	mref	skin_codebook2_hpo	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU6																								
+EU7	7. Research		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+consentRegistry	Consent for research		subject	bool		FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU7								FALSE																
+consentReuse	Consent to the reuse of data		subject	bool		FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU7								FALSE																
+sampleBool	Patient's biological sample available for researchÊ	present in biobank	subject	bool		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU7								FALSE																
+EU8	8.Disability		subject	compound		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE										FALSE																
+ICF	Classification of functioning/disability(ICF)		subject	mref	skin_codebook1_icf	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU8								FALSE																
+skin	SKIN - elements		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+diseasegroup	Type of disease group	Beloninging to which type of SKIN disease groups	subject	xref	skin_diseaseGroup	FALSE	FALSE	TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		skin								FALSE																
+subgroups	Subgroups		subject	string		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	TRUE	FALSE		skin																								
+medical	Medical		subject	compound											skin																								
+medimageBool	Medical images available?	 Pictures are available and can be requested or to be shared later.	subject	bool		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		medical																								
+medimage	Medical image	Medical Imaging pictures	subject	file	sys_FileMeta	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		medical								FALSE																
+medimageDate	Date medical image		subject	date		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		medical																								
+medimageLegend	Legend medical image	Text field to add name of HCP, diagnosis...etc	subject	text		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		medical																								
+clinical	Clinical		subject	compound											skin																								
+clinimageBool	Clinical image available?	Pictures are available and can be requested or to be shared later.	subject	bool		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		clinical																								
+clinimage	Clinical image	Clinical pictures	subject	file	sys_FileMeta	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		clinical								FALSE																
+clinimageDate	Date Clinical image		subject	date		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		clinical																								
+clinimageLegend	Legend Clinical image	Text field to add name of HCP, diagnosis...etc	subject	text		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		clinical																								
+antibody	Antibody		subject	compound											skin																								
+result	Antibody results	Antibody results (free text)	subject	text		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		antibody								FALSE																
+nameAb	Name Ab	info: http://www.imgt.org	subject	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		antibody																								
+targetProtein	Target Protein	info: http://www.imgt.org	subject	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		antibody																								
+histology	Histology	Pictures are available and can be requested or to be shared later.	subject	compound											skin																								
+histologyimageBool	Histology image available?		subject	bool		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		histology																								
+histologyimage	Histology image	Histology information and text	subject	file	sys_FileMeta	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		histology								FALSE																
+histologyimageDate	Date Histology image		subject	date		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		histology																								
+histologyimageLegend	Legend Histology image		subject	text		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		histology																								
+variant	Genetic Variant		subject	compound											skin																								
+gene	gene		subject	xref	skin_hgnc	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		variant																								
+cdna	c.DNA	(example: c.4603G>T)	subject	string		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		variant								FALSE																
+protein	Protein change	(example:p.Glu492ProfsX53)	subject	string		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		variant																								
+genetype	Type of mutation		subject	mref	skin_codebook1_mutationAbnormality	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		variant																								
+class	HCP classification	Clinical interperation for variant	subject	mref	skin_codebook1_classVariant	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		variant																								

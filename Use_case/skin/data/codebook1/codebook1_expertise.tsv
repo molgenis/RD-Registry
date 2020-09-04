@@ -1,0 +1,10 @@
+value_en	description_en	codesystem	code	description_code
+1	Autoimmune bullous diseases	ERO,EFO	ERO:0000033 in EFO:0008598	has_expertise in autoimmune bullous skin disease
+2	Mendelian connective tissue disorders	ERO,EFO	ERO:0000033 in EFO:1001986	has_expertise in connective tissue disease
+3	Severe cutaneous drug reactions	ERO,EFO	ERO:0000033 in EFO:0006346	has_expertise in severe cutaneous adverse reaction
+4	Inherited Epidermolysis Bullosa and skin fragility syndromes	ERO,Orphanet	ERO:0000033 in Orphanet:79361	has_expertise in Inherited epidermolysis bullosa
+5	Ichthyosis and Palmoplantar Keratoderma	ERO,MONDO,EFO	ERO:0000033 in MONDO:0019269 and EFO:1000745	has_expertise in ichthyosis (disease) and palmoplantar keratosis
+6	Cutaneous diseases related to DNA repair disorders	ERO,EFO,NCIT	ERO:0000033 in NCIT:C13316 and EFO:0008499	has_expertise in Cutaneous DNA repair deficiency
+7	Cutaneous Mosaic Disorders Naevi & Naevoid skin disorders, complex vascular malformations and vascular tumors	ERO,NCIT	ERO:0000033 in NCIT:C25684,NCIT:C3371	has_expertise in Special Skin Disorder
+8	Ectodermal Dysplasias including Incontinentia Pigmenti and P63- associated disorders	ERO,Orphanet	ERO:0000033 in Orphanet:79373	has_expertise in Ectodermal dysplasia syndrome
+9	Acquired immunologicaL LOw prevalence and Complex AdulT diseases of thE SKIN (ALLOCATE SKIN)	ERO,NCIT	ERO:0000033 in NCIT:C25684,NCIT:C3371	has_expertise in Special Skin Disorder
