@@ -20,12 +20,14 @@ diagnosedate	Date of diagnose		subject	date		TRUE	FALSE	$('agediagnose').('Date'
 EU6	6 Diagnosis		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
 ordo	Diagnosis of the rare disease	Orpha-code(s) and ICD-10	subject	mref	skin_codebook1_clinicaldiagn	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU6								FALSE																
 hgnc	Genetic diagnosis	HGNC (genes)	subject	mref	skin_hgnc	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU6								FALSE																
+omim	Genetic diagnosis	OMIM	subject	mref	skin_omim	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU6								FALSE																
 hpo	Clinical symptoms and physical findings in patient(HPO)	HPO	subject	mref	skin_codebook2_hpo	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU6								FALSE																
 nothpo	Negative phenotype annotations 		subject	mref	skin_codebook2_hpo	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU6																								
 EU7	7. Research		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
 consentRegistry	Consent for research		subject	bool		FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU7								FALSE																
 consentReuse	Consent to the reuse of data		subject	bool		FALSE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU7								FALSE																
-sampleBool	Patient's biological sample available for research 	present in biobank	subject	bool		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU7								FALSE																
+sampleBool	Patient's biological sample available for research		subject	bool		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU7								FALSE																
+biobankBool	Biological sample stored in a biobank		subject	bool		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE		EU7																								
 EU8	8.Disability		subject	compound		TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE										FALSE																
 ICF	Classification of functioning/disability(ICF)		subject	mref	skin_codebook1_icf	TRUE	FALSE	TRUE	FALSE	FALSE	FALSE	FALSE	FALSE		EU8								FALSE																
 skin	SKIN - elements		subject	compound		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
