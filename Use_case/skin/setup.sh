@@ -84,14 +84,18 @@ mcmd import -p codebook2_hpo.tsv --as skin_codebook2_hpo --in skin
 # Fourth, import extra_entities attributes. And content if already there (organisation,contactperson and diseasegroups)
 cd ..
 cd extra_entities
+mcmd import -p omimType_attributes.tsv --as attributes --in skin
 mcmd import -p hgnc_attributes.tsv --as attributes --in skin
 mcmd import -p diseaseGroup_attributes.tsv --as attributes --in skin
 mcmd import -p person_attributes.tsv --as attributes --in skin
 mcmd import -p organisation_attributes.tsv --as attributes --in skin
+mcmd import -p omim_attributes.tsv --as attributes --in skin
 
 #content
+mcmd import -p omimType.tsv --as skin_omimType --in skin
 mcmd import -p hgnc.tsv --as skin_hgnc --in skin
 mcmd import -p diseaseGroup.tsv --as skin_diseaseGroup --in skin
+mcmd import -p omim.tsv --as skin_omim --in skin
 
 #Fifth,import ERN RD-Registry patient attributes.
 cd ..
