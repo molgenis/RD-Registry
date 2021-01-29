@@ -1,0 +1,26 @@
+id	name	acronym	principal_investigators	contact_person	description	website	city	country	expertise
+HCP_01	Radboud university medical center		NL02	NL03,NL04,NL05		https://www.radboudumc.nl/en/patient-care	Nijmegen	TheNetherlands	PP,HBOC,other
+HCP_02	University Medical Center Groningen	UMCG	NL01			https://www.umcg.nl/EN/corporate/paginas/default.aspx	Groningen	TheNetherlands	PP,HBOC
+HCP_03	Genomic Medicine, Central Manchester Foundation Trust		UK03	UK04		https://mft.nhs.uk/saint-marys/services/genomic-medicine/	Manchester	UnitedKingdomofGreatBritainandNorthernIreland	NF,PP,HBOC,other
+HCP_04	Cambridge University Hospitals NHS Foundation Trust		UK01	UK05		https://www.cuh.nhs.uk/clinical-genetics	Cambridge	UnitedKingdomofGreatBritainandNorthernIreland	NF,PP,HBOC,other
+HCP_05	Medizinisch Genetisches Zentrum		DE03	DE04,DE05,DE06,DE07		https://www.mgz-muenchen.com/home	Munich	Germany	PP,HBOC,other
+HCP_06	Rouen University Hospital		FR03	FR04		https://www.chu-rouen.fr/service/service-de-genetique/	Rouen	France	PP,HBOC
+HCP_07	Guy's and St. Thomas' NHS Foundation Trust		UK02			https://www.guysandstthomas.nhs.uk/our-services/neurology/specialties/neurofibromatosis/overview.aspx	London	UnitedKingdomofGreatBritainandNorthernIreland	NF
+HCP_08	Pomeranian Medical University - University Clinical Hospital no 1		PL01	PL02,PL03		https://www.pum.edu.pl/english/about-pmu	Szczecin	Poland	PP,HBOC,other
+HCP_09	Karolinska University Hospital		SE01	SE02		https://www.karolinska.se/genetik	Stockholm	Sweden	PP,HBOC,other
+HCP_10	Hospital Germans Trias I Pujol - lnstitut Catala d'Oncologia		ES01	ES02,ES03,ES04,ES05		http://ico.gencat.cat/en/professionals/serveis_i_programes/programa_de_cancer_hereditari/	Barcelona	Spain	NF,PP,HBOC,other
+HCP_11	University Hospital Liege		BE03	BE04		https://www.chuliege.be/jcms/c_15605575/en/portail-internet	Liege	Germany	NF,HBOC
+HCP_12	University Hospital Leuven		BE02	BE05		https://www.uzleuven.be/en/about-uz-leuven	Leuven	Germany	NF,HBOC,PP,other
+HCP_13	University Hospital Henri Mondor-National Referral Center		FR01			http://neurofibromatoses.aphp.fr/	Creteil	Germany	NF
+HCP_14	University of Pecs		HU01	HU02,HU03,HU04		http://aok.pte.hu/en/egyseg/index/200	Pecs	Germany	NF,PP,HBOC,other
+HCP_15	Porto Comprehensive Cancer Center		PT01	PT02,PT03,PT04		https://www.i3s.up.pt/	Porto	Germany	other
+HCP_16	Ghent University Hospital	CMGG	BE01	BE06,BE07		https://www.cmgg.be/en/research/cancer-genetics/hereditary-breast-cancer	Ghent	Germany	PP,HBOC,other
+HCP_17	Hospital Sant Joan de Deu		ES06	ES07		https://www.sjdhospitalbarcelona.org/en/children/oncology-and-haematology	Barcelona	Spain	NF
+HCP_18	Center for Hereditary Tumor Syndromes (CHT), University Hospital Bonn	CHT	DE01	DE08		https://zseb.uni-bonn.de/home/behandlungszentren/zet	Bonn	Germany	PP,other
+HCP_19	ENCORE - NF1 expertise centre, Erasmus Medical Center		NL06			https://www6.erasmusmc.nl/encore/?reason=404	Rotterdam	TheNetherlands	NF
+HCP_20	Institute of Oncology Ljubljana		SI01	SI02		https://www.onko-i.si/	Ljubljana	Slovenia	HBOC
+HCP_21	Hereditary Cancer Syndrome Center Dresden		DE02	DE09,DE10		https://tu-dresden.de/med/mf/kge#intro	Dresden	Germany	NF,PP,HBOC,other
+HCP_22	The hospital District of Southwest Finland, Turku University Hospital	TYKS	FI01	FI02		http://www.vsshp.fi/en/Pages/default.aspx	Turku	Finland	NF
+HCP_23	Institut Curie		FR02	FR05		https://institut-curie.org/	Paris	France	HBOC
+HCP_24	Haukeland University Hospital		NO01			https://helse-bergen.no/seksjon-engelsk	Bergen	Norway	PP,HBOC
+HCP_25	Universita Cattolica del Sacro Cuore		IT01				Milan	Italy	PP,HBOC,other

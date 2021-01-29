@@ -1,0 +1,7 @@
+id	description
+1	Single variant (familial variant)
+2	Single gene
+3	Multiple genes or gene panel
+4	Whole Exome sequencing
+5	Whole Genome sequencing
+6	Other
