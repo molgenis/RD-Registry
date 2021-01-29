@@ -5,6 +5,6 @@ description_en	Description (English)	codebook_cosmic	string	FALSE	TRUE	TRUE
 synonym	Synonym	codebook_cosmic	string	FALSE	TRUE	TRUE	
 chrLocation	Chrosome location	codebook_cosmic	string	FALSE	TRUE	TRUE	
 chrBand	Chrosome Band	codebook_cosmic	string	FALSE	TRUE	TRUE	
-locusType	Locus Group 	codebook_cosmic	categorical	FALSE	TRUE	TRUE	genturis_codebook1_subClasscosmic
+locusType	Locus Group√ä	codebook_cosmic	categorical	FALSE	TRUE	TRUE	genturis_codebook1_subClasscosmic
 codesystem	Codesystem	codebook_cosmic	string	FALSE	TRUE	TRUE	
 description_code	Description of code	codebook_cosmic	string	FALSE	TRUE	TRUE	
