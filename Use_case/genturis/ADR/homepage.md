@@ -1,5 +1,5 @@
 # Customized Homepage
-* Status:  accepted (not all pages(part of homepage) working
+* Status:  accepted (not all pages(part of homepage) working)
 * Deciders: Genturis registry projectlead
 * Date: 10 September 2020
 
@@ -10,6 +10,7 @@ Change MOLGENIS standard homepage to registry Genturis homepage. Look and feel o
 - Changed static content.
 - Pictures/logos are kept on server /logo.
 - File(s) kept on sys_FileMeta
+- Permissions to view File need to be set for ANONYMOUS
 - Standard MOLGENIS theme is used (MOLGENIS default - Blue)
 
 ## Decision
