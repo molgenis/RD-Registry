@@ -3,6 +3,7 @@
 * Deciders: Genturis registry projectlead
 * Date: 10 September 2020
 
+![screenshot homepage](https://github.com/molgenis/RD-Registry/blob/master/Use_case/genturis/images/Screenshot%202021-07-28%20at%2014.55.38.png)
 
 ## Context
 
@@ -28,7 +29,7 @@ Styling within static content can interfer with standard theming (in future).
 
 ## External links
 - [static content](https://github.com/molgenis/RD-Registry/blob/master/Use_case/genturis/staticContent/sys_StaticContent.tsv)
-- [images]()
-- [file]()
+- [images](https://github.com/molgenis/RD-Registry/tree/master/Use_case/genturis/images/)
+- [file](https://github.com/molgenis/RD-Registry/tree/master/Use_case/genturis/files)
 - [trello - prep datamanager genturis how to handle hompage](https://trello.com/c/shG2jLsC/374-overdracht-homepage-genturis-naar-bianca-voorbereiden)
 - [trello - finalizing hompage](https://trello.com/c/kzAayDV6/292-ern-genturis-laatste-aanpassingen-homepage-en-overdracht-bianca)
