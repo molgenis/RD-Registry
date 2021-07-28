@@ -1,0 +1,33 @@
+# Customized Homepage
+* Status:  accepted (not all pages(part of homepage) working
+* Deciders: Genturis registry projectlead
+* Date: 10 September 2020
+
+
+## Context
+
+Change MOLGENIS standard homepage to registry Genturis homepage. Look and feel of homepage should look like [ERN genturis webiste](https://www.genturis.eu/l=eng/Home.html). Text, pictures and leaflet where provided by datamanager ERN genturis.
+- Changed static content.
+- Pictures/logos are kept on server /logo.
+- File(s) kept on sys_FileMeta
+- Standard MOLGENIS theme is used (MOLGENIS default - Blue)
+
+## Decision
+
+Homepage style like ERN genturis website (with some minor changes to show difference between the two website).
+Styling of homepage is done in static content page.
+
+Pictures used:
+* /logo/disease_groups.png
+* /logo/GENTURIS_banner.png
+
+## Consequences
+
+Styling within static content can interfer with standard theming (in future).
+
+## External links
+- [static content]()
+- [images]()
+- [file]()
+- [trello - prep datamanager genturis how to handle hompage](https://trello.com/c/shG2jLsC/374-overdracht-homepage-genturis-naar-bianca-voorbereiden)
+- [trello - finalizing hompage](https://trello.com/c/kzAayDV6/292-ern-genturis-laatste-aanpassingen-homepage-en-overdracht-bianca)
