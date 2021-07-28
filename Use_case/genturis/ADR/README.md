@@ -3,7 +3,7 @@
 Genturis registry MOLGENIS configuration:
 
 * [Authentication settings](/filenothere)
-* [Website hosting (operations)](/file)
+* [Website hosting (operations)](website.md)
 * [Minimal dataset (EMX)](/file)
 * [Pseudonimization](/file)
 * [Customize "Homepage"](/filenot)
