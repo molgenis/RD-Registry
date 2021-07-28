@@ -27,7 +27,7 @@ Pictures used:
 Styling within static content can interfer with standard theming (in future).
 
 ## External links
-- [static content]()
+- [static content](https://github.com/molgenis/RD-Registry/blob/master/Use_case/genturis/staticContent/sys_StaticContent.tsv)
 - [images]()
 - [file]()
 - [trello - prep datamanager genturis how to handle hompage](https://trello.com/c/shG2jLsC/374-overdracht-homepage-genturis-naar-bianca-voorbereiden)
