@@ -22,3 +22,4 @@ DNS-alias needs to be specially requested and checked if not already taken.
 
 ## External links
 - [Serverlist](https://serverlist.gcc.rug.nl/menu/datamanagement/dataexplorer?entity=molgenis_serverlist&mod=data&attrs%5B%5D=id&attrs%5B%5D=contact&attrs%5B%5D=DNS&attrs%5B%5D=DNS_alias&attrs%5B%5D=description&attrs%5B%5D=DTAP&query%5Bq%5D%5B0%5D%5Boperator%5D=SEARCH&query%5Bq%5D%5B0%5D%5Bvalue%5D=genturis)
+- [trello - action](https://trello.com/c/H1x85mv1/271-verhuizing-genturis-registryeu-naar-rugmol78)
