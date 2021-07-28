@@ -6,7 +6,7 @@ Genturis registry MOLGENIS configuration:
 * [Website hosting (operations)](website.md)
 * [Minimal dataset (EMX)](/file)
 * [Pseudonimization](/file)
-* [Customize "Homepage"](/filenot)
+* [Customize "Homepage"](homepage.md)
 * [Customize "Filter"](/jkj)
 * [Access control (users)](/file)
 * [Access control (groups/roles)](/file)
