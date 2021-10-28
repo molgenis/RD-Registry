@@ -25,7 +25,7 @@ This repository should make it possible for people to set-up their own RD regist
 The building blocks are focussed around patient information. So person information is embedded in patient/subject information.
 
 Building blocks:
-* [Common data elements (JRC)](/JRC)
+* [Common data elements (JRC)](/Common_Data_Elements)
 * [Other controlled Ontologies](/Biomedical_Ontologies) (available at [BioPortal](https://bioportal.bioontology.org))
 * [Overview ERN implementation](/Use_case) (Each represented by an ERNs involved in this project)
 
