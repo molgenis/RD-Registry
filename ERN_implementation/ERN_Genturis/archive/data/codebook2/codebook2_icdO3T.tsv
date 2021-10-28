@@ -1,0 +1,401 @@
+code	value_en	synonyms	description_en	codesystem	description_code	parents
+C09.8	Overlapping lesion of tonsil			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C09.8	C09
+C54.1	Endometrium			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C54.1	C54
+C44.0	Skin of lip, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44.0	C44
+C63.8	Overlapping lesion of male genital organs			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C63.8	C63
+C72.0	Spinal cord			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C72.0	C72
+C11.0	Superior wall of nasopharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C11.0	C11
+C11.2	Lateral wall of nasopharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C11.2	C11
+C53	CERVIX UTERI			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C53	
+C31.0	Maxillary sinus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C31.0	C31
+C20.9	Rectum, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C20.9	C20
+C20	RECTUM			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C20	
+C68.9	Urinary system, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C68.9	C68
+C53.0	Endocervix			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C53.0	C53
+C63.2	Scrotum, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C63.2	C63
+C25.8	Overlapping lesion of pancreas			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C25.8	C25
+C70.1	Spinal meninges			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C70.1	C70
+C08	OTHER AND UNSPECIFIED MAJOR SALIVARY GLANDS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C08	
+C02.4	Lingual tonsil			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C02.4	C02
+C71.5	Ventricle, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71.5	C71
+C62.9	Testis, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C62.9	C62
+C10.1	Anterior surface of epiglottis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C10.1	C10
+C62	TESTIS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C62	
+C01.9	Base of tongue, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C01.9	C01
+C03.1	Lower gum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C03.1	C03
+C69	EYE AND ADNEXA			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C69	
+C08.9	Major salivary gland, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C08.9	C08
+C72.2	Olfactory nerve			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C72.2	C72
+C53.9	Cervix uteri			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C53.9	C53
+C13.2	Posterior wall of hypopharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C13.2	C13
+C11.3	Anterior wall of nasopharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C11.3	C11
+C10.8	Overlapping lesions of oropharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C10.8	C10
+C21	ANUS AND ANAL CANAL			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C21	
+C21.0	Anus, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C21.0	C21
+C26.8	Overlapping lesion of digestive system			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C26.8	C26
+C54.8	Overlapping lesion of corpus uteri			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C54.8	C54
+C71.1	Frontal lobe			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71.1	C71
+C02.0	Dorsal surface of tongue, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C02.0	C02
+C69.9	Eye, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C69.9	C69
+C37	THYMUS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C37	
+C11	NASOPHARYNX			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C11	
+C21.2	Cloacogenic zone			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C21.2	C21
+C02.2	Ventral surface of tongue, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C02.2	C02
+C04.1	Lateral floor of mouth			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C04.1	C04
+C30.1	Middle ear			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C30.1	C30
+C04.8	Overlapping lesion of floor of mouth			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C04.8	C04
+C72.5	Cranial nerve, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C72.5	C72
+C02.9	Tongue, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C02.9	C02
+C18.5	Splenic flexure of colon			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18.5	C18
+C02	OTHER AND UNSPECIFIED PARTS OF TONGUE			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C02	
+C31.3	Sphenoid sinus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C31.3	C31
+C18.7	Sigmoid colon			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18.7	C18
+C22	LIVER AND INTRAHEPATIC BILE DUCTS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C22	
+C38.2	Posterior mediastinum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C38.2	C38
+C63.0	Epididymis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C63.0	C63
+C09.0	Tonsillar fossa			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C09.0	C09
+C11.9	Nasopharynx, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C11.9	C11
+C72	SPINAL CORD, CRANIAL NERVES, AND OTHER PARTS OF CENTRAL NERVOUS SYSTEM			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C72	
+C40.3	Short bones of lower limb and associated joints			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C40.3	C40
+C18	COLON			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18	
+C38.4	Pleura, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C38.4	C38
+C44.9	Skin, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44.9	C44
+C72.9	Nervous system, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C72.9	C72
+C44	SKIN			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44	
+C22.0	Liver			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C22.0	C22
+C37.9	Thymus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C37.9	C37
+C18.0	Cecum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18.0	C18
+C54.2	Myometrium			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C54.2	C54
+C03	GUM			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C03	
+C02.3	Anterior 2/3 of tongue, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C02.3	C02
+C03.0	Upper Gum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C03.0	C03
+C18.9	Colon, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18.9	C18
+C12	PYRIFORM SINUS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C12	
+C19	RECTOSIGMOID JUNCTION			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C19	
+C71.6	Cerebellum, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71.6	C71
+C40.1	Short bones of upper limb and associated joints			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C40.1	C40
+C73	THYROID GLAND			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C73	
+C12.9	Pyriform sinus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C12.9	C12
+C47.0	Peripheral nerves and autonomic nervous system of head, face, and neck			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C47.0	C47
+C72.3	Optic nerve			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C72.3	C72
+C71.8	Overlapping lesion of brain			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71.8	C71
+C48.2	Peritoneum, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C48.2	C48
+C18.3	Hepatic flexure of colon			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18.3	C18
+C38.0	Heart			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C38.0	C38
+C04.0	Anterior floor of mouth			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C04.0	C04
+C19.9	Rectosigmoid junction			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C19.9	C19
+C32.0	Glottis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C32.0	C32
+C47.9	Autonomic nervous system, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C47.9	C47
+C54	CORPUS UTERI			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C54	
+C57.3	Parametrium			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C57.3	C57
+C73.9	Thyroid gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C73.9	C73
+C21.1	Anal canal			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C21.1	C21
+C54.0	Isthmus uteri			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C54.0	C54
+C63.7	Other specified parts of male genital organs			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C63.7	C63
+C13	HYPOPHARYNX			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C13	
+C09	TONSIL			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C09	
+C13.0	Postcricoid region			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C13.0	C13
+C63.9	Male genital organs, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C63.9	C63
+C49.2	Connective, Subcutaneous and other soft tissues of lower limb and hip			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C49.2	C49
+C63	OTHER AND UNSPECIFIED MALE GENITAL ORGANS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C63	
+C11.1	Posterior wall of nasopharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C11.1	C11
+C48.0	Retroperitoneum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C48.0	C48
+C09.9	Tonsil, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C09.9	C09
+C75.2	Craniopharyngeal duct			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C75.2	C75
+C38.3	Mediastinum, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C38.3	C38
+C54.9	Corpus uteri			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C54.9	C54
+C14.2	Waldeyer ring			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C14.2	C14
+C11.8	Overlapping lesion of nasopharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C11.8	C11
+C39.0	Upper respiratory tract, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C39.0	C39
+C48	RETROPERITONEUM AND PERITONEUM			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C48	
+C55	UTERUS, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C55	
+C22.1	intrahepatic bile duct			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C22.1	C22
+C50.1	Central portion of breast			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C50.1	C50
+C13.9	Hypopharynx, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C13.9	C13
+C72.1	Cauda equina			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C72.1	C72
+C47.3	Peripheral nerves and autonomic nervous system of thorax			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C47.3	C47
+C67.3	Anterior wall of bladder			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67.3	C67
+C41.3	Rib, sternum, clavicle and associated joints			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C41.3	C41
+C31.1	Ethmoid sinus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C31.1	C31
+C40.8	Overlapping lesion of bones, joints and articular cartilage of limbs			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C40.8	C40
+C64.9	Kidney, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C64.9	C64
+C05.1	Soft palate, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C05.1	C05
+C64	KIDNEY			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C64	
+C03.9	Gum, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C03.9	C03
+C47.5	Peripheral nerves and autonomic nervous system of pelvis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C47.5	C47
+C14.8	Overlapping lesion of lip, oral cavity and pharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C14.8	C14
+C38	HEART, MEDIASTINUM, AND PLEURA			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C38	
+C31.8	Overlapping lesion of accessory sinuses			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C31.8	C31
+C40.0	Long bones of upper limb, scapula and associated joints			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C40.0	C40
+C57.1	Broad ligament			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C57.1	C57
+C55.9	Uterus, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C55.9	C55
+C15.2	Abdominal esophagus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C15.2	C15
+C75.4	Carotid body			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C75.4	C75
+C05.8	Overlapping lesion of palate			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C05.8	C05
+C14.0	Pharynx, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C14.0	C14
+C32.3	Laryngeal cartilage			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C32.3	C32
+C49	CONNECTIVE, SUBCUTANEOUS AND OTHER SOFT TISSUES			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C49	
+C23	GALLBLADDER			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C23	
+C15.4	Middle third of esophagus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C15.4	C15
+C40.2	Long bones of lower limb and associated joints			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C40.2	C40
+C75.8	Overlapping lesion of endocrine glands and related structures			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C75.8	C75
+C47.1	Peripheral nerves and autonomic nervous system of upper limb and shoulder			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C47.1	C47
+C21.8	Overlapping lesion of rectum, anus and anal canal			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C21.8	C21
+C49.0	Connective, Subcutaneous and other soft tissues of head, face, and neck			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C49.0	C49
+C05.2	Uvula			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C05.2	C05
+C04.9	Floor of mouth, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C04.9	C04
+C04	FLOOR OF MOUTH			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C04	
+C06.1	Vestibule of mouth			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C06.1	C06
+C32.9	Larynx, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C32.9	C32
+C39	OTHER AND ILL-DEFINED SITES WITHIN RESPIRATORY SYSTEM AMD INTRATHORACIC ORGANS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C39	
+C15.8	Overlapping lesion of esophagus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C15.8	C15
+C32.1	Supraglottis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C32.1	C32
+C30	NASAL CAVITY AND MIDDLE EAR			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C30	
+C23.9	Gallbladder			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C23.9	C23
+C76.4	Upper limb, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C76.4	C76
+C50.4	Upper-outer quadrant of breast			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C50.4	C50
+C06.8	Overlapping lesion of other and unspecified parts of mouth			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C06.8	C06
+C51.1	Labium minus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C51.1	C51
+C49.9	Connective, Subcutaneous and other soft tissues, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C49.9	C49
+C50.6	Axillary tail of breast			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C50.6	C50
+C42.3	Reticuloendothelial system, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C42.3	C42
+C67.1	Dome of bladder			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67.1	C67
+C49.3	Connective, Subcutaneous and other soft tissues of thorax			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C49.3	C49
+C13.1	Hypopharyngeal aspect of aryepiglottic fold			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C13.1	C13
+C41.1	Mandible			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C41.1	C41
+C39.9	Ill-defined sites within respiratory system			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C39.9	C39
+C76.8	Overlapping lesion of ill-defined sites			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C76.8	C76
+C50.8	Overlapping lesion of breast			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C50.8	C50
+C74	ADRENAL GLAND			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C74	
+C24.0	Extrahepatic bile duct			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C24.0	C24
+C33	TRACHEA			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C33	
+C74.0	Cortex of adrenal gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C74.0	C74
+C72.8	Overlapping lesion of brain and central nervous system			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C72.8	C72
+C49.5	Connective, Subcutaneous and other soft tissues of pelvis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C49.5	C49
+C24	OTHER AND UNSPECIFIED PARTS OF BILIARY TRACT			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C24	
+C47.2	Peripheral nerves and autonomic nervous system of lower limb and hip			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C47.2	C47
+C05	PALATE			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C05	
+C25.4	Islets of Langerhans			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C25.4	C25
+C50.2	Upper-inner quadrant of breast			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C50.2	C50
+C31	ACCESSORY SINUSES			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C31	
+C24.9	Billiary tract, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C24.9	C24
+C57.8	Overlapping lesion of female genital organs			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C57.8	C57
+C05.0	Hard palate			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C05.0	C05
+C47.4	Peripheral nerves and autonomic nervous system of abdomen			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C47.4	C47
+C48.1	Specified parts of peritoneum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C48.1	C48
+C67.2	Lateral wall of bladder			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67.2	C67
+C74.9	Adrenal gland, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C74.9	C74
+C06.2	Retromolar area			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C06.2	C06
+C34.2	Middle lobe, lung			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C34.2	C34
+C41.4	Pelvic bones, sacrum, coccyx and associated joints			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C41.4	C41
+C40.9	Bone of limb, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C40.9	C40
+C33.9	Trachea			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C33.9	C33
+C42.1	Bone marrow			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C42.1	C42
+C40	BONES, JOINTS AND ARTICULAR CARTILAGE OF LIMBS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C40	
+C47.6	Peripheral nerves and autonomic nervous system of trunk, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C47.6	C47
+C75	OTHER ENDOCRINE GLANDS AND RELATED STRUCTURES			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C75	
+C67.4	Posterior wall of bladder			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67.4	C67
+C14	OTHER AND ILL-DEFINED SITES IN LIP, ORAL CAVITY AND PHARYNX			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C14	
+C16.1	Fundus of stomach			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C16.1	C16
+C31.2	Frontal sinus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C31.2	C31
+C76.2	Abdomen, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C76.2	C76
+C38.1	Anterior mediastinum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C38.1	C38
+C75.0	Parathyroid gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C75.0	C75
+C47.8	Overlapping lesion of peripheral nerves and autonomic nervous system			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C47.8	C47
+C15.5	Lower third of esophagus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C15.5	C15
+C69.5	Lacrimal gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C69.5	C69
+C38.8	Overlapping lesion of heart, mediastinum and pleura			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C38.8	C38
+C56	OVARY			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C56	
+C34.0	Main bronchus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C34.0	C34
+C32.8	Overlapping lesion of larynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C32.8	C32
+C75.9	Endocrine gland, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C75.9	C75
+C49.1	Connective, Subcutaneous and other soft tissues of upper limb and shoulder			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C49.1	C49
+C60.0	Prepuce			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C60.0	C60
+C77.1	Intrathoracic lymph nodes			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C77.1	C77
+C51.8	Overlapping lesion of vulva			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C51.8	C51
+C06.0	Cheeck mucosa			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C06.0	C06
+C67.6	Ureteric orifice			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67.6	C67
+C57.2	Round ligament			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C57.2	C57
+C15	ESOPHAGUS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C15	
+C60.2	Body of penis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C60.2	C60
+C65.9	Renal pelvis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C65.9	C65
+C76.0	Head, face or neck, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C76.0	C76
+C13.8	Overlapping lesion of hypopharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C13.8	C13
+C67.8	Overlapping lesion of bladder			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67.8	C67
+C25.2	Tail of pancreas			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C25.2	C25
+C65	RENAL PELVIS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C65	
+C15.0	Cervical esophagus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C15.0	C15
+C41.8	Overlapping lesion of bones, joints and articular cartilage			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C41.8	C41
+C50.0	Nipple			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C50.0	C50
+C57.4	Uterine adnexa			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C57.4	C57
+C48.8	Overlapping lesion of retroperitoneum and peritoneum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C48.8	C48
+C16.2	Body of stomach			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C16.2	C16
+C41.0	Bones of skull and face and associated joints			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C41.0	C41
+C76.7	Other ill-defined sites			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C76.7	C76
+C39.8	Overlapping lesion of respiratory system and intrathoracic organs			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C39.8	C39
+C56.9	Ovary			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C56.9	C56
+C00.6	Commissure of lip			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C00.6	C00
+C67.0	Trigone of bladder			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67.0	C67
+C00.8	Overlapping lesion of lip			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C00.8	C00
+C41.2	Vertebral column			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C41.2	C41
+C16.4	Pylorus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C16.4	C16
+C50.9	Breast, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C50.9	C50
+C15.9	Esophagus, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C15.9	C15
+C76	OTHER AND ILL-DEFINED SITES			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C76	
+C24.1	Ampulla of Vater			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C24.1	C24
+C50	BREAST			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C50	
+C17.1	Jejunum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C17.1	C17
+C42.4	Hematopoietic system, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C42.4	C42
+C74.1	Medulla of adrenal gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C74.1	C74
+C16.6	Greater curvature of stomach, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C16.6	C16
+C57.0	Fallopian tube			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C57.0	C57
+C75.3	Pineal gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C75.3	C75
+C75.5	Aortic body and other paraganglia			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C75.5	C75
+C66	URETER			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C66	
+C05.9	Palate, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C05.9	C05
+C16.8	Overlapping lesion of stomach			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C16.8	C16
+C31.9	Accessory sinus, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C31.9	C31
+C69.3	Choroid			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C69.3	C69
+C15.3	Upper third of esophagus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C15.3	C15
+C49.4	Connective, Subcutaneous and other soft tissues of abdomen			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C49.4	C49
+C77.4	Lymph nodes of inguinal region or leg			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C77.4	C77
+C68.8	Overlapping lesion of urinary organs			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C68.8	C68
+C16.0	Cardia, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C16.0	C16
+C44.7	Skin of lower limb and hip			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44.7	C44
+C34.3	Lower lobe, lung			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C34.3	C34
+C57.9	Female genital tract, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C57.9	C57
+C42.0	Blood			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C42.0	C42
+C17.2	Ileum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C17.2	C17
+C70.0	Cerebral meninges			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C70.0	C70
+C57	OTHER AN UNSPECIFIED FEMALE GENITAL ORGANS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C57	
+C42.2	Spleen			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C42.2	C42
+C25	PANCREAS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C25	
+C49.6	Connective, Subcutaneous and other soft tissues of trunk, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C49.6	C49
+C51	VULVA			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C51	
+C71.4	Occipital lobe			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71.4	C71
+C10.4	Branchial cleft			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C10.4	C10
+C66.9	Ureter			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C66.9	C66
+C75.1	Pituitary gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C75.1	C75
+C51.0	Labium majus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C51.0	C51
+C68.1	Paraurethral gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C68.1	C68
+C49.8	Overlapping lesion of connective, subcutaneous and other soft tissues			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C49.8	C49
+C47	PERIPHERAL NERVES AND AUTONOMIC NERVOUS SYSTEM			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C47	
+C25.0	Head of pancreas			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C25.0	C25
+C77.8	Lymph nodes of multiple regions			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C77.8	C77
+C76.3	Pelvis, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C76.3	C76
+C50.3	Lower-inner quadrant of breast			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C50.3	C50
+C76.5	Lower limb, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C76.5	C76
+C08.1	Sublingual gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C08.1	C08
+C50.5	Lower-outer quadrant of breast			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C50.5	C50
+C06.9	Mouth, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C06.9	C06
+C67	BLADDER			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67	
+C06	OTHER AND UNSPECIFIED PARTS OF MOUTH			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C06	
+C41	BONES, JOINTS AND ARTICULAR CARTILAGE OF OTHER AND UNSPECIFIED SITES			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C41	
+C34.9	Lung, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C34.9	C34
+C51.2	Clitorus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C51.2	C51
+C34	BRONCHUS AND LUNG			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C34	
+C00.4	Mucosa of lower lip			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C00.4	C00
+C60.9	Penis, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C60.9	C60
+C62.1	Descended testis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C62.1	C62
+C60	PENIS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C60	
+C08.8	Overlapping lesion of major salivary glands			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C08.8	C08
+C51.9	Vulva, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C51.9	C51
+C60.1	Glans penis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C60.1	C60
+C53.1	Exocervix			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C53.1	C53
+C67.5	Bladder neck			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67.5	C67
+C58.9	Placenta			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C58.9	C58
+C58	PLACENTA			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C58	
+C10.0	Vallecula			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C10.0	C10
+C25.9	Pancreas, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C25.9	C25
+C34.1	Upper lobe, lung			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C34.1	C34
+C32	LARYNX			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C32	
+C10.2	Lateral wall of oropharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C10.2	C10
+C67.7	Urachus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67.7	C67
+C67.9	Bladder, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C67.9	C67
+C41.9	Bone, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C41.9	C41
+C15.1	Thoracic esophagus			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C15.1	C15
+C69.1	Cornea, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C69.1	C69
+C24.8	Overlapping lesion of billiary tract			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C24.8	C24
+C17.8	Overlapping lesion of small intestine			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C17.8	C17
+C26.0	Intestinal tract, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C26.0	C26
+C00.0	External upper lip			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C00.0	C00
+C32.2	Subglottis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C32.2	C32
+C44.3	Skin of other and unspecified parts of face			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44.3	C44
+C44.5	Skin of trunk			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44.5	C44
+C57.7	Other specified parts of female genital organs			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C57.7	C57
+C77.2	Intra-abdominal lymph nodes			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C77.2	C77
+C00.2	External lip, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C00.2	C00
+C16.5	Lesser curvature of stomach, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C16.5	C16
+C71.2	Temporal lobe			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71.2	C71
+C07	PAROTID GLANID			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C07	
+C80.9	Unknown primary site			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C80.9	C80
+C80	UNKNOWN PRIMARY SITE			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C80	
+C26.9	Gastrointestinal tract, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C26.9	C26
+C26	OTHER AND ILL-DEFINED DIGESTIVE ORGANS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C26	
+C02.1	Border of tongue			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C02.1	C02
+C00	LIP			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C00	
+C61	PROSTATE GLAND			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C61	
+C00.9	Lip, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C00.9	C00
+C76.1	Thorax, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C76.1	C76
+C25.3	Pancreatic duct			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C25.3	C25
+C69.2	Retina			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C69.2	C69
+C44.1	Eyelid			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44.1	C44
+C42	HEMATOPOIETIC AND RETICULOENDOTHELIAL SYSTEMS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C42	
+C70.9	Meninges, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C70.9	C70
+C70	MENINGES			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C70	
+C18.1	Appendix			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18.1	C18
+C16	STOMACH			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C16	
+C16.9	Stomach, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C16.9	C16
+C77.0	Lymph nodes of head, face and neck			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C77.0	C77
+C25.7	Other specified parts of pancreas			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C25.7	C25
+C68.0	Urethra			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C68.0	C68
+C01	BASE OF TONGUE			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C01	
+C00.3	Mucosa of upper lip			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C00.3	C00
+C54.3	Fundus uteri			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C54.3	C54
+C60.8	Overlapping lesion of penis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C60.8	C60
+C53.8	Overlapping lesion of cervix uteri			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C53.8	C53
+C62.0	Undescended testis			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C62.0	C62
+C25.1	Body of pancreas			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C25.1	C25
+C77.9	Lymph node, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C77.9	C77
+C77	LYMPH NODES			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C77	
+C69.4	Ciliary body			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C69.4	C69
+C34.8	Overlapping lesion of lung			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C34.8	C34
+C08.0	Submandibular gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C08.0	C08
+C71	BRAIN			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71	
+C10.9	Oropharynx, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C10.9	C10
+C10	OROPHARYNX			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C10	
+C00.5	Mucosa of lip, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C00.5	C00
+C17	SMALL INTESTINE			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C17	
+C69.6	Orbit, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C69.6	C69
+C69.8	Overlapping lesion of eye and adnexa			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C69.8	C69
+C17.0	Duodenum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C17.0	C17
+C71.0	Cerebrum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71.0	C71
+C16.3	Gastric antrum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C16.3	C16
+C44.2	External ear			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44.2	C44
+C69.0	Conjunctiva			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C69.0	C69
+C71.7	Brain stem			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71.7	C71
+C18.2	Ascending colon			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18.2	C18
+C18.4	Transverse colon			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18.4	C18
+C71.9	Brain, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71.9	C71
+C17.9	Small intestine, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C17.9	C17
+C52	VAGINA			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C52	
+C00.1	External lower lip			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C00.1	C00
+C52.9	Vagina, NOS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C52.9	C52
+C30.0	Nasal cavity			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C30.0	C30
+C44.4	Skin of scalp and neck			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44.4	C44
+C72.4	Acoustic nerve			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C72.4	C72
+C02.8	Overlapping lesion of tongue			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C02.8	C02
+C18.6	Descending colon			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18.6	C18
+C44.6	Skin of upper limb and shoulder			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44.6	C44
+C77.3	Lymph nodes of axilla or arm			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C77.3	C77
+C44.8	Overlapping lesion of skin			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C44.8	C44
+C68	OTHER AND UNSPECIFIED URINARY ORGANS			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C68	
+C07.9	Parotid gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C07.9	C07
+C09.1	Tonsillar pillar			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C09.1	C09
+C71.3	Parietal lobe			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C71.3	C71
+C10.3	Posterior wall of oropharynx			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C10.3	C10
+C18.8	Overlapping lesion of colon			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C18.8	C18
+C17.3	Meckel diverticulum			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C17.3	C17
+C63.1	Spermatic cord			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C63.1	C63
+C61.9	Prostate gland			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C61.9	C61
+C77.5	Pelvic lymph nodes			ICD-O-3-T	https://bioportal.bioontology.org/ontologies/ICD-O-3-T/C77.5	C77
