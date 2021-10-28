@@ -19,12 +19,12 @@ Make it possible to add patient information manually in the Genturis registry. T
  All questions regarding patients are filled in one form. So all information is collected in one table of the MOLGENIS database. Each participating centre has its own patient table. So information from one centre is separated from another centre. Codebooks en option list(uses extends to templateOptionlist) are stored in a separate package. This package can be used by all centres (view-permissions).
 
 Datamodel:
-* /data/Genturis_datamodel_v01_2021_10_27.xlsx
-* /data/Overview_codebooks.xlsx
+* [/data/Genturis_datamodel_v01_2021_10_27.xlsx](/ERN_implementation/ERN_Genturis/data/Genturis_datamodel_v01_2021_10_27.xlsx)
+* [/data/Overview_codebooks.xlsx](/ERN_implementation/ERN_Genturis/data/Overview_codebooks.xlsx)
 
 ## Consequences
 
 Each centre has its own Subject Package. So there is no possibility to search patients across different centres from the ERN Genturis.
 
 ## External links
-- [data](/ERN_Genturis/data/)
+- [data](/ERN_implementation/ERN_Genturis/data/)
