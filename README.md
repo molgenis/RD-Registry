@@ -27,7 +27,7 @@ The building blocks are focussed around patient information. So person informati
 Building blocks:
 * [Common data elements (JRC)](/JRC)
 * [Other controlled Ontologies](/Biomedical_Ontologies) (available at [BioPortal](https://bioportal.bioontology.org))
-* [4 Use cases](/Use_case) (Each represented by an ERNs involved in this project)
+* [overview ERN implementation](/Use_case) (Each represented by an ERNs involved in this project)
 
 ## Feedback
 Feedback on our repository or how to improve our model is more than welcome. Please use [github issues](https://github.com/molgenis/RD-Registry/issues) to provide feedback on specific element.
