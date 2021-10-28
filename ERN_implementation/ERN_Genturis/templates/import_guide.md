@@ -41,8 +41,8 @@ Before you can upload any data, make sure you have the following items.
 
 There are two file templates available for importing data. One empty template for adding Patients and a template file with some example patient information. Both files contain the preferred headers, each center has its own package, so each center has its own sheet name (e.g. Radboud UMC, should use "hcp01_subject"). See the [list of centers](https://genturis-registry.eu/menu/plugins/dataexplorer?entity=genturis_organisation&hideselect=true) (you need to login to the registry to see the list) to get your ERN number the prefix to add to "prefix_subject". If you are importing CSV, the file should have the same name as the sheet name. Please do not add more sheets to the template file. Only one sheet with "prefix_subject" can be imported.
 
-- /templates/BulkUploadSubject_2021_10_28.xlsx
-- /templates/Template_withExampleData_2021_10_28.xlsx
+- [/templates/BulkUploadSubject_2021_10_28.xlsx](/ERN_implementation/ERN_Genturis/templates/BulkUploadSubject_2021_10_28.xlsx)
+- [/templates/Template_withExampleData_2021_10_28.xlsx](/ERN_implementation/ERN_Genturis/templates/Template_withExampleData_2021_10_28.xlsx)
 
 These files are available on the [Molgenis RD-Registry GitHub repository](https://github.com/molgenis/RD-Registry) and can be downloaded using curl.
 
@@ -71,7 +71,7 @@ Write patient data into the template you download. It is likely that the followi
 ## Import overview
 The upload module is the place in MOLGENIS where you can upload your data into the MOLGENIS application. If you have the permissions, you will see the upload menu item.
 
-![Upload menu item](./images/upload-menu-item.png)
+![Upload menu item](/ERN_implementation/ERN_Genturis/images/upload-menu-item.png)
 
 The steps are:
 
@@ -93,11 +93,11 @@ Navigation buttons at the bottom of the pages:
 These are the steps for the Genturis Registry:
 1.	Go to the menu bar on top of the page and click ‘Import Data’. Alternatively, you can navigate to the following url:
 [https://genturis-registry.eu/menu/plugins/importwizard](https://genturis-registry.eu/menu/plugins/importwizard)
-![Import data](./images/import_data.png)
+![Import data](/ERN_implementation/ERN_Genturis/images/import_data.png)
 2.	Click on ‘select a file….’ and select the Excel file with the data of the patients that needs to be enrolled in the GENTURIS registry.
-![Select File](./images/select_file.png)
+![Select File](/ERN_implementation/ERN_Genturis/images/select_file.png)
 3.	The document is correctly selected when the name of the document ended with .xlsx, is visible in the field. See example below (the uploaded Excel file is named: upload.xlsx):
-![Upload xlsx](./images/upload_xlsx.png)
+![Upload xlsx](/ERN_implementation/ERN_Genturis/images/upload_xlsx.png)
 4.	Click ‘Next ->’ at the bottom right corner of the page.
 5.	On this page you can select the rules of how to upload your data into MOLGENIS. Since Metadata is already created you can choose "Ignore metadata".
 Metadata options:
@@ -108,16 +108,16 @@ Data options:
 -	Add entities: Importer adds new entities or fails if entity exists
 -	Add entities / update existing: Importer adds new entities or updates existing entities
 -	Update entities: Importer updates existing entities or fails if entity does not exist
-![Rules Upload](./images/rules_upload.png)
+![Rules Upload](/ERN_implementation/ERN_Genturis/images/rules_upload.png)
 6.	Click ‘Next ->’ at the bottom right corner of the page.
 7.	Step three ‘Packages’ in the process opens and at the bottom right corner a message appears that the file is validated and can be imported. This package can be ignored. This page applies to situations where you are creating new tables. As long as the message says “none”, you don’t have to worry about this step.
-![Packages](./images/pacakges.png)
+![Packages](/ERN_implementation/ERN_Genturis/images/pacakges.png)
 8.	Click ‘Next ->’ at the bottom right corner of the page.
 9. The validation stage provides a summary on what is being imported and how Molgenis will do it. If anything is missing, Molgenis will let you know. Fix any errors and restart the import process.
-![Validation](./validation.png)
+![Validation](/ERN_implementation/ERN_Genturis/images/validation.png)
 10.	Click ‘Next ->’ at the bottom right corner of the page.
 11.	The last step opens, which shows that the upload went successfully. The result page will provide an overview on the import process. If Molgenis encountered any issues during the actual merging process, the errors will be listed on this page. Otherwise, Molgenis will state how many records were imported.
-![Result](./images/result.png)
+![Result](/ERN_implementation/ERN_Genturis/images/result.png)
 12.	Click the ‘Finish -> ‘ button at the bottom right corner of the page.
 
 ## Importing data from the command line
