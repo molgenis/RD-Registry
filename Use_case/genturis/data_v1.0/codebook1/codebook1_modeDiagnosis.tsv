@@ -1,6 +1,0 @@
-value_en	description_en	codesystem	code	description_code
-Surveillance	Surveillance	NCIT	NCIT:C15719	The systematic collection, analysis, and interpretation of health data on an ongoing basis.
-Germline DNA testing	Germline Genotype Testing	NCIT	NCIT:C118383	An assay used to determine the genes and molecular markers present in the germline DNA of an individual.
-Predictive testing	Genetic Testing	NCIT	NCIT:C15709	The process of isolating and testing the DNA of an embryo or a person to detect the presence of genetic alterations or defects that may predispose to the future development of a disease or disorder.
-Symptoms	Symptomatic Testing	NCIT	NCIT:C25269 AND NCIT:C15336	Exhibiting the symptoms of a particular disease.A procedure for critical evaluation. 
-Tumor DNA testing	Tumor DNA Testing	NCIT	NCIT:C129665 AND NCIT:C15336	DNA that originates from neoplastic cells.A procedure for critical evaluation.

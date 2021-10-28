@@ -1,9 +1,0 @@
-id	inclCriterium
-1	BRCA1/BRCA2 proven pathogenic germline variant
-2	Monoallelic MLH1, MSH6, MSH2 or PMS2 proven pathogenic germline variant
-3	Other proven pathogenic germline variant
-4	Unexplained patient with CRC <30y or 3 FDR with CRC <45y
-5	Unexplained patient with > 100 adenomatous polyps or > 2 Peutz-Jeghers type (hamartomatous) or > 2 juvenile polyps
-6	Unexplained patient with BC <30y or 3 FDR with BC <45y
-7	Unexplained patient with EOC <30y or 3 FDR with EOC <45y
-8	Unexplained patient with clinical syndromic criteria

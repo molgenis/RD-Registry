@@ -1,5 +1,0 @@
-name	label	description	entity	dataType	refEntity	nillable	unique	visible	idAttribute	labelAttribute	readOnly	aggregateable	lookupAttribute	enumOptions	partOfAttribute	rangeMax	rangeMin	mappedBy	expression	validationExpression	defaultValue	tags	auto	label-en	description-en	label-nl	description-nl	label-de	description-de	label-es	description-es	label-it	description-it	label-pt	description-pt	label-fr	description-fr	label-xx	description-xx
-id	id		diseaseGroup	string		FALSE	TRUE	TRUE	TRUE		TRUE	FALSE	TRUE										FALSE																
-value	SKIN thematic group		diseaseGroup	string		TRUE	FALSE	TRUE	FALSE	TRUE	FALSE	FALSE	TRUE										FALSE																
-url	Link to extra information on SKIN groups		diseaseGroup	hyperlink		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
-sub	Sub-thematic groups		diseaseGroup	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE																										

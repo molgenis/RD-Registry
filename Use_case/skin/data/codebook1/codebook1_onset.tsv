@@ -1,5 +1,0 @@
-value_en	description_en	codesystem	code	description_code
-Antenatal	Antenatal onset	HPO	HP:0030674	Antenatal onset
-At birth	Congenital onset	HPO	HP:0003577	A phenotypic abnormality that is present at birth.
-Date	Onset Date	NCIT	NCIT:C93613 	The date (and time) on which the event began. 
-Undetermined	Undetermined 	NCIT	NCIT:C124294	A term referring to the lack of definitive criteria for classification of a finding.
