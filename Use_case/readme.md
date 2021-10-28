@@ -1,4 +1,4 @@
-# Use Cases
+# Specfic ERN implementation of RD registries
 
 - [Genturis:](/Use_case/genturis) Example of rare genetic tumour risk syndromes Patient Registry.
 - [ITHACA:](/Use_case/ithaca) Example of Patient registry with rare congenital malformation and syndromes with intellectual and other neurodevelopmental disorders.
