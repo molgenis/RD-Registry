@@ -1,0 +1,4 @@
+value_en	description_en	codesystem	code	description_code
+1. Uncertain significance	VUS	LOINC	LA26333-7	Genetic disease sequence variation interpretation:Imp:Pt:Bld/Tiss:Nom:Molgen
+2. Likely pathogenic	Likely Pathogenic	LOINC	LA26332-9	Genetic disease sequence variation interpretation:Imp:Pt:Bld/Tiss:Nom:Molgen
+3. Pathogenic	Pathogenic	LOINC	LA6668-3	Genetic disease sequence variation interpretation:Imp:Pt:Bld/Tiss:Nom:Molgen
