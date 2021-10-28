@@ -1,0 +1,11 @@
+name	label	description	entity	dataType	refEntity	nillable	unique	visible	idAttribute	labelAttribute	readOnly	aggregateable	lookupAttribute	enumOptions	partOfAttribute	rangeMax	rangeMin	mappedBy	expression	validationExpression	defaultValue	tags	auto	label-en	description-en	label-nl	description-nl	label-de	description-de	label-es	description-es	label-it	description-it	label-pt	description-pt	label-fr	description-fr	label-xx	description-xx
+id	id		tumor	string		FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE	TRUE										FALSE																
+onset	Onset Type (HPO)		tumor	xref	genturis_codebook1_onset	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+agediagnose	Age at diagnosis for this tumor		tumor	int		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE			150	0						FALSE																
+severity	Severity		tumor	xref	genturis_codebook1_severity	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+temporal	Temporal pattern		tumor	xref	genturis_codebook1_temporal	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+spatial	Spatial pattern		tumor	xref	genturis_codebook1_spatial	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+laterality	Laterality		tumor	xref	genturis_codebook1_laterality	TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+major	Major Type (e.g. breast cancer)		tumor	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+pathology	Pathology Subtype (e.g. lobular breast cancer)		tumor	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																
+description	description of tumor		tumor	string		TRUE	FALSE	TRUE	FALSE		FALSE	FALSE	FALSE										FALSE																

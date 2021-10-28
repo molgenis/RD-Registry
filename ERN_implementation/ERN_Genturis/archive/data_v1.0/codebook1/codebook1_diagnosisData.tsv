@@ -1,0 +1,9 @@
+value_en	description_en	codesystem	code	description_code
+Pedigree data	Pedigree	NCIT	NCIT:C27957	A record of descent or ancestry, particularly of a specific condition or trait, indicating individual family members, their relationships, and their status with respect to the trait or condition.
+Imaging data	Diagnostic Imaging	NCIT	NCIT:C16502	Any method that uses a visual display of structural or functional patterns of organs or tissues for diagnostic evaluation.
+Clinical data	Clinical Data	NCIT	NCIT:C15783	Data obtained through patient examination or treatment.
+Genetic data	Genetic data	SIO	SIO:010028	Genetic data is data pertaining to genetics.
+Histology data	Histopathology Result	NCIT	NCIT:C125007	The outcome of a microscopic pathologic examination using various cytochemical and immunocytochemical stains.
+Lab data	Laboratory/Correlate Data	NCIT	NCIT:C15810	Subclass of clinical data
+Endoscopic data	Endoscopic Biopsy	NCIT	NCIT:C15389	The removal of tissue specimens or fluid from the living body for microscopic examination, performed to establish a diagnosis. In the case of an endoscopic biopsy, an endoscope is used to obtain the sample.
+Other data	Other	NCIT	NCIT:C17649	Different than the one(s) previously specified or mentioned.

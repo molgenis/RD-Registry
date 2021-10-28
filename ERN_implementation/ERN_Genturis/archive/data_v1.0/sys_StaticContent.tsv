@@ -1,0 +1,4386 @@
+"key_","content"
+"background","<meta name=""viewport"" content=""width=device-width, initial-scale=1"" />
+<link href=""/css/bootstrap-4/genturis.css"" rel=""stylesheet"" type=""text/css"" />
+<script type=""text/javascript"">
+var HtmlNode = (function () {
+    function HtmlNode(tag, attributes, content, events) {
+        var me = this;
+        me.Tag = tag;
+        me.Attributes = {
+        };
+        me.SetAttributes(attributes);
+        me.Content = [];
+        me.Append(content);
+        me.Events = {
+        };
+        me.On(events);
+    }
+    HtmlNode.prototype.Append = function (content) {
+        var me = this;
+        if(content instanceof Array) {
+            content.forEach(function (x) {
+                me.Append(x);
+            });
+        } else if(content != null) {
+            me.Content.push(content);
+        }
+    };
+    HtmlNode.prototype.SetAttributes = function (attributes) {
+        var me = this;
+        for(var key in attributes) {
+            me.Attributes[key] = attributes[key];
+        }
+    };
+    HtmlNode.prototype.On = function (events) {
+        var me = this;
+        for(var key in events) {
+            me.Events[key] = events[key];
+        }
+    };
+    HtmlNode.prototype.ToHtml = function () {
+        var me = this;
+        var result = $(document.createElement(me.Tag));
+        result.attr(me.Attributes);
+        result.on(me.Events);
+        me.Content.forEach(function (content) {
+            if(content instanceof HtmlNode) {
+                result.append(content.ToHtml());
+            } else if(content.svg) {
+                result.append(content.svgObject);
+            } else if(content.jquery) {
+                result.append(content);
+            } else {
+                result.append(document.createTextNode(content));
+            }
+        });
+        return result;
+    };
+    return HtmlNode;
+})();
+function AppendHtml(targetElement, content) {
+    var fragment = $(document.createDocumentFragment());
+    content.forEach(function (x) {
+        fragment.append(x.ToHtml());
+    });
+    targetElement.append(fragment);
+}
+var TreeNode = (function () {
+    function TreeNode() { }
+    return TreeNode;
+})();
+var TreeNavigation = (function () {
+    function TreeNavigation(index, root, activeItem, targetElement, hideRoot) {
+        this.Id = TreeNavigation.NextId;
+        TreeNavigation.NextId++;
+        this.Index = index;
+        this.Root = root;
+        this.ActiveItem = activeItem;
+        this.HideRoot = hideRoot;
+        if(this.ActiveItem != null) {
+            this.ActiveItem.Expanded = true;
+            this.EnsureVisible(activeItem);
+        }
+
+        if (hideRoot) AppendHtml(targetElement, this.CreateNodes(this.Root.Children, false));
+        else AppendHtml(targetElement, this.CreateNodes([this.Root], true));
+    }
+    TreeNavigation.NextId = 1;
+    TreeNavigation.prototype.CreateNodes = function (items, isRoot) {
+        var _this = this;
+        var result = [];
+        if(items == null) {
+            return result;
+        }
+        items.forEach(function (item) {
+            var titleClass = ""Title"";
+
+            if (item.Label == null || item.Label.replace(/\s+/g, '') == """") {
+                item.Label = """";
+                for (var i = 0; i < 20; i++) {
+                    item.Label = item.Label + ""\u00A0"";
+                }
+            }
+
+            if(!isRoot && item.NavigationIndex != null && item.NavigationIndex != _this.Index) {
+                return;
+            }
+            var toggleNode = new HtmlNode(""a"", {
+                ""class"": ""Toggle""
+            });
+            var childNodes = _this.CreateNodes(item.Children, false);
+            var hasChildren = childNodes.length > 0;
+            toggleNode.On({
+                click: function () {
+                    _this.Toggle(item);
+                }
+            });
+            var source = FindFirstSource(item);
+            var titleNode = new HtmlNode(""a"", {
+                ""class"": titleClass,
+                ""href"": source
+            }, item.Label);
+            if(source != null && item !== _this.ActiveItem) {
+                titleNode.On({
+                    click: function () {
+                        _this.Open(item);
+                    }
+                });
+            } else if(hasChildren) {
+                titleNode.On({
+                    click: function () {
+                        _this.Toggle(item);
+                    }
+                });
+            }
+            var nodeItems = [
+                toggleNode, 
+                titleNode
+            ];
+            var node = new HtmlNode(""div"", {
+                ""class"": _this.GetNodeClasses(item, hasChildren).join("" ""),
+                id: _this.GetNodeId(item)
+            }, [
+                new HtmlNode(""div"", {
+                    ""class"": ""Display""
+                }, nodeItems)
+            ]);
+            if(hasChildren && item.Expanded) {
+                node.Append(new HtmlNode(""div"", {
+                    ""class"": ""Children""
+                }, childNodes));
+            }
+            result.push(node);
+        });
+        return result;
+    };
+    TreeNavigation.prototype.Toggle = function (item) {
+        if(item.Children.length == 0) {
+            return;
+        }
+        var me = this;
+        var node = $(""#"" + me.GetNodeId(item));
+        item.Expanded = !item.Expanded;
+        if(item.Expanded) {
+            node.removeClass(""Collapsed"");
+            node.addClass(""Expanded"");
+            AppendHtml(node, [
+                new HtmlNode(""div"", {
+                    ""class"": ""Children""
+                }, me.CreateNodes(item.Children, false))
+            ]);
+        } else {
+            node.removeClass(""Expanded"");
+            node.addClass(""Collapsed"");
+            node.find(""> .Children"").remove();
+        }
+    };
+    TreeNavigation.prototype.Open = function (item) {
+        OpenItem(item);
+    };
+    TreeNavigation.prototype.EnsureVisible = function (item) {
+        var me = this;
+        var parent = item.Parent;
+        while(parent != null) {
+            if(!parent.Expanded) {
+                me.Toggle(parent);
+            }
+            parent = parent.Parent;
+        }
+    };
+    TreeNavigation.prototype.GetNodeClasses = function (item, hasChildren) {
+        var me = this;
+        var result = [
+            ""Node""
+        ];
+        if(item.Expanded) {
+            result.push(""Expanded"");
+        } else {
+            result.push(""Collapsed"");
+        }
+        if(hasChildren) {
+            result.push(""Container"");
+        } else {
+            result.push(""Leaf"");
+        }
+        var source = FindFirstSource(item);
+        if(item === me.ActiveItem) {
+            result.push(""Active"");
+        } else if(source != null) {
+            result.push(""Link"");
+        }
+
+        result = result.concat(item.CssClasses);
+        return result;
+    };
+    TreeNavigation.prototype.GetNodeId = function (item) {
+        return ""TreeNode_"" + this.Id + ""_"" + item.Id;
+    };
+    TreeNavigation.prototype.GetNode = function (item) {
+        return $(""#TreeNode_"" + this.Id + ""_"" + item.Id);
+    };
+    return TreeNavigation;
+})();
+var TabNavigation = (function () {
+    function TabNavigation(index, items, activeItem, targetElement) {
+        this.Id = TabNavigation.NextId;
+        TabNavigation.NextId++;
+        this.Index = index;
+        this.Items = items;
+        this.ActiveItem = activeItem;
+        AppendHtml(targetElement, this.CreateNodes(this.Items, true));
+    }
+    TabNavigation.NextId = 1;
+    TabNavigation.prototype.CreateNodes = function (items, isRoot, nodes) {
+        if (typeof nodes === ""undefined"") { nodes = []; }
+        var _this = this;
+        if(items == null) {
+            nodes = [];
+        } else {
+            items.forEach(function (item, index) {
+                if(item.NavigationIndex == null || item.NavigationIndex != _this.Index) {
+                    return;
+                }
+                var children = _this.CreateNodes(item.Children, false);
+                var source = FindFirstSource(item);
+                var tabNode = new HtmlNode(""a"", {
+                    ""class"": _this.GetTabClasses(item, children.length > 0).join("" ""),
+                    ""value"": item.Id,
+                    ""href"": source
+                }, item.Label);
+                nodes.push(tabNode);
+                children.forEach(function (x) {
+                    return nodes.push(x);
+                });
+            });
+        }
+        if (isRoot) return [new HtmlNode(""span"", { ""class"": ""InnerTabset""}, nodes)];
+        else return nodes;
+    };
+    TabNavigation.prototype.GetTabClasses = function (item, isRoot) {
+        var me = this;
+        var result = [
+            ""Tab""
+        ];
+        if(item.Children.length > 0) {
+            result.push(""Container"");
+        } else {
+            result.push(""Leaf"");
+        }
+        var source = FindFirstSource(item);
+        if(item === me.ActiveItem) {
+            result.push(""Active"");
+        } else if(source != null) {
+            result.push(""Link"");
+        }
+
+        result = result.concat(item.CssClasses);
+        return result;
+    };
+    return TabNavigation;
+})();
+$(document).ready(function () {
+    var tree = Sections;
+    var dictionary = {
+    };
+    LoadDictionary(tree, dictionary);
+    $(""nav"").each(function (index, element) {
+        var navNode = $(element);
+        var root = dictionary[Number(navNode.attr(""data-root""))];
+        var index = Number(navNode.attr(""data-index""));
+        var value = dictionary[Number(navNode.attr(""data-value""))];
+        var navType = navNode.attr(""data-type"");
+        var navAllowEmptyRoots = navNode.attr(""data-allowemptyroots"") == ""true"";
+        var hideRoot = navNode.attr(""data-hideroot"") == ""true"" ;
+
+        if(navType == ""Tree"") {
+            if (root.Source == null && !navAllowEmptyRoots) hideRoot = true;
+            new TreeNavigation(index, root, value, navNode, hideRoot);
+        } else if(navType == ""DropDownList"") {
+            new DropDownListNavigation(index, root.Children, value, navNode);
+        } else if(navType == ""Tabset"") {
+            new TabNavigation(index, root.Children, value, navNode);
+        } else if(navType == ""Hidden"") {
+            navNode.hide();
+        }
+    });
+
+
+});
+
+function OpenItem(item) {
+    var source = FindFirstSource(item);
+    if(source != null) {
+        var targetUrl = FindFirstSource(item);
+        window.location.href = targetUrl;
+    }
+}
+
+function FindFirstSource(item, includeRoot) {
+    if(item.Source != null) {
+        var url =  item.Source;
+        if (window.location.hash.length > 0){
+            url += window.location.hash + ""&markText=false""; 
+        }
+        return rootUrl + url;
+    }
+    for(var i = 0; i < item.Children.length; i++) {
+        var child = item.Children[i];
+        var result = FindFirstSource(child);
+        if(result != null) {
+            return result;
+        }
+    }
+    return null;
+}
+function LoadDictionary(items, dictionary, parent) {
+    if (typeof parent === ""undefined"") { parent = null; }
+    items.forEach(function (x) {
+        if(parent != null) {
+            x.Parent = parent;
+        }
+        dictionary[x.Id] = x;
+        LoadDictionary(x.Children, dictionary, x);
+    });
+}
+function leftMenuToggle() {
+    var x = document.getElementById(""Navigation2"");
+    if (x.className.indexOf(""SmallNavOpen"") == -1) {
+        x.className += "" SmallNavOpen "";
+    } else { 
+        x.className = x.className.replace("" SmallNavOpen "", """");
+    }
+}
+var Search = new function()
+{
+
+    var CurrentSearchResults = [];
+    var CurrentSearchText = """";
+    var CurrentPage = 0;
+
+    this.Execute = function(searchString)
+    {
+        ExecuteSearch(searchString);
+    }
+
+    this.OpenPage = function(page)
+    {
+        CurrentPage = page;
+        ShowSearchResults();
+    }
+
+    /// initialize search functionality.
+    function initialize()
+    {
+        // initialize inline search functionality on web pages
+        var textField = $(""#SearchContainer .Text"");
+
+        if (textField.length > 0){
+            // bind to search events
+            textField.on(""keypress"", function(e){
+                var code = e.which;
+                if(code == 13) { // enter button was pressed
+                    OpenSearch(textField.val());
+                }
+            });
+
+            $(""#SearchContainer .Button"").on(""click"", function(){
+                OpenSearch(textField.val());
+            });
+        }
+
+        LoadHashSearch();
+        $(window).on(""hashchange"", LoadHashSearch);
+    }
+
+    function LoadHashSearch()
+    {
+        var text = GetHashParameter(""searchText"");
+        var page = GetHashParameter(""page"");
+        var markText = GetHashParameter(""markText"") !== ""false"";
+        if (page == null || page == """") page = 0;
+        else page = Number(page) - 1;
+        
+       
+        var textField = $(""#SearchContainer .Text"");
+
+        if (textField.length > 0 && text != null && text != """"){
+            if (IsSearchPage()){
+                // perform search if requested in url
+                textField.val(text);
+                ExecuteSearch(text, page);
+            } else {
+                // highlight search text if requested in url
+                textField.val(text);
+                
+                // highlight search results
+                if (markText == true) Highlight(text, $(""#Content""));
+            }
+        }
+    }
+
+    /// Execute a search on the main search page.
+    function ExecuteSearch(searchText, currentPage)
+    {
+        if (searchText == CurrentSearchText && CurrentPage == currentPage) return;
+        CurrentSearchText = searchText;
+        CurrentSearchResults = GetSearchResults(searchText);
+        CurrentPage = currentPage;
+        if (CurrentPage == null) CurrentPage = 0
+        ShowSearchResults(CurrentSearchResults, searchText);
+    }
+
+    /// Show search results on main search page
+    function ShowSearchResults()
+    {
+        var results = CurrentSearchResults;
+        var searchText = CurrentSearchText;
+        var page = CurrentPage;
+
+        var container = $(""#SearchContent .SearchResults"");
+        var itemsPerPage = 10;
+
+        // show a page of search results
+        var resultElements = [];
+
+        for (var i = page * itemsPerPage; i < (page + 1) * itemsPerPage && i < results.length; i++){
+			var result = results[i];
+
+            var source = SearchIndex.Sources[result.id];
+            var item = SectionDictionary[result.id];
+
+            var titleElement = $(document.createElement(""A""));
+            titleElement.addClass(""Title"");
+            titleElement.text(GetTitleText(item));
+            titleElement.attr(""href"", GetItemUrl(item, searchText));
+
+            var contentElement = $(document.createElement(""DIV""));
+            contentElement.addClass(""Content"");
+            contentElement.text(GetSectionExtract(source.Text, searchText));
+
+            var resultElement = $(document.createElement(""DIV""));
+            resultElement.addClass(""Result"");
+            resultElement.append(titleElement);
+            resultElement.append(contentElement);
+
+            resultElements.push(resultElement);
+		}
+
+        container.find(""> .Result"").remove();  
+
+        if (resultElements.length > 0){
+            container.find("".NoSearchResults"").hide();
+            container.append(resultElements);
+            Highlight(searchText, container.find(""> .Result""));
+        } else {
+            container.find("".NoSearchResults"").show();
+        }
+
+        // update page navigation
+
+        // previous button
+        var previousButton = $("".SearchNavigation .Previous"");
+        previousButton.unbind(""click"");
+
+        if (page == 0){
+            previousButton.hide();
+        } else {
+            previousButton.show();
+            previousButton.bind(""click"", function(){ Search.OpenPage(page - 1); });
+        }
+
+        // next button
+        var pageCount = Math.ceil(results.length / itemsPerPage);
+
+        var nextButton = $("".SearchNavigation .Next"");
+        nextButton.unbind(""click"");
+
+        if (page < pageCount - 1){
+            nextButton.show();
+            nextButton.bind(""click"", function(){ Search.OpenPage(page + 1); });
+        } else {
+            nextButton.hide();
+        }
+
+        // page buttons
+        var pageContainer = $("".SearchNavigation .Pages"");
+        pageContainer.empty();
+
+        if (pageCount > 1){
+            var pageRangeCount = 3;
+
+            // add first pages
+            for (var i = 0; i < pageRangeCount && i < pageCount; i++){
+                pageContainer.append(CreatePageButton(i, page));
+            }
+
+            // add middle pages
+            if (page >= Math.ceil(pageRangeCount / 2) && page < pageCount - Math.ceil(pageRangeCount / 2)){
+                if (page > pageRangeCount + Math.floor(pageRangeCount / 2)){
+                    // add separator
+                    pageContainer.append(CreatePageRangeSeparator(i)); 
+                }
+
+                var start = Math.max(page - Math.floor(pageRangeCount / 2), pageRangeCount);
+                var end = Math.min(page + Math.floor(pageRangeCount / 2), pageCount - (pageRangeCount + 1));
+
+                for(var i = start; i <= end; i++){
+                    pageContainer.append(CreatePageButton(i, page));
+                }
+            }
+
+            // add last pages
+            if (pageCount > pageRangeCount){
+                // add separator
+                var start = Math.max(pageCount - pageRangeCount, pageRangeCount);
+
+                if (start > pageRangeCount && start > page + Math.ceil(pageRangeCount / 2)){
+                    pageContainer.append(CreatePageRangeSeparator(i)); 
+                }
+
+                for(var i = start; i < pageCount; i++){
+                    pageContainer.append(CreatePageButton(i, page));
+                }
+            }
+        }
+
+        // update url
+        window.location.hash = ""#searchText="" + encodeURIComponent(searchText) + ""&page="" + (page + 1);
+    }
+
+    function CreatePageButton(pageIndex, currentPage)
+    {
+        var pageButton = $(document.createElement(""span""));
+        pageButton.addClass(""PageButton"");
+        if (pageIndex == currentPage) pageButton.addClass(""Active"");
+        pageButton.bind(""click"", function(){ Search.OpenPage(pageIndex); });
+        pageButton.text(pageIndex + 1);
+
+        return pageButton;
+    }
+
+    function CreatePageRangeSeparator()
+    {
+        var pageSeparator = $(document.createElement(""span""));
+        pageSeparator.addClass(""Separator"");
+        pageSeparator.text("".."");
+
+        return pageSeparator;
+    }
+
+    function GetTitleText(item)
+    {
+        var result = item.Label;
+
+        if (item.Parent != null){
+			// determine parents
+			var parents = [];
+
+            var parentItem = item;
+
+            while (parentItem.Parent != null && parentItem.Parent.NavigationIndex != null){
+				parents.unshift(parentItem.Parent);
+                parentItem = parentItem.Parent;
+            }
+
+			// determine path
+            var path = """";
+			for (var i = 0; i < parents.length; i++){
+				var child = parents[i];
+				var parent = child.Parent;
+                if (path.length == 0){
+					if (parent == null || parent.Children.length <= 1) continue;
+					else path = child.Label;
+                } else {
+					path = child.Label + "" - "" + path;
+				}
+			}
+			
+
+			if (path.length > 0) result += "" ("" + path + "")"";
+        }
+
+        return result;
+    }
+
+    /// returns a useful summary for the specified search text
+    function GetSectionExtract(contentText, searchText)
+    {
+        // get search words
+        var searchWords = GetSearchWords(searchText);
+
+        // split content 
+        var lines = contentText.split(""."");
+
+        var lineIndex = -1;
+
+        // find the first line that has a searchword in it
+        for (var i = 0; i < lines.length && lineIndex == -1; i++){
+            var line = lines[i].toLowerCase();
+
+            for (var wordIndex = 0; wordIndex < searchWords.length; wordIndex++){
+                var searchWordText = searchWords[wordIndex].word.toLowerCase();
+                if (searchWords[wordIndex].whole){
+                } else {
+                    if (line.indexOf(searchWordText) > 0){
+                        lineIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+		
+		if (lineIndex < 0) lineIndex = 0;
+
+        // take one line before
+        //if (lineIndex > 0) lineIndex--;
+
+        // take lines until enough characters are found
+        var expectedCharacterCount = 500;
+        var result = """";
+
+        while(result.length < expectedCharacterCount && lineIndex < lines.length && lineIndex >= 0){
+            result += lines[lineIndex] + ""."";
+            lineIndex++;
+        }
+
+        return result;
+    }
+
+    /// highlight search results in the specified element
+    function Highlight(searchText, containers)
+    {
+        var searchWords = GetSearchWords(searchText)
+
+        for(var i = 0; i < searchWords.length; i++){
+            containers.highlight(searchWords[i].word, { element: 'span', className: 'Highlight', wordsOnly: searchWords[i].whole });
+        }
+    }
+
+    /// divide the search text into words.
+    function GetSearchWords(searchText)
+    {
+        var result = [];
+        var parts = searchText.split('""');
+
+        for(var i = 0; i < parts.length; i++){
+            var searchPart = parts[i];
+
+            var words = searchPart.match(/[\w_-]+/g);
+
+            if (words != null){
+                var wholeWord = (i % 2 == 1);
+
+                for(var j = 0; j < words.length; j++){
+                    var word = words[j];
+                    result.push({ word: word, whole: wholeWord });
+                }
+            }
+        }
+        
+        return result;
+    }
+
+    /// get an ordered list of section id's in which searchText is found
+    function GetSearchResults(searchText)
+    {
+        var searchWords = GetSearchWords(searchText);
+
+		// determine sectionPriority
+		var sectionPriorities = {};
+        var sectionCount = 0;
+		
+		for (var i = 0; i < searchWords.length; i++){
+			sectionCount += AddSectionPriorities(searchWords[i], sectionPriorities);
+		}
+		
+		var results = [];
+		results.length = sectionCount;
+		
+        var index = 0;
+
+		for (var sectionId in sectionPriorities){
+			results[index] = { id: sectionId, priority: sectionPriorities[sectionId]};
+            index++;
+		}
+		
+		results.sort(function(a,b){ 
+			return b.priority - a.priority;
+		});
+		
+		return results;
+    }
+	
+    /// Add the search results from a single search word to the total result.
+    /// Params:
+    ///     - searchWord: string
+    ///     - sectionPriorities: number[]
+    /// Returns: number of newly added sections
+	function AddSectionPriorities(searchWord, sectionPriorities)
+	{
+		var searchWordText = searchWord.word.toLowerCase();
+
+        // determine matchWords and sections
+        var matchWords = [];
+        var sectionMatches = {};
+        var sectionCount = 0;
+		
+
+		for(var word in SearchIndex.WordDictionary){
+			if (word.indexOf(searchWordText) >= 0 && (searchWord.whole == false || word.length == searchWordText.length)){
+                matchWords.push(word);
+
+                var wordLocations = SearchIndex.WordDictionary[word];
+
+                for(var i = 0; i < wordLocations.length; i++){
+                    var wordLocation = wordLocations[i];
+                    var sectionId = wordLocation[0];
+                    var sectionMatch = sectionMatches[sectionId];
+
+                    if (sectionMatch == null){
+                        sectionMatch = [];
+                        sectionMatches[sectionId] = sectionMatch;
+                    }
+
+                    sectionMatch.push({ word: word, sectionId: sectionId, titleCount: wordLocation[1], contentCount: wordLocation[2] });
+                }
+			}
+		}
+
+        // calculate scores per section/searchWord
+        for (var sectionId in sectionMatches){
+            var score = SearchWordScore(searchWordText, sectionMatches[sectionId]);
+
+            if (sectionPriorities[sectionId] == null){
+                sectionPriorities[sectionId] = score;
+                sectionCount++;
+            } else {
+                sectionPriorities[sectionId] = sectionPriorities[sectionId] + score;
+            }
+        }
+
+        return sectionCount;
+	}
+
+    /// Determine the score for a single search word
+    /// Params:
+    ///     - sectionId: int
+    ///     - searchWord: string
+    ///     - sectionMatch: { word: string, sectionId: int, titleCount: int, contentCount: int }[]
+    function SearchWordScore(searchWord, sectionMatch)
+    {
+        var result = 0;
+
+        for (var i = 0; i < sectionMatch.length; i++){
+            var wordMatch = sectionMatch[i];
+            var matchWord = wordMatch.word;
+
+            var wordScore = MatchWordScore(wordMatch);
+
+            if (matchWord == searchWord){ 
+                // count word score fully
+                result += wordScore;
+            } else { 
+                // count word partially
+                var index = matchWord.indexOf(searchWord);
+                var beginEndFactor;
+                if (index == 0 || (index + searchWord.length == matchWord.length)) beginEndFactor = 1;
+                else beginEndFactor = 2;
+
+                result += (searchWord.length * wordScore) / (matchWord.length * sectionMatch.length * beginEndFactor);
+            }
+        }
+
+        return result;
+    }
+
+    /// Determine the score for a single match word
+    /// Params:
+    ///     - wordMatch: { word: string, sectionId: int, titleCount: int, contentCount: int }
+    function MatchWordScore(wordMatch)
+    {
+        var idf = InverseDocumentFrequency(wordMatch.word);
+        var tf = TermFrequency(wordMatch);
+        var SaturationConstant = 2;
+
+        return idf * (tf / (SaturationConstant + tf));
+    }
+
+    /// Determine how important the word is.
+    /// Params:
+    ///     - matchWord: string
+    function InverseDocumentFrequency(matchWord)
+    {
+        var matchWordSectionCount = SearchIndex.WordDictionary[matchWord].length;
+        return Math.max(0, Math.log(((SearchIndex.TotalSectionCount - matchWordSectionCount) + 0.5) / (matchWordSectionCount + 0.5)));
+    }
+
+    /// Determine how important the word is in the specified section.
+    /// Params:
+    ///     - wordMatch: { word: string, sectionId: int, titleCount: int, contentCount: int }
+    function TermFrequency(wordMatch)
+    {
+        var titleWeight = 10;
+        var contentWeight = 1;
+        var titleNormWeight = 0.6;
+        var contentNormWeight = 0.5;
+        var sectionInfo = SearchIndex.Sources[wordMatch.sectionId];
+
+        var titleNormalization = NormalizationFactor(
+            sectionInfo.TitleWordCount,
+            SearchIndex.TitleWordCount / SearchIndex.TotalSectionCount,
+            titleNormWeight
+        );
+
+        var contentNormalization = NormalizationFactor(
+            sectionInfo.ContentWordCount,
+            SearchIndex.ContentWordCount / SearchIndex.TotalSectionCount,
+            contentNormWeight
+        );
+
+        return (titleWeight * (wordMatch.titleCount / titleNormalization)) + (contentWeight * (wordMatch.contentCount / contentNormalization));
+    }
+
+    /// Determine the size of the section
+    /// Params:
+    ///     - sectionWordCount: int
+    ///     - averageWordCount: int
+    ///     - normalizationConstant: number
+    function NormalizationFactor(sectionWordCount, averageWordCount, normalizationConstant)
+    {
+        return (1 - normalizationConstant) + (normalizationConstant * (sectionWordCount / averageWordCount));
+    }
+
+    /// Add the specified tree of sections to a dictionary.
+    function LoadDictionary(items, dictionary, parent) 
+    {
+        if (typeof parent === ""undefined"") { parent = null; }
+        items.forEach(function (x) {
+            if(parent != null) {
+                x.Parent = parent;
+            }
+            dictionary[x.Id] = x;
+            LoadDictionary(x.Children, dictionary, x);
+        });
+    }
+
+    /// Find the first section in the specified tree that has content.
+    function FindFirstSource(item) {
+        if(item.Source != null) {
+            return rootUrl + item.Source;
+        }
+        for(var i = 0; i < item.Children.length; i++) {
+            var child = item.Children[i];
+            var result = FindFirstSource(child);
+            if(result != null) {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    /// Get the url of a section that includes search highlighting
+    function GetItemUrl(item, searchText)
+    {
+        return FindFirstSource(item) + ""#searchText="" + encodeURIComponent(searchText);
+    }
+
+    /// Open main search page with the specified search text.
+    function OpenSearch(searchText)
+    {
+        if (IsSearchPage()){
+            ExecuteSearch(searchText);
+        } else if (searchText.length > 0){
+            window.location.href = rootUrl + ""Search.html#searchText="" + encodeURIComponent(searchText);
+        }
+    }
+
+    /// Determines whether or not the current page can show results
+    function IsSearchPage()
+    {
+        return window.SearchIndex != null;
+    }
+
+    /// get the value of a parameter in the hash.
+    function GetHashParameter(name)
+    {
+        var paramRex = /([^=?&#]+)=([^&?#]*)/g;
+        var hash = window.location.hash;
+
+        var match;
+        while (match = paramRex.exec(hash)){
+            var key = decodeURIComponent(match[1]);
+            var value = decodeURIComponent(match[2]);
+            if (key == name) return value;
+        }
+    }
+
+    // initialize section dictionary
+    var SectionDictionary = {};
+    LoadDictionary(Sections, SectionDictionary);
+
+    // initialize search
+    $(document).ready(initialize);
+};
+
+if (!Object.keys) {
+    Object.keys = function (obj) {
+        var keys = [],
+            k;
+        for (k in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, k)) {
+                keys.push(k);
+            }
+        }
+        return keys;
+    };
+}
+
+String.prototype.regexIndexOf = function(regex, startpos) 
+{
+    var indexOf = this.substring(startpos || 0).search(regex);
+    return (indexOf >= 0) ? (indexOf + (startpos || 0)) : indexOf;
+}
+function scrolHeight(o) {
+	var scrolled = document.scrollingElement.scrollTop;
+	var nav2 = document.getElementById(""Navigation2"");
+	var hamb = document.getElementById(""hamburgerIcon"");
+	var con = document.getElementById(""Content"");
+	if(scrolled > 149 ){
+		if (nav2.className.indexOf(""fixedheight"") == -1) {
+			nav2.className += "" fixedheight "";			
+			hamb.className += "" fixedheight "";
+			if(con != undefined){
+				con.className += "" fixedheight "";
+			}
+		} 
+	}
+	else{
+		if(!(nav2.className.indexOf(""fixedheight"") == -1)){ 
+			nav2.className = nav2.className.replace("" fixedheight "", """");			
+			hamb.className = hamb.className.replace("" fixedheight "", """");
+			if(con != undefined){
+				con.className = con.className.replace("" fixedheight "", """");
+			}
+		}
+	}
+	
+}
+function addScrollListener(){
+	document.addEventListener('scroll', scrolHeight, true);
+}
+var DropDownListNavigation = (function () {
+    function DropDownListNavigation(index, items, activeItem, targetElement) {
+        this.Id = DropDownListNavigation.NextId;
+        DropDownListNavigation.NextId++;
+        this.Index = index;
+        this.Items = items;
+        this.ActiveItem = activeItem;
+        AppendHtml(targetElement, this.CreateNodes());
+    }
+    DropDownListNavigation.NextId = 1;
+    DropDownListNavigation.prototype.CreateNodes = function () {
+        var result = new Array();
+        var optionNodes = [];
+        this.CreateOptionNodes(this.Items, true, optionNodes);
+        var me = this;
+        var selectNode = new HtmlNode(""select"", {
+        }, optionNodes, {
+            change: function () {
+                me.OpenItem($(this));
+            }
+        });
+        result.push(selectNode);
+        return result;
+    };
+    DropDownListNavigation.prototype.CreateOptionNodes = function (items, isRoot, nodes) {
+        if (typeof nodes === ""undefined"") { nodes = []; }
+        var _this = this;
+        if(items == null) {
+            nodes = [];
+        } else {
+            items.forEach(function (item, index) {
+                if(item.NavigationIndex == null || item.NavigationIndex != _this.Index) {
+                    return;
+                }
+                var children = _this.CreateOptionNodes(item.Children, false);
+                var optionNode = new HtmlNode(""option"", {
+                    ""class"": _this.GetOptionClasses(item, children.length > 0).join("" ""),
+                    ""value"": item.Id
+                }, item.Label);
+                if(item === _this.ActiveItem) {
+                    optionNode.SetAttributes({
+                        selected: ""selected""
+                    });
+                }
+                nodes.push(optionNode);
+                if(item.Children != null) {
+                    _this.CreateOptionNodes(item.Children, false, nodes);
+                }
+            });
+        }
+        return nodes;
+    };
+    DropDownListNavigation.prototype.GetOptionClasses = function (item, isRoot) {
+        var me = this;
+        var result = [
+            ""Node""
+        ];
+        if(item.Children.length > 0) {
+            result.push(""Container"");
+        } else {
+            result.push(""Leaf"");
+        }
+        var source = FindFirstSource(item);
+        if(item === me.ActiveItem) {
+            result.push(""Active"");
+        } else if(source != null) {
+            result.push(""Link"");
+        }
+        return result;
+    };
+    DropDownListNavigation.prototype.OpenItem = function (node) {
+        var me = this;
+        var id = Number(node.val());
+        var item = this.GetById(this.Items, id);
+        if(item != null) {
+            OpenItem(item);
+        }
+    };
+    DropDownListNavigation.prototype.GetById = function (items, id) {
+        for(var i = 0; i < items.length; i++) {
+            var item = items[i];
+            if(item.Id == id) {
+                return item;
+            }
+            var result = this.GetById(item.Children, id);
+            if(result != null) {
+                return result;
+            }
+        }
+    };
+    return DropDownListNavigation;
+})();
+function smallMenuToggle() { var x = document.getElementById(""Navigation1""); if (x.className.indexOf(""SmallNavOpen"") == -1) { x.className += "" SmallNavOpen ""; } else { x.className = x.className.replace(""SmallNavOpen"", """"); } } function smallMenuToggleClose() { var x = document.getElementById(""Navigation1""); if (x.className.indexOf(""SmallNavOpen"") == -1) { } else { x.className = x.className.replace(""SmallNavOpen"", """"); } } function getLanguage() { var x = document.getElementById(""navSmall""); var elements = document.getElementsByClassName('NoSearchResults'); var noSearch = elements[0]; var hrefForLang = window.location.href; var index = window.location.href.indexOf(""l=""); var subLangString = hrefForLang.substr(index + 2); var iSlash = subLangString.indexOf(""/""); var langString = subLangString.substr(0,iSlash); x.className += "" ""+langString+"" ""; if(noSearch != undefined){ noSearch.className += "" ""+langString+""NoSearchResult ""; } } function scrolHeight(o) { var scrolled = document.scrollingElement.scrollTop; var nav2 = document.getElementById(""Navigation2""); var hamb = document.getElementById(""hamburgerIcon""); var con = document.getElementById(""Content""); if(scrolled > 149 ){ if (nav2.className.indexOf(""fixedheight"") == -1) { nav2.className += "" fixedheight ""; hamb.className += "" fixedheight ""; if(con != undefined){ con.className += "" fixedheight ""; } } } else{ if(!(nav2.className.indexOf(""fixedheight"") == -1)){ nav2.className = nav2.className.replace("" fixedheight "", """"); hamb.className = hamb.className.replace("" fixedheight "", """"); if(con != undefined){ con.className = con.className.replace("" fixedheight "", """"); } } } } function addScrollListener(){ document.addEventListener('scroll', scrolHeight, true); }
+</script>
+<style type=""text/css"">/* standard whitelines for paragraphs */
+.Content p
+{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.Content span.footnote
+{
+    border-bottom: 1px dotted #000;
+    text-decoration: none;  
+}
+
+/* tables */
+.Content table 
+{
+	margin-top: 0em;
+	margin-bottom: 0em;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.Content tr, .Content td, .Content th
+{
+	text-align: inherit;
+	vertical-align: inherit;
+}
+
+/* stop gap fix */
+/*default no borders when border attrib is set to something else then 1*/
+.Content table[border=""1""], 
+.Content table[border=""1""] > tbody > tr, 
+.Content table[border=""1""] > tbody > tr > td, 
+.Content table[border=""1""] > tbody > tr > th,
+.Content table[border=""1""] > thead > tr > th
+{
+    border: 1px solid black;
+}
+
+/* table cells */
+.Content td, .Content th
+{
+    padding: 0.5mm 1mm;
+    vertical-align: top;
+    overflow:hidden;
+}
+
+/* set height on empty objects, to keep them from collapsingn */
+td:empty, th:empty
+{
+    height: 1.2em;
+}
+
+/* insert space into empty p, to keep them from collapsing */
+p:empty::after
+{
+    content: ""\00A0"";
+}
+
+.Content th
+{
+    text-align: left;
+    font-weight: bolder;
+}
+
+/* no whitelines in table cells and list-items + always break word*/
+.Content td > p, .Content th > p, .Content li > p
+{
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+
+/* no whitelines in table cells and list-items + always break word*/
+.Content td.stop > p, .Content th.stop > p, .Content li.stop > p
+{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+/* no margins on objects inside table cells */
+.Content td > img, .Content td > table, .Content td > ul, .Content td > ol
+{
+    margin: 0em;
+}
+
+
+/* no whitelines after tables */
+.Content table + p
+{
+	margin-top: 0em;
+}
+
+/* headings */
+.Content h1, .Content h2, .Content h3, .Content h4, .Content h5, .Content h6 { margin: 1em 0mm; }
+.Content h1 { font-size: 180%; }
+.Content h2 { font-size: 150%; }
+.Content h3 { font-size: 140%; }
+.Content h4 { font-size: 130%; }
+.Content h5 { font-size: 120%; }
+.Content h6 { font-size: 110%; }
+
+/*  lists */
+.Content ul, .Content ol
+{
+   list-style-position: outside;
+   padding-left: 1cm;
+   margin: 1em 0em;
+}
+.Content ul { list-style-type: disc; }
+.Content ol { list-style-type: decimal; }
+
+/* no margins when nesting lists */
+.Content li > ul, .Content li > ol,
+.Content ul > ul, .Content ol > ul, .Content ul > ol, .Content ol > ol
+{
+    margin: 0em;
+} 
+
+/* no margins when nesting lists */
+.Content li > ul, .Content li > ol
+{
+    margin: 0em;
+} 
+
+/* links */
+.Content a, .Content a:link
+{
+	color:blue;
+	text-decoration:none;
+}
+.Content:visited
+{
+	color:blue;    
+}
+.Content a:hover, .Content a:active
+{
+	text-decoration:underline;
+}
+
+/* super and sub script */
+.Content sub { vertical-align:sub; font-size: smaller;}
+.Content sup { vertical-align:super; font-size: smaller;}
+
+/* borders on images */
+.Content img[data-border=""true""] { border: 1px solid black; }
+.Content {color:black; font-size: 11pt; font-family:sans-serif}
+.Content .style_default_level1
+ { color: #3366ff; font-size:20pt }
+.Content .style_default_level2
+ { color: #3366ff; font-size:18pt }
+.Content .style_default_level3
+ { color: #3366ff; font-size:16pt }
+.Content .style_default_level4
+ { color: #3366ff; font-size:15pt }
+.Content .style_default_level5
+ { color: #3366ff; font-size:14pt }
+.Content .style_default_level6
+ { color: #3366ff; font-size:12pt }
+.Content .style_default_caption
+ { color:#444444;font-style:italic }
+.Content .style_default_small_font
+ { font-size:9pt }
+@charset ""UTF-8"";
+/* CSS Document Fonts */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic, 400,700);
+html{
+	height: 100%;
+	}
+body{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 21px;
+	font-size: 0.875rem;
+	height: 100%;
+	
+	}
+	
+.Content {
+	color: black; 
+	font-size: 10.5pt; 
+	font-family: sans-serif;
+	line-height: 21px;
+}
+.Content p{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
+.Content a, .Content a:link, .Content a:visited {
+	color: #0200CE;
+	text-decoration: underline;
+}
+.Content a:hover {
+	text-decoration: underline;
+	color: #0000A6;
+}
+b{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700; 
+}
+	
+.Tree .Node.Active > .Display
+{
+    font-weight: bold;
+}
+.Content .style_website_theme_level2{
+	color: #4B5EA5;
+}
+.Content h1{
+	color: #2d5b9c;
+}
+.Content h2{
+	color: #5694d0;
+}
+.Content h3, h4, h5, h6 {
+	color: #073576;
+}@charset ""UTF-8"";
+/* CSS Document Listmenu-tab eupman*/
+
+/*Body*/
+body{
+	background-color: #F2F4F7;
+	overflow-y: scroll;
+	margin: 0px;
+	}
+#SectionTitle{
+	display: none;
+	}
+/*Page*/
+@media screen and (min-width:960px){
+#page{
+	position: relative;
+	margin-right: auto;
+	background-image: url(https://www.genturis.eu/l=eng/Images/footer960.png);
+	margin-left: auto;
+	width: 943px;
+	background-color: #bfd6ff;
+	overflow: hidden;
+	/*display: table;*/
+	/* background-repeat: no-repeat; */
+	background-position: left bottom;
+	height: auto;
+	min-height: 100%;
+	}
+	/*Content*/
+#Content{
+	display: block;
+	position:relative;
+	float:left;
+	width: 595px;
+	padding-right: 55px;
+	padding-left: 40px;
+	margin-bottom: 27px;
+	background-color: #FFF;
+	background-image: url(https://www.genturis.eu/l=eng/Images/genturis_watermerk.png);
+	padding-top: 0px;
+	}
+	#Content.fixedheight {
+	left:250px;
+}
+}
+@media screen and (max-width:959px) and (min-width:800px){
+	#page{
+	position: relative;
+	margin-right: auto;
+	background-image: url(https://www.genturis.eu/l=eng/Images/footer960.png);
+	margin-left: auto;
+	width: 99%;
+	background-color: #bfd6ff;
+	overflow:hidden;
+	/*display: table;*/
+	/*background-repeat: no-repeat; */
+	background-position: left bottom;
+	height: auto;
+	min-height: 100%;
+	}
+	/*Content*/
+#Content{
+	display: block;
+	position:relative;
+	float: left;
+	width: 65%;
+	padding-right: 5px;
+	padding-left: 15px;
+	margin-bottom: 27px;
+	background-color: #FFF;
+	background-image: url(.https://www.genturis.eu/l=eng/Images/genturis_watermerk.png);
+	padding-top: 0px;
+	}
+#Content.fixedheight {
+	left:250px;
+}
+img
+{
+	display: inline-block;
+	max-width: 95%;
+	height: 100%;
+	
+}
+}
+@media screen and (max-width:799px){
+	#page{
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	width: 99%;
+	overflow: hidden;
+	/*display: table;*/
+	/*background-repeat: no-repeat; */
+	background-position: left bottom;
+	height: auto;
+	min-height: 100%;
+	}
+	/*Content*/
+#Content{
+	display: inline-block;
+	position:relative;
+	top:-23px;
+	width: calc(100% - 10px);
+	padding-left:  5px;
+	padding-right: 5px;
+	margin: auto;
+	margin-bottom: 27px;
+	background-color: #FFF;
+	background-image: url(https://www.genturis.eu/l=eng/Images/genturis_watermerk.png);
+	padding-top: 0px;
+	}
+img
+{
+	display: inline-block;
+	max-width: 95%;
+	height: 100%;
+	
+}
+#hamburgerIcon
+{
+	top: 105px;
+    margin-left: 15px;
+    width: 35px;
+    height: 35px;
+	z-index: 1100;
+    display: block;
+    position: absolute;
+	background-image: url(https://www.genturis.eu/l=eng/Images/hamburgerIcon.png);
+	background-repeat: no-repeat;
+    background-position: center;
+	background-size: contain;
+	cursor: pointer;
+}
+#hamburgerIcon.fixedheight {
+	position: fixed;
+	top:0px;
+	background-color: rgba(255, 255, 255, .35);
+}
+#Navigation2{
+	display: none;
+	background-color: #CBD9FF;
+	position: absolute;
+	max-height: calc(100vh - 155px);
+	overflow: auto;
+	margin:auto;
+	margin-bottom: 20px;	
+	padding-right: 0px;
+	padding-left: 0px;	
+	width: 250px;
+	height: auto;
+	max-width: 280px;
+	margin-bottom: 20px;
+	z-index:1000;
+	}	
+	#Navigation2.fixedheight {
+	position: fixed;
+	top:40px;
+	max-height: calc(100vh - 50px);
+}
+}
+/*Header*/
+#Header{
+	height: 148px;
+	display: block;
+	background-image: url(https://www.genturis.eu/l=eng/Images/header960.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	overflow: visible;
+	}
+	
+
+/*List menu*/
+@media screen and (min-width:800px){
+#Navigation2{
+	display: block;
+	background-color: #CBD9FF;
+	float: left;
+	/*position: absolute;*/
+	/*height: auto;*/
+	/*overflow: hidden;*/
+	padding-bottom: 20px;
+	width: 230px;
+	max-height: calc(100vh - 155px);
+	overflow: auto;
+	margin-bottom: 20px;	
+	padding-right: 0px;
+	padding-left: 0px;	
+	width: 250px;
+	height: auto;
+	max-width: 280px;
+	margin-bottom: 20px;
+	}
+
+#Navigation2.fixedheight {
+	position: fixed;
+	max-height: calc(100vh - 25px);
+	top:0px;
+}
+}
+#Navigation2 .Active a{
+	color: #0a55bf;	
+	}
+
+#Navigation2 .Children .Active a{
+	color: #0a55bf;	
+	}
+#Navigation2 a{
+	line-height: 40px;
+	font-size: 14px;
+	line-height: 1.5625rem;
+	/*color: #2D3663; #2d3663*/
+	color: #2d5b9c;
+	text-decoration: none;
+	font-weight: bold;
+	font-style: normal;
+	}
+	
+#Navigation2 .Children a{
+	color: #cbd9f2;
+	font-size: 12px;
+	margin-left: 5px;
+	}
+
+#Navigation2 .Children .Children a{
+	color: #5694d0;
+	font-style: italic;
+	margin-left: 10px;
+	}
+	
+#Navigation2 .Active{
+	/* background-image: url(https://www.genturis.eu/l=eng/Images/active-listitem_1.png); */
+	/* background-image: url(https://www.genturis.eu/l=eng/Images/active-listitem.png);*/
+	color: #red;	
+	background-color: #0d71ff;
+	background-repeat: no-repeat;
+	background-position: right top;
+	}
+	
+
+	
+/*Tabs*/
+#Navigation3{
+	display: block;
+	float: right;
+	width: 65%;
+	/*border: thin solid #C00;*/
+	
+	padding-right: 20px;
+	padding-left: 20px;
+	border-left-style: solid;
+	border-left-color: #4B5EA5;
+	border-top-width: 2px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	border-left-width: 2px;
+	}
+ 
+#Navigation3 a{
+	display: block;
+	float: left;
+	margin: 5px;
+	background-color: #4B5EA5;
+	padding: 5px;
+	color: #FFF;
+	text-decoration: none;
+	}
+	
+	
+	
+
+
+
+/* Footer */
+#Footer
+{
+	background-image: url(https://www.genturis.eu/l=eng/Images/footer.png);
+	padding-left: 20px;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 2px;
+    height: 20px;
+    width: 100%;
+    overflow: visible!important;
+    font-size: 8pt;
+    color: white;
+	
+}
+#Footer a 
+{
+    color: white;
+
+}
+
+#FooterLogo
+{
+	display: inline-block;
+	vertical-align: -4px;
+	width: 20px;
+	height: 16px;
+	background-image: url('https://www.genturis.eu/l=eng/Images/footerlogo.png');
+}
+
+
+.Tree
+{
+    
+}
+
+.Tree .Toggle
+{
+	cursor: pointer;
+	width: 15px;
+	height: 10px;
+	
+	
+	display: inline-block;
+	float: left;
+	margin-top: 6px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+
+.Tree .Title
+{
+	margin-left: 2px;	
+   
+}
+
+/* nieuw */
+
+.Tree .Node.Node.Node.Active > .Display
+{
+    background-image: url(https://www.genturis.eu/l=eng/Images/active-listitem.png)
+}
+
+
+.Tree .Node > .Display a:hover
+{
+  
+}
+
+.Tree .Node > .Display  a
+{
+
+}
+
+.Tree .Node .Display
+{
+	min-height: 30px;	
+
+}
+
+.Tree .Node .Children .Display
+{
+	min-height: 15px;
+	background: #81a8e1;
+	
+}
+
+
+.Tree .Node .Children .Children .Display
+{
+	min-height: 15px;
+	/* background: #f2f7ff;*/
+	background: #ebf0fa;
+}
+
+
+.Tree .Container.Expanded > .Display > .Toggle
+{
+    background-image: url(""https://www.genturis.eu/l=eng/Images/PointerDown.png"");
+	width: 15px;
+}
+
+.Tree .Container.Collapsed > .Display > .Toggle
+{
+    background-image: url(""https://www.genturis.eu/l=eng/Images/PointerRight.png"");
+	width: 15px;
+}
+
+.Tree .Leaf > .Display > .Toggle
+{
+
+}
+
+.Tree .Children
+{
+    margin-left: 0px;
+}
+
+.VimeoVideo {
+	float: left;
+	height: 350px;
+	width: 620px;
+	color: red;
+	
+}
+.VimeoVideo iframe{
+	margin: 0px;
+	padding: 0px;
+	height: 350px;
+	width: 620px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	}
+
+
+}/* Main Layout style */
+/*body 
+*/
+html, body
+{ 
+    position: absolute;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+	font-size:100%;
+}
+/* General tree styling */
+
+/*.Tree
+
+
+NavSmall and Navigation1 refer to the language selection!!!!!
+*/
+
+#globe
+{
+	margin-top: 16px;
+    background-image: url('https://www.genturis.eu/l=eng/Images/GLOBE.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+	right: 3px;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+	position: absolute;
+	background-size: contain;
+}
+
+#navSmall
+{
+	margin-top: 15px;
+	margin-right: 12px;
+    background-image: url('https://www.genturis.eu/l=eng/Images/ENG.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+	float: Right;
+	width: 35px;
+	height: 27px;
+	background-size: contain;
+	cursor: pointer;
+}
+.eng
+{
+	background-image: url('https://www.genturis.eu/l=eng/Images/ENG.png')!important;
+}
+.engNoSearchResult:before {
+	   content: ""We could not find what you were looking for. Please try another term..."";
+}
+.deu
+{
+	background-image: url('https://www.genturis.eu/l=eng/Images/DEU.png')!important;
+}
+.deuNoSearchResult:before {
+	   content: ""Wir konnten nicht finden, wonach Sie gesucht haben. Bitte versuchen Sie es mit einem anderen Begriff ..."";
+}
+.esp
+{
+	background-image: url('https://www.genturis.eu/l=eng/Images/ESP.png')!important;
+}
+.espNoSearchResult:before {
+	   content: ""No pudimos encontrar lo que buscabas. Intenta con otro tÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ©rmino ..."";
+}
+.fra
+{
+	background-image: url('https://www.genturis.eu/l=eng/Images/FRA.png')!important;
+}
+.fraNoSearchResult:before {
+	   content: ""Nous n'avons pas pu trouver ce que vous cherchiez. Veuillez essayer un autre terme ..."";
+}
+.por
+{
+	background-image: url('https://www.genturis.eu/l=eng/Images/POR.png')!important;
+}
+.porNoSearchResult:before {
+	   content: ""No conseguimos encontrar o que vocÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂª estava procurando. Por favor, tente outro termo ..."";
+}
+#Navigation1.SmallNavOpen
+{
+	display: block;
+}
+#Navigation2.SmallNavOpen
+{
+	display: block;
+}
+.Tab
+{
+	padding-top: 5px;
+    padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	vertical-align: middle;
+	background-color:#81a8e1;
+   	text-decoration: none;   
+  	font-size: 10pt;  
+    
+}
+/* Main tabs */
+#Navigation1
+{
+	display: none;	
+	top:27px;
+	right:9px;
+	width: 45px;
+	font-size: 10pt;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 100; position:relative;
+}
+#Navigation1 .InnerTabset
+{
+	float:right;
+	margin-top:32px;
+	margin-left: auto;
+	margin-right: 1px;
+}
+
+#Navigation1 .Tab
+{	
+	font-weight: normal;
+	width:120px;
+	float:right;
+	border: 1px solid black;
+	vertical-align: middle;
+	margin-top:0px;
+}
+#Navigation1 a
+{	
+	display: inline-block;
+	font-weight: normal;
+	color: #cbd9f2;
+	vertical-align: middle;
+	margin-top:0px;
+	text-decoration:none;
+}
+
+
+/* Search */
+@media screen and (min-width:800px){
+#SearchContainer
+{
+	background-color:  #ffffff;
+	position: relative;	
+	top: -40px;
+	left: -10px; /* without language drop down -10px */
+	float:right;
+	border: 1px solid #3C5EA8;
+}
+}
+@media screen and (max-width:799px){
+#SearchContainer
+{
+	background-color:  #ffffff;
+	position: relative;
+	top: -40px;
+	left: -10px; /* without language drop down -10px */
+	float:right;
+	border: 1px solid #3C5EA8;
+}
+}
+#SearchContainer .Text
+{
+	padding: 2px 3px 0px 3px ;
+	border: 0px solid #3C5EA8;
+	width: 100px;
+	height: 18px;
+   	margin: 0px;
+	font-size: 11pt;	
+	color: #767F90;
+
+}
+
+#SearchContainer .Button
+{
+	margin: 0px;
+	vertical-align: top;	
+	width: 24px;
+	height: 20px;	
+	background-color:  #ffffff;
+	background-image: url('https://www.genturis.eu/l=eng/Images/go.png');
+	background-repeat: no-repeat;
+    	background-position: center;
+	cursor: pointer;
+	border: 0px solid #3C5EA8;
+}
+@media screen and (min-width:950px){
+/* Search Results */
+.SearchResults 
+{
+	font-family: sans-serif;
+	font-size: 12pt;
+	margin-left: 250px;
+	width: 690px;
+	color: #000000;
+	background-color: #ffffff;   
+	
+}
+	.SearchResults .Result
+{
+	width: 710px;
+    margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;  
+	
+	
+}
+.NoSearchResults 
+{
+	width: 600px;
+    margin-left: 50px;
+	margin-top: 100px;
+	margin-right: auto;
+	font-family: sans-serif;
+	font-size: 11pt;
+	letter-spacing: 0.1em;
+	color: #3C5EA8;	
+}
+}
+
+@media screen and (max-width:949px) and (min-width:800px){
+/* Search Results */
+.SearchResults 
+{
+	font-family: sans-serif;
+	font-size: 12pt;
+	margin-left: 250px;
+	width: 70%;
+	color: #000000;
+	 background-color: #ffffff;   
+	
+}
+.SearchResults .Result
+{
+	width: 71%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;  
+}
+.NoSearchResults 
+{
+	width: 65%;
+	margin-left: 10px;
+	margin-top: 70px;
+	margin-right: auto;
+	font-family: sans-serif;
+	font-size: 11pt;
+	letter-spacing: 0.1em;
+	color: #3C5EA8;
+	}
+
+}
+@media screen and (max-width:799px){
+/* Search Results */
+.SearchResults 
+{
+	font-family: sans-serif;
+	font-size: 12pt;
+	width: 99%;
+	color: #000000;
+	 background-color: #ffffff;   
+	
+}
+.SearchResults .Result
+{
+	width: 99%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;  
+}
+.NoSearchResults 
+{
+	width: 99%;
+	margin-left: 10px;
+	margin-top: 70px;
+	margin-right: auto;
+	font-family: sans-serif;
+	font-size: 11pt;
+	letter-spacing: 0.1em;
+	color: #3C5EA8;
+	}
+
+}
+.SearchResults a.Title
+{
+	font-family: sans-serif;
+	font-size: 11pt;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	color: #3C5EA8;
+	margin-top: 15px;
+	margin-left: 15px;
+	
+}
+
+.SearchResults .Content
+{
+	font-family: sans-serif;
+	font-size: 10pt;
+	color: #2C407D;
+	line-height: 15pt;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 3px;
+	margin-bottom: 15px;}
+
+
+/* Search highlight */
+.Highlight
+{
+    background-color: rgb(232, 128, 86);
+}
+
+/* Search Navigation */
+.SearchNavigation
+{
+    	text-align: center;
+	font-family: sans-serif;
+	padding-bottom: 30px;
+
+}
+
+.SearchNavigation .Previous, .SearchNavigation .Next
+{
+    cursor: pointer;
+    border: 1px solid #767F90;
+    margin: 0px 3px;
+    padding: 0px 3px;   
+	background-color: white;   	
+}
+
+.SearchNavigation .Previous:hover, .SearchNavigation .Next:hover
+{
+    background-color:  #E3E9F7;
+}
+
+.SearchNavigation .Pages
+{
+    margin: 0px 20px;
+
+    padding: 10px 0px;
+}
+
+.SearchNavigation .Pages .PageButton
+{
+    cursor: pointer;
+    border: 1px solid #3C5EA8;
+    margin: 0px 3px;
+    padding: 0px 3px;
+    color: #2C407D;
+    font-family: sans-serif;
+	background-color: white;   
+}
+
+.SearchNavigation .Pages .PageButton.Active
+{
+    color: #E47544;
+    background-color: #E3E9F7;
+}
+
+.SearchNavigation .Pages .PageButton:hover
+{
+    background-color: #E3E9F7;
+}
+
+.SearchNavigation .Pages .Separator
+{
+    margin: 0px 3px;
+}
+</style>
+<!--<div class=""jumbotron jumbotron-fluid"">
+<div class=""container"">
+<h1 class=""display-4"">ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ GENTURIS Research Register</h1>
+
+<h1 class=""display-4""><img 148px="""" alt="""" src=""/logo/header960.png"" style=""height:"" /></h1>
+</div>
+</div>-->
+
+<div id=""page"">
+<div id=""Header"">
+<div id=""InnerHeader"">
+<div id=""hamburgerIcon"" onclick=""leftMenuToggle()"">&nbsp;</div>
+
+<nav id=""navSmall"" onmouseenter=""smallMenuToggle()"" onmouseleave=""smallMenuToggleClose()"">
+<div id=""globe"">&nbsp;</div>
+
+<nav id=""Navigation1"">
+<div class=""Tab"">
+<div class=""eng"" style=""display: block;width: 30px;height: 15px;float: left;background-size: contain;background-repeat: no-repeat;"">&nbsp;</div>
+<a href=""https://www.genturis.eu/l=eng/index.html""><span style="""">English</span> </a></div>
+
+<div class=""Tab"">
+<div class=""deu"" style=""display: block;width: 30px;height: 15px;float: left;background-size: contain;background-repeat: no-repeat;"">&nbsp;</div>
+<a href=""https://www.genturis.eu/l=deu/index.html""><span style="""">Deutsch</span> </a></div>
+
+<div class=""Tab"">
+<div>
+<div class=""esp"" style=""display: block;width: 30px;height: 15px;float: left;background-size: contain;background-repeat: no-repeat;"">&nbsp;</div>
+<a href=""https://www.genturis.eu/l=esp/index.html""><span style="""">Espa&Atilde;&plusmn;ol</span> </a></div>
+</div>
+
+<div class=""Tab"">
+<div>
+<div class=""fra"" style=""display: block;width: 30px;height: 15px;float: left;background-size: contain;background-repeat: no-repeat;"">&nbsp;</div>
+<a href=""https://www.genturis.eu/l=fra/index.html""><span style="""">Fran&Atilde;&sect;ais</span> </a></div>
+</div>
+
+<div class=""Tab"">
+<div>
+<div class=""por"" style=""display: block;width: 30px;height: 15px;float: left;background-size: contain;background-repeat: no-repeat;"">&nbsp;</div>
+<a href=""https://www.genturis.eu/l=por/index.html""><span style="""">Portugu&Atilde;&ordf;s</span> </a></div>
+</div>
+</nav>
+</nav>
+</div>
+</div>
+
+<div class=""InlineSearch"" id=""SearchContainer""><input class=""Text"" type=""text"" /><button class=""Button""></button></div>
+
+<nav id=""Navigation2"" class=""Tree"" data-root=""1"" data-index=""1"" data-value=""3"" data-type=""Tree"" data-allowemptyroots=""false"" data-hideroot=âtrueâ >
+<p class=âstyle_default_level2â ><a href = ""http://molgenis78.gcc.rug.nl/"">Home</a></p>
+<a href=""/menu/main/background"">Members area</a>
+<br>About
+Participating health care providers
+Joining GENTURIS Registry/Registration
+Governance, Roles and Responsibilities
+Manual/Instruction
+<br>Links
+<br>Contact
+<br>Privacy Policy
+<br>FAQ
+</nav>
+
+<div class=""Content"" id=""Content"">
+<section id=""SectionTitle"">
+<div class=""SectionContent"">
+<p class=âstyle_default_level2"">Home </p>
+</div>
+</section>
+
+<section id=""sec4"">
+<div class=""SectionContent"">
+<h1>Health Care Providers</h1>
+
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp01_subject&hideselect=true#>Radboud university medical center</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp02_subject&hideselect=true#>University Medical Center Groningen</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp03_subject&hideselect=true#>Genomic Medicine, Central Manchester Foundation Trust</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp04_subject&hideselect=true#>Cambridge University Hospitals NHS Foundation Trust</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp05_subject&hideselect=true#>Medizinisch Genetisches Zentrum</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp06_subject&hideselect=true#>Rouen University Hospital</a></h2>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp07_subject&hideselect=true#>Guy's and St. Thomas' NHS Foundation Trust</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp08_subject&hideselect=true#>Pomeranian Medical University - University Clinical Hospital no 1</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp09_subject&hideselect=true#>Karolinska University Hospital</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp10_subject&hideselect=true#>Hospital Germans Trias I Pujol - lnstitut Catala d'Oncologia</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp11_subject&hideselect=true#>University Hospital Liege</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp12_subject&hideselect=true#>University Hospital Leuven</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp13_subject&hideselect=true#>University Hospital Henri Mondor-National Referral Center</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp14_subject&hideselect=true#>University of PÃ©cs</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp15_subject&hideselect=true#>Porto Comprehensive Cancer Center</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp16_subject&hideselect=true#>Ghent University Hospital</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp17_subject&hideselect=true#>Hospital Sant Joan de DÃ©u</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp18_subject&hideselect=true#>Center for Hereditary Tumor Syndromes (CHT), University Hospital Bonn</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp19_subject&hideselect=true#>ENCORE - NF1 expertise centre, Erasmus Medical Center</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp20_subject&hideselect=true#>Institute of Oncology Ljubljana</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp21_subject&hideselect=true#>Hereditary Cancer Syndrome Center Dresden</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp22_subject&hideselect=true#>The hospital District of Southwest Finland, Turku University Hospital</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp23_subject&hideselect=true#>Institut Curie</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp24_subject&hideselect=true#>Haukeland University Hospital</a></h5>
+<h5><a href = https://molgenis78.gcc.rug.nl/menu/patients/dataexplorer?entity=hcp25_subject&hideselect=true#>Universita Cattolica del Sacro Cuore</a></h5>
+
+<p><img data-keepaspectratio=""true"" height=""100"" src=""https://www.genturis.eu/l=eng/Assets/ERN_Cofunded_Banner-1-456.jpg"" width=""600"" /></p>
+</div>
+</section>
+</div>
+
+<script type=""text/javascript"">
+		getLanguage();
+		addScrollListener();
+    </script>"
+"home","<meta name=""viewport"" content=""width=device-width, initial-scale=1"" />
+<link href=""/css/bootstrap-4/genturis.css"" rel=""stylesheet"" type=""text/css"" />
+<script type=""text/javascript"">
+var HtmlNode = (function () {
+    function HtmlNode(tag, attributes, content, events) {
+        var me = this;
+        me.Tag = tag;
+        me.Attributes = {
+        };
+        me.SetAttributes(attributes);
+        me.Content = [];
+        me.Append(content);
+        me.Events = {
+        };
+        me.On(events);
+    }
+    HtmlNode.prototype.Append = function (content) {
+        var me = this;
+        if(content instanceof Array) {
+            content.forEach(function (x) {
+                me.Append(x);
+            });
+        } else if(content != null) {
+            me.Content.push(content);
+        }
+    };
+    HtmlNode.prototype.SetAttributes = function (attributes) {
+        var me = this;
+        for(var key in attributes) {
+            me.Attributes[key] = attributes[key];
+        }
+    };
+    HtmlNode.prototype.On = function (events) {
+        var me = this;
+        for(var key in events) {
+            me.Events[key] = events[key];
+        }
+    };
+    HtmlNode.prototype.ToHtml = function () {
+        var me = this;
+        var result = $(document.createElement(me.Tag));
+        result.attr(me.Attributes);
+        result.on(me.Events);
+        me.Content.forEach(function (content) {
+            if(content instanceof HtmlNode) {
+                result.append(content.ToHtml());
+            } else if(content.svg) {
+                result.append(content.svgObject);
+            } else if(content.jquery) {
+                result.append(content);
+            } else {
+                result.append(document.createTextNode(content));
+            }
+        });
+        return result;
+    };
+    return HtmlNode;
+})();
+function AppendHtml(targetElement, content) {
+    var fragment = $(document.createDocumentFragment());
+    content.forEach(function (x) {
+        fragment.append(x.ToHtml());
+    });
+    targetElement.append(fragment);
+}
+var TreeNode = (function () {
+    function TreeNode() { }
+    return TreeNode;
+})();
+var TreeNavigation = (function () {
+    function TreeNavigation(index, root, activeItem, targetElement, hideRoot) {
+        this.Id = TreeNavigation.NextId;
+        TreeNavigation.NextId++;
+        this.Index = index;
+        this.Root = root;
+        this.ActiveItem = activeItem;
+        this.HideRoot = hideRoot;
+        if(this.ActiveItem != null) {
+            this.ActiveItem.Expanded = true;
+            this.EnsureVisible(activeItem);
+        }
+
+        if (hideRoot) AppendHtml(targetElement, this.CreateNodes(this.Root.Children, false));
+        else AppendHtml(targetElement, this.CreateNodes([this.Root], true));
+    }
+    TreeNavigation.NextId = 1;
+    TreeNavigation.prototype.CreateNodes = function (items, isRoot) {
+        var _this = this;
+        var result = [];
+        if(items == null) {
+            return result;
+        }
+        items.forEach(function (item) {
+            var titleClass = ""Title"";
+
+            if (item.Label == null || item.Label.replace(/\s+/g, '') == """") {
+                item.Label = """";
+                for (var i = 0; i < 20; i++) {
+                    item.Label = item.Label + ""\u00A0"";
+                }
+            }
+
+            if(!isRoot && item.NavigationIndex != null && item.NavigationIndex != _this.Index) {
+                return;
+            }
+            var toggleNode = new HtmlNode(""a"", {
+                ""class"": ""Toggle""
+            });
+            var childNodes = _this.CreateNodes(item.Children, false);
+            var hasChildren = childNodes.length > 0;
+            toggleNode.On({
+                click: function () {
+                    _this.Toggle(item);
+                }
+            });
+            var source = FindFirstSource(item);
+            var titleNode = new HtmlNode(""a"", {
+                ""class"": titleClass,
+                ""href"": source
+            }, item.Label);
+            if(source != null && item !== _this.ActiveItem) {
+                titleNode.On({
+                    click: function () {
+                        _this.Open(item);
+                    }
+                });
+            } else if(hasChildren) {
+                titleNode.On({
+                    click: function () {
+                        _this.Toggle(item);
+                    }
+                });
+            }
+            var nodeItems = [
+                toggleNode, 
+                titleNode
+            ];
+            var node = new HtmlNode(""div"", {
+                ""class"": _this.GetNodeClasses(item, hasChildren).join("" ""),
+                id: _this.GetNodeId(item)
+            }, [
+                new HtmlNode(""div"", {
+                    ""class"": ""Display""
+                }, nodeItems)
+            ]);
+            if(hasChildren && item.Expanded) {
+                node.Append(new HtmlNode(""div"", {
+                    ""class"": ""Children""
+                }, childNodes));
+            }
+            result.push(node);
+        });
+        return result;
+    };
+    TreeNavigation.prototype.Toggle = function (item) {
+        if(item.Children.length == 0) {
+            return;
+        }
+        var me = this;
+        var node = $(""#"" + me.GetNodeId(item));
+        item.Expanded = !item.Expanded;
+        if(item.Expanded) {
+            node.removeClass(""Collapsed"");
+            node.addClass(""Expanded"");
+            AppendHtml(node, [
+                new HtmlNode(""div"", {
+                    ""class"": ""Children""
+                }, me.CreateNodes(item.Children, false))
+            ]);
+        } else {
+            node.removeClass(""Expanded"");
+            node.addClass(""Collapsed"");
+            node.find(""> .Children"").remove();
+        }
+    };
+    TreeNavigation.prototype.Open = function (item) {
+        OpenItem(item);
+    };
+    TreeNavigation.prototype.EnsureVisible = function (item) {
+        var me = this;
+        var parent = item.Parent;
+        while(parent != null) {
+            if(!parent.Expanded) {
+                me.Toggle(parent);
+            }
+            parent = parent.Parent;
+        }
+    };
+    TreeNavigation.prototype.GetNodeClasses = function (item, hasChildren) {
+        var me = this;
+        var result = [
+            ""Node""
+        ];
+        if(item.Expanded) {
+            result.push(""Expanded"");
+        } else {
+            result.push(""Collapsed"");
+        }
+        if(hasChildren) {
+            result.push(""Container"");
+        } else {
+            result.push(""Leaf"");
+        }
+        var source = FindFirstSource(item);
+        if(item === me.ActiveItem) {
+            result.push(""Active"");
+        } else if(source != null) {
+            result.push(""Link"");
+        }
+
+        result = result.concat(item.CssClasses);
+        return result;
+    };
+    TreeNavigation.prototype.GetNodeId = function (item) {
+        return ""TreeNode_"" + this.Id + ""_"" + item.Id;
+    };
+    TreeNavigation.prototype.GetNode = function (item) {
+        return $(""#TreeNode_"" + this.Id + ""_"" + item.Id);
+    };
+    return TreeNavigation;
+})();
+var TabNavigation = (function () {
+    function TabNavigation(index, items, activeItem, targetElement) {
+        this.Id = TabNavigation.NextId;
+        TabNavigation.NextId++;
+        this.Index = index;
+        this.Items = items;
+        this.ActiveItem = activeItem;
+        AppendHtml(targetElement, this.CreateNodes(this.Items, true));
+    }
+    TabNavigation.NextId = 1;
+    TabNavigation.prototype.CreateNodes = function (items, isRoot, nodes) {
+        if (typeof nodes === ""undefined"") { nodes = []; }
+        var _this = this;
+        if(items == null) {
+            nodes = [];
+        } else {
+            items.forEach(function (item, index) {
+                if(item.NavigationIndex == null || item.NavigationIndex != _this.Index) {
+                    return;
+                }
+                var children = _this.CreateNodes(item.Children, false);
+                var source = FindFirstSource(item);
+                var tabNode = new HtmlNode(""a"", {
+                    ""class"": _this.GetTabClasses(item, children.length > 0).join("" ""),
+                    ""value"": item.Id,
+                    ""href"": source
+                }, item.Label);
+                nodes.push(tabNode);
+                children.forEach(function (x) {
+                    return nodes.push(x);
+                });
+            });
+        }
+        if (isRoot) return [new HtmlNode(""span"", { ""class"": ""InnerTabset""}, nodes)];
+        else return nodes;
+    };
+    TabNavigation.prototype.GetTabClasses = function (item, isRoot) {
+        var me = this;
+        var result = [
+            ""Tab""
+        ];
+        if(item.Children.length > 0) {
+            result.push(""Container"");
+        } else {
+            result.push(""Leaf"");
+        }
+        var source = FindFirstSource(item);
+        if(item === me.ActiveItem) {
+            result.push(""Active"");
+        } else if(source != null) {
+            result.push(""Link"");
+        }
+
+        result = result.concat(item.CssClasses);
+        return result;
+    };
+    return TabNavigation;
+})();
+$(document).ready(function () {
+    var tree = Sections;
+    var dictionary = {
+    };
+    LoadDictionary(tree, dictionary);
+    $(""nav"").each(function (index, element) {
+        var navNode = $(element);
+        var root = dictionary[Number(navNode.attr(""data-root""))];
+        var index = Number(navNode.attr(""data-index""));
+        var value = dictionary[Number(navNode.attr(""data-value""))];
+        var navType = navNode.attr(""data-type"");
+        var navAllowEmptyRoots = navNode.attr(""data-allowemptyroots"") == ""true"";
+        var hideRoot = navNode.attr(""data-hideroot"") == ""true"" ;
+
+        if(navType == ""Tree"") {
+            if (root.Source == null && !navAllowEmptyRoots) hideRoot = true;
+            new TreeNavigation(index, root, value, navNode, hideRoot);
+        } else if(navType == ""DropDownList"") {
+            new DropDownListNavigation(index, root.Children, value, navNode);
+        } else if(navType == ""Tabset"") {
+            new TabNavigation(index, root.Children, value, navNode);
+        } else if(navType == ""Hidden"") {
+            navNode.hide();
+        }
+    });
+
+
+});
+
+function OpenItem(item) {
+    var source = FindFirstSource(item);
+    if(source != null) {
+        var targetUrl = FindFirstSource(item);
+        window.location.href = targetUrl;
+    }
+}
+
+function FindFirstSource(item, includeRoot) {
+    if(item.Source != null) {
+        var url =  item.Source;
+        if (window.location.hash.length > 0){
+            url += window.location.hash + ""&markText=false""; 
+        }
+        return rootUrl + url;
+    }
+    for(var i = 0; i < item.Children.length; i++) {
+        var child = item.Children[i];
+        var result = FindFirstSource(child);
+        if(result != null) {
+            return result;
+        }
+    }
+    return null;
+}
+function LoadDictionary(items, dictionary, parent) {
+    if (typeof parent === ""undefined"") { parent = null; }
+    items.forEach(function (x) {
+        if(parent != null) {
+            x.Parent = parent;
+        }
+        dictionary[x.Id] = x;
+        LoadDictionary(x.Children, dictionary, x);
+    });
+}
+function leftMenuToggle() {
+    var x = document.getElementById(""Navigation2"");
+    if (x.className.indexOf(""SmallNavOpen"") == -1) {
+        x.className += "" SmallNavOpen "";
+    } else { 
+        x.className = x.className.replace("" SmallNavOpen "", """");
+    }
+}
+var Search = new function()
+{
+
+    var CurrentSearchResults = [];
+    var CurrentSearchText = """";
+    var CurrentPage = 0;
+
+    this.Execute = function(searchString)
+    {
+        ExecuteSearch(searchString);
+    }
+
+    this.OpenPage = function(page)
+    {
+        CurrentPage = page;
+        ShowSearchResults();
+    }
+
+    /// initialize search functionality.
+    function initialize()
+    {
+        // initialize inline search functionality on web pages
+        var textField = $(""#SearchContainer .Text"");
+
+        if (textField.length > 0){
+            // bind to search events
+            textField.on(""keypress"", function(e){
+                var code = e.which;
+                if(code == 13) { // enter button was pressed
+                    OpenSearch(textField.val());
+                }
+            });
+
+            $(""#SearchContainer .Button"").on(""click"", function(){
+                OpenSearch(textField.val());
+            });
+        }
+
+        LoadHashSearch();
+        $(window).on(""hashchange"", LoadHashSearch);
+    }
+
+    function LoadHashSearch()
+    {
+        var text = GetHashParameter(""searchText"");
+        var page = GetHashParameter(""page"");
+        var markText = GetHashParameter(""markText"") !== ""false"";
+        if (page == null || page == """") page = 0;
+        else page = Number(page) - 1;
+        
+       
+        var textField = $(""#SearchContainer .Text"");
+
+        if (textField.length > 0 && text != null && text != """"){
+            if (IsSearchPage()){
+                // perform search if requested in url
+                textField.val(text);
+                ExecuteSearch(text, page);
+            } else {
+                // highlight search text if requested in url
+                textField.val(text);
+                
+                // highlight search results
+                if (markText == true) Highlight(text, $(""#Content""));
+            }
+        }
+    }
+
+    /// Execute a search on the main search page.
+    function ExecuteSearch(searchText, currentPage)
+    {
+        if (searchText == CurrentSearchText && CurrentPage == currentPage) return;
+        CurrentSearchText = searchText;
+        CurrentSearchResults = GetSearchResults(searchText);
+        CurrentPage = currentPage;
+        if (CurrentPage == null) CurrentPage = 0
+        ShowSearchResults(CurrentSearchResults, searchText);
+    }
+
+    /// Show search results on main search page
+    function ShowSearchResults()
+    {
+        var results = CurrentSearchResults;
+        var searchText = CurrentSearchText;
+        var page = CurrentPage;
+
+        var container = $(""#SearchContent .SearchResults"");
+        var itemsPerPage = 10;
+
+        // show a page of search results
+        var resultElements = [];
+
+        for (var i = page * itemsPerPage; i < (page + 1) * itemsPerPage && i < results.length; i++){
+			var result = results[i];
+
+            var source = SearchIndex.Sources[result.id];
+            var item = SectionDictionary[result.id];
+
+            var titleElement = $(document.createElement(""A""));
+            titleElement.addClass(""Title"");
+            titleElement.text(GetTitleText(item));
+            titleElement.attr(""href"", GetItemUrl(item, searchText));
+
+            var contentElement = $(document.createElement(""DIV""));
+            contentElement.addClass(""Content"");
+            contentElement.text(GetSectionExtract(source.Text, searchText));
+
+            var resultElement = $(document.createElement(""DIV""));
+            resultElement.addClass(""Result"");
+            resultElement.append(titleElement);
+            resultElement.append(contentElement);
+
+            resultElements.push(resultElement);
+		}
+
+        container.find(""> .Result"").remove();  
+
+        if (resultElements.length > 0){
+            container.find("".NoSearchResults"").hide();
+            container.append(resultElements);
+            Highlight(searchText, container.find(""> .Result""));
+        } else {
+            container.find("".NoSearchResults"").show();
+        }
+
+        // update page navigation
+
+        // previous button
+        var previousButton = $("".SearchNavigation .Previous"");
+        previousButton.unbind(""click"");
+
+        if (page == 0){
+            previousButton.hide();
+        } else {
+            previousButton.show();
+            previousButton.bind(""click"", function(){ Search.OpenPage(page - 1); });
+        }
+
+        // next button
+        var pageCount = Math.ceil(results.length / itemsPerPage);
+
+        var nextButton = $("".SearchNavigation .Next"");
+        nextButton.unbind(""click"");
+
+        if (page < pageCount - 1){
+            nextButton.show();
+            nextButton.bind(""click"", function(){ Search.OpenPage(page + 1); });
+        } else {
+            nextButton.hide();
+        }
+
+        // page buttons
+        var pageContainer = $("".SearchNavigation .Pages"");
+        pageContainer.empty();
+
+        if (pageCount > 1){
+            var pageRangeCount = 3;
+
+            // add first pages
+            for (var i = 0; i < pageRangeCount && i < pageCount; i++){
+                pageContainer.append(CreatePageButton(i, page));
+            }
+
+            // add middle pages
+            if (page >= Math.ceil(pageRangeCount / 2) && page < pageCount - Math.ceil(pageRangeCount / 2)){
+                if (page > pageRangeCount + Math.floor(pageRangeCount / 2)){
+                    // add separator
+                    pageContainer.append(CreatePageRangeSeparator(i)); 
+                }
+
+                var start = Math.max(page - Math.floor(pageRangeCount / 2), pageRangeCount);
+                var end = Math.min(page + Math.floor(pageRangeCount / 2), pageCount - (pageRangeCount + 1));
+
+                for(var i = start; i <= end; i++){
+                    pageContainer.append(CreatePageButton(i, page));
+                }
+            }
+
+            // add last pages
+            if (pageCount > pageRangeCount){
+                // add separator
+                var start = Math.max(pageCount - pageRangeCount, pageRangeCount);
+
+                if (start > pageRangeCount && start > page + Math.ceil(pageRangeCount / 2)){
+                    pageContainer.append(CreatePageRangeSeparator(i)); 
+                }
+
+                for(var i = start; i < pageCount; i++){
+                    pageContainer.append(CreatePageButton(i, page));
+                }
+            }
+        }
+
+        // update url
+        window.location.hash = ""#searchText="" + encodeURIComponent(searchText) + ""&page="" + (page + 1);
+    }
+
+    function CreatePageButton(pageIndex, currentPage)
+    {
+        var pageButton = $(document.createElement(""span""));
+        pageButton.addClass(""PageButton"");
+        if (pageIndex == currentPage) pageButton.addClass(""Active"");
+        pageButton.bind(""click"", function(){ Search.OpenPage(pageIndex); });
+        pageButton.text(pageIndex + 1);
+
+        return pageButton;
+    }
+
+    function CreatePageRangeSeparator()
+    {
+        var pageSeparator = $(document.createElement(""span""));
+        pageSeparator.addClass(""Separator"");
+        pageSeparator.text("".."");
+
+        return pageSeparator;
+    }
+
+    function GetTitleText(item)
+    {
+        var result = item.Label;
+
+        if (item.Parent != null){
+			// determine parents
+			var parents = [];
+
+            var parentItem = item;
+
+            while (parentItem.Parent != null && parentItem.Parent.NavigationIndex != null){
+				parents.unshift(parentItem.Parent);
+                parentItem = parentItem.Parent;
+            }
+
+			// determine path
+            var path = """";
+			for (var i = 0; i < parents.length; i++){
+				var child = parents[i];
+				var parent = child.Parent;
+                if (path.length == 0){
+					if (parent == null || parent.Children.length <= 1) continue;
+					else path = child.Label;
+                } else {
+					path = child.Label + "" - "" + path;
+				}
+			}
+			
+
+			if (path.length > 0) result += "" ("" + path + "")"";
+        }
+
+        return result;
+    }
+
+    /// returns a useful summary for the specified search text
+    function GetSectionExtract(contentText, searchText)
+    {
+        // get search words
+        var searchWords = GetSearchWords(searchText);
+
+        // split content 
+        var lines = contentText.split(""."");
+
+        var lineIndex = -1;
+
+        // find the first line that has a searchword in it
+        for (var i = 0; i < lines.length && lineIndex == -1; i++){
+            var line = lines[i].toLowerCase();
+
+            for (var wordIndex = 0; wordIndex < searchWords.length; wordIndex++){
+                var searchWordText = searchWords[wordIndex].word.toLowerCase();
+                if (searchWords[wordIndex].whole){
+                } else {
+                    if (line.indexOf(searchWordText) > 0){
+                        lineIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+		
+		if (lineIndex < 0) lineIndex = 0;
+
+        // take one line before
+        //if (lineIndex > 0) lineIndex--;
+
+        // take lines until enough characters are found
+        var expectedCharacterCount = 500;
+        var result = """";
+
+        while(result.length < expectedCharacterCount && lineIndex < lines.length && lineIndex >= 0){
+            result += lines[lineIndex] + ""."";
+            lineIndex++;
+        }
+
+        return result;
+    }
+
+    /// highlight search results in the specified element
+    function Highlight(searchText, containers)
+    {
+        var searchWords = GetSearchWords(searchText)
+
+        for(var i = 0; i < searchWords.length; i++){
+            containers.highlight(searchWords[i].word, { element: 'span', className: 'Highlight', wordsOnly: searchWords[i].whole });
+        }
+    }
+
+    /// divide the search text into words.
+    function GetSearchWords(searchText)
+    {
+        var result = [];
+        var parts = searchText.split('""');
+
+        for(var i = 0; i < parts.length; i++){
+            var searchPart = parts[i];
+
+            var words = searchPart.match(/[\w_-]+/g);
+
+            if (words != null){
+                var wholeWord = (i % 2 == 1);
+
+                for(var j = 0; j < words.length; j++){
+                    var word = words[j];
+                    result.push({ word: word, whole: wholeWord });
+                }
+            }
+        }
+        
+        return result;
+    }
+
+    /// get an ordered list of section id's in which searchText is found
+    function GetSearchResults(searchText)
+    {
+        var searchWords = GetSearchWords(searchText);
+
+		// determine sectionPriority
+		var sectionPriorities = {};
+        var sectionCount = 0;
+		
+		for (var i = 0; i < searchWords.length; i++){
+			sectionCount += AddSectionPriorities(searchWords[i], sectionPriorities);
+		}
+		
+		var results = [];
+		results.length = sectionCount;
+		
+        var index = 0;
+
+		for (var sectionId in sectionPriorities){
+			results[index] = { id: sectionId, priority: sectionPriorities[sectionId]};
+            index++;
+		}
+		
+		results.sort(function(a,b){ 
+			return b.priority - a.priority;
+		});
+		
+		return results;
+    }
+	
+    /// Add the search results from a single search word to the total result.
+    /// Params:
+    ///     - searchWord: string
+    ///     - sectionPriorities: number[]
+    /// Returns: number of newly added sections
+	function AddSectionPriorities(searchWord, sectionPriorities)
+	{
+		var searchWordText = searchWord.word.toLowerCase();
+
+        // determine matchWords and sections
+        var matchWords = [];
+        var sectionMatches = {};
+        var sectionCount = 0;
+		
+
+		for(var word in SearchIndex.WordDictionary){
+			if (word.indexOf(searchWordText) >= 0 && (searchWord.whole == false || word.length == searchWordText.length)){
+                matchWords.push(word);
+
+                var wordLocations = SearchIndex.WordDictionary[word];
+
+                for(var i = 0; i < wordLocations.length; i++){
+                    var wordLocation = wordLocations[i];
+                    var sectionId = wordLocation[0];
+                    var sectionMatch = sectionMatches[sectionId];
+
+                    if (sectionMatch == null){
+                        sectionMatch = [];
+                        sectionMatches[sectionId] = sectionMatch;
+                    }
+
+                    sectionMatch.push({ word: word, sectionId: sectionId, titleCount: wordLocation[1], contentCount: wordLocation[2] });
+                }
+			}
+		}
+
+        // calculate scores per section/searchWord
+        for (var sectionId in sectionMatches){
+            var score = SearchWordScore(searchWordText, sectionMatches[sectionId]);
+
+            if (sectionPriorities[sectionId] == null){
+                sectionPriorities[sectionId] = score;
+                sectionCount++;
+            } else {
+                sectionPriorities[sectionId] = sectionPriorities[sectionId] + score;
+            }
+        }
+
+        return sectionCount;
+	}
+
+    /// Determine the score for a single search word
+    /// Params:
+    ///     - sectionId: int
+    ///     - searchWord: string
+    ///     - sectionMatch: { word: string, sectionId: int, titleCount: int, contentCount: int }[]
+    function SearchWordScore(searchWord, sectionMatch)
+    {
+        var result = 0;
+
+        for (var i = 0; i < sectionMatch.length; i++){
+            var wordMatch = sectionMatch[i];
+            var matchWord = wordMatch.word;
+
+            var wordScore = MatchWordScore(wordMatch);
+
+            if (matchWord == searchWord){ 
+                // count word score fully
+                result += wordScore;
+            } else { 
+                // count word partially
+                var index = matchWord.indexOf(searchWord);
+                var beginEndFactor;
+                if (index == 0 || (index + searchWord.length == matchWord.length)) beginEndFactor = 1;
+                else beginEndFactor = 2;
+
+                result += (searchWord.length * wordScore) / (matchWord.length * sectionMatch.length * beginEndFactor);
+            }
+        }
+
+        return result;
+    }
+
+    /// Determine the score for a single match word
+    /// Params:
+    ///     - wordMatch: { word: string, sectionId: int, titleCount: int, contentCount: int }
+    function MatchWordScore(wordMatch)
+    {
+        var idf = InverseDocumentFrequency(wordMatch.word);
+        var tf = TermFrequency(wordMatch);
+        var SaturationConstant = 2;
+
+        return idf * (tf / (SaturationConstant + tf));
+    }
+
+    /// Determine how important the word is.
+    /// Params:
+    ///     - matchWord: string
+    function InverseDocumentFrequency(matchWord)
+    {
+        var matchWordSectionCount = SearchIndex.WordDictionary[matchWord].length;
+        return Math.max(0, Math.log(((SearchIndex.TotalSectionCount - matchWordSectionCount) + 0.5) / (matchWordSectionCount + 0.5)));
+    }
+
+    /// Determine how important the word is in the specified section.
+    /// Params:
+    ///     - wordMatch: { word: string, sectionId: int, titleCount: int, contentCount: int }
+    function TermFrequency(wordMatch)
+    {
+        var titleWeight = 10;
+        var contentWeight = 1;
+        var titleNormWeight = 0.6;
+        var contentNormWeight = 0.5;
+        var sectionInfo = SearchIndex.Sources[wordMatch.sectionId];
+
+        var titleNormalization = NormalizationFactor(
+            sectionInfo.TitleWordCount,
+            SearchIndex.TitleWordCount / SearchIndex.TotalSectionCount,
+            titleNormWeight
+        );
+
+        var contentNormalization = NormalizationFactor(
+            sectionInfo.ContentWordCount,
+            SearchIndex.ContentWordCount / SearchIndex.TotalSectionCount,
+            contentNormWeight
+        );
+
+        return (titleWeight * (wordMatch.titleCount / titleNormalization)) + (contentWeight * (wordMatch.contentCount / contentNormalization));
+    }
+
+    /// Determine the size of the section
+    /// Params:
+    ///     - sectionWordCount: int
+    ///     - averageWordCount: int
+    ///     - normalizationConstant: number
+    function NormalizationFactor(sectionWordCount, averageWordCount, normalizationConstant)
+    {
+        return (1 - normalizationConstant) + (normalizationConstant * (sectionWordCount / averageWordCount));
+    }
+
+    /// Add the specified tree of sections to a dictionary.
+    function LoadDictionary(items, dictionary, parent) 
+    {
+        if (typeof parent === ""undefined"") { parent = null; }
+        items.forEach(function (x) {
+            if(parent != null) {
+                x.Parent = parent;
+            }
+            dictionary[x.Id] = x;
+            LoadDictionary(x.Children, dictionary, x);
+        });
+    }
+
+    /// Find the first section in the specified tree that has content.
+    function FindFirstSource(item) {
+        if(item.Source != null) {
+            return rootUrl + item.Source;
+        }
+        for(var i = 0; i < item.Children.length; i++) {
+            var child = item.Children[i];
+            var result = FindFirstSource(child);
+            if(result != null) {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    /// Get the url of a section that includes search highlighting
+    function GetItemUrl(item, searchText)
+    {
+        return FindFirstSource(item) + ""#searchText="" + encodeURIComponent(searchText);
+    }
+
+    /// Open main search page with the specified search text.
+    function OpenSearch(searchText)
+    {
+        if (IsSearchPage()){
+            ExecuteSearch(searchText);
+        } else if (searchText.length > 0){
+            window.location.href = rootUrl + ""Search.html#searchText="" + encodeURIComponent(searchText);
+        }
+    }
+
+    /// Determines whether or not the current page can show results
+    function IsSearchPage()
+    {
+        return window.SearchIndex != null;
+    }
+
+    /// get the value of a parameter in the hash.
+    function GetHashParameter(name)
+    {
+        var paramRex = /([^=?&#]+)=([^&?#]*)/g;
+        var hash = window.location.hash;
+
+        var match;
+        while (match = paramRex.exec(hash)){
+            var key = decodeURIComponent(match[1]);
+            var value = decodeURIComponent(match[2]);
+            if (key == name) return value;
+        }
+    }
+
+    // initialize section dictionary
+    var SectionDictionary = {};
+    LoadDictionary(Sections, SectionDictionary);
+
+    // initialize search
+    $(document).ready(initialize);
+};
+
+if (!Object.keys) {
+    Object.keys = function (obj) {
+        var keys = [],
+            k;
+        for (k in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, k)) {
+                keys.push(k);
+            }
+        }
+        return keys;
+    };
+}
+
+String.prototype.regexIndexOf = function(regex, startpos) 
+{
+    var indexOf = this.substring(startpos || 0).search(regex);
+    return (indexOf >= 0) ? (indexOf + (startpos || 0)) : indexOf;
+}
+function scrolHeight(o) {
+	var scrolled = document.scrollingElement.scrollTop;
+	var nav2 = document.getElementById(""Navigation2"");
+	var hamb = document.getElementById(""hamburgerIcon"");
+	var con = document.getElementById(""Content"");
+	if(scrolled > 149 ){
+		if (nav2.className.indexOf(""fixedheight"") == -1) {
+			nav2.className += "" fixedheight "";			
+			hamb.className += "" fixedheight "";
+			if(con != undefined){
+				con.className += "" fixedheight "";
+			}
+		} 
+	}
+	else{
+		if(!(nav2.className.indexOf(""fixedheight"") == -1)){ 
+			nav2.className = nav2.className.replace("" fixedheight "", """");			
+			hamb.className = hamb.className.replace("" fixedheight "", """");
+			if(con != undefined){
+				con.className = con.className.replace("" fixedheight "", """");
+			}
+		}
+	}
+	
+}
+function addScrollListener(){
+	document.addEventListener('scroll', scrolHeight, true);
+}
+var DropDownListNavigation = (function () {
+    function DropDownListNavigation(index, items, activeItem, targetElement) {
+        this.Id = DropDownListNavigation.NextId;
+        DropDownListNavigation.NextId++;
+        this.Index = index;
+        this.Items = items;
+        this.ActiveItem = activeItem;
+        AppendHtml(targetElement, this.CreateNodes());
+    }
+    DropDownListNavigation.NextId = 1;
+    DropDownListNavigation.prototype.CreateNodes = function () {
+        var result = new Array();
+        var optionNodes = [];
+        this.CreateOptionNodes(this.Items, true, optionNodes);
+        var me = this;
+        var selectNode = new HtmlNode(""select"", {
+        }, optionNodes, {
+            change: function () {
+                me.OpenItem($(this));
+            }
+        });
+        result.push(selectNode);
+        return result;
+    };
+    DropDownListNavigation.prototype.CreateOptionNodes = function (items, isRoot, nodes) {
+        if (typeof nodes === ""undefined"") { nodes = []; }
+        var _this = this;
+        if(items == null) {
+            nodes = [];
+        } else {
+            items.forEach(function (item, index) {
+                if(item.NavigationIndex == null || item.NavigationIndex != _this.Index) {
+                    return;
+                }
+                var children = _this.CreateOptionNodes(item.Children, false);
+                var optionNode = new HtmlNode(""option"", {
+                    ""class"": _this.GetOptionClasses(item, children.length > 0).join("" ""),
+                    ""value"": item.Id
+                }, item.Label);
+                if(item === _this.ActiveItem) {
+                    optionNode.SetAttributes({
+                        selected: ""selected""
+                    });
+                }
+                nodes.push(optionNode);
+                if(item.Children != null) {
+                    _this.CreateOptionNodes(item.Children, false, nodes);
+                }
+            });
+        }
+        return nodes;
+    };
+    DropDownListNavigation.prototype.GetOptionClasses = function (item, isRoot) {
+        var me = this;
+        var result = [
+            ""Node""
+        ];
+        if(item.Children.length > 0) {
+            result.push(""Container"");
+        } else {
+            result.push(""Leaf"");
+        }
+        var source = FindFirstSource(item);
+        if(item === me.ActiveItem) {
+            result.push(""Active"");
+        } else if(source != null) {
+            result.push(""Link"");
+        }
+        return result;
+    };
+    DropDownListNavigation.prototype.OpenItem = function (node) {
+        var me = this;
+        var id = Number(node.val());
+        var item = this.GetById(this.Items, id);
+        if(item != null) {
+            OpenItem(item);
+        }
+    };
+    DropDownListNavigation.prototype.GetById = function (items, id) {
+        for(var i = 0; i < items.length; i++) {
+            var item = items[i];
+            if(item.Id == id) {
+                return item;
+            }
+            var result = this.GetById(item.Children, id);
+            if(result != null) {
+                return result;
+            }
+        }
+    };
+    return DropDownListNavigation;
+})();
+function smallMenuToggle() { var x = document.getElementById(""Navigation1""); if (x.className.indexOf(""SmallNavOpen"") == -1) { x.className += "" SmallNavOpen ""; } else { x.className = x.className.replace(""SmallNavOpen"", """"); } } function smallMenuToggleClose() { var x = document.getElementById(""Navigation1""); if (x.className.indexOf(""SmallNavOpen"") == -1) { } else { x.className = x.className.replace(""SmallNavOpen"", """"); } } function getLanguage() { var x = document.getElementById(""navSmall""); var elements = document.getElementsByClassName('NoSearchResults'); var noSearch = elements[0]; var hrefForLang = window.location.href; var index = window.location.href.indexOf(""l=""); var subLangString = hrefForLang.substr(index + 2); var iSlash = subLangString.indexOf(""/""); var langString = subLangString.substr(0,iSlash); x.className += "" ""+langString+"" ""; if(noSearch != undefined){ noSearch.className += "" ""+langString+""NoSearchResult ""; } } function scrolHeight(o) { var scrolled = document.scrollingElement.scrollTop; var nav2 = document.getElementById(""Navigation2""); var hamb = document.getElementById(""hamburgerIcon""); var con = document.getElementById(""Content""); if(scrolled > 149 ){ if (nav2.className.indexOf(""fixedheight"") == -1) { nav2.className += "" fixedheight ""; hamb.className += "" fixedheight ""; if(con != undefined){ con.className += "" fixedheight ""; } } } else{ if(!(nav2.className.indexOf(""fixedheight"") == -1)){ nav2.className = nav2.className.replace("" fixedheight "", """"); hamb.className = hamb.className.replace("" fixedheight "", """"); if(con != undefined){ con.className = con.className.replace("" fixedheight "", """"); } } } } function addScrollListener(){ document.addEventListener('scroll', scrolHeight, true); }
+</script>
+<style type=""text/css"">/* standard whitelines for paragraphs */
+.Content p
+{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.Content span.footnote
+{
+    border-bottom: 1px dotted #000;
+    text-decoration: none;  
+}
+
+/* tables */
+.Content table 
+{
+	margin-top: 0em;
+	margin-bottom: 0em;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.Content tr, .Content td, .Content th
+{
+	text-align: inherit;
+	vertical-align: inherit;
+}
+
+/* stop gap fix */
+/*default no borders when border attrib is set to something else then 1*/
+.Content table[border=""1""], 
+.Content table[border=""1""] > tbody > tr, 
+.Content table[border=""1""] > tbody > tr > td, 
+.Content table[border=""1""] > tbody > tr > th,
+.Content table[border=""1""] > thead > tr > th
+{
+    border: 1px solid black;
+}
+
+/* table cells */
+.Content td, .Content th
+{
+    padding: 0.5mm 1mm;
+    vertical-align: top;
+    overflow:hidden;
+}
+
+/* set height on empty objects, to keep them from collapsingn */
+td:empty, th:empty
+{
+    height: 1.2em;
+}
+
+/* insert space into empty p, to keep them from collapsing */
+p:empty::after
+{
+    content: ""\00A0"";
+}
+
+.Content th
+{
+    text-align: left;
+    font-weight: bolder;
+}
+
+/* no whitelines in table cells and list-items + always break word*/
+.Content td > p, .Content th > p, .Content li > p
+{
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+
+/* no whitelines in table cells and list-items + always break word*/
+.Content td.stop > p, .Content th.stop > p, .Content li.stop > p
+{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+/* no margins on objects inside table cells */
+.Content td > img, .Content td > table, .Content td > ul, .Content td > ol
+{
+    margin: 0em;
+}
+
+
+/* no whitelines after tables */
+.Content table + p
+{
+	margin-top: 0em;
+}
+
+/* headings */
+.Content h1, .Content h2, .Content h3, .Content h4, .Content h5, .Content h6 { margin: 1em 0mm; }
+.Content h1 { font-size: 180%; }
+.Content h2 { font-size: 150%; }
+.Content h3 { font-size: 140%; }
+.Content h4 { font-size: 130%; }
+.Content h5 { font-size: 120%; }
+.Content h6 { font-size: 110%; }
+
+/*  lists */
+.Content ul, .Content ol
+{
+   list-style-position: outside;
+   padding-left: 1cm;
+   margin: 1em 0em;
+}
+.Content ul { list-style-type: disc; }
+.Content ol { list-style-type: decimal; }
+
+/* no margins when nesting lists */
+.Content li > ul, .Content li > ol,
+.Content ul > ul, .Content ol > ul, .Content ul > ol, .Content ol > ol
+{
+    margin: 0em;
+} 
+
+/* no margins when nesting lists */
+.Content li > ul, .Content li > ol
+{
+    margin: 0em;
+} 
+
+/* links */
+.Content a, .Content a:link
+{
+	color:blue;
+	text-decoration:none;
+}
+.Content:visited
+{
+	color:blue;    
+}
+.Content a:hover, .Content a:active
+{
+	text-decoration:underline;
+}
+
+/* super and sub script */
+.Content sub { vertical-align:sub; font-size: smaller;}
+.Content sup { vertical-align:super; font-size: smaller;}
+
+/* borders on images */
+.Content img[data-border=""true""] { border: 1px solid black; }
+.Content {color:black; font-size: 11pt; font-family:sans-serif}
+.Content .style_default_level1
+ { color: #3366ff; font-size:20pt }
+.Content .style_default_level2
+ { color: #3366ff; font-size:18pt }
+.Content .style_default_level3
+ { color: #3366ff; font-size:16pt }
+.Content .style_default_level4
+ { color: #3366ff; font-size:15pt }
+.Content .style_default_level5
+ { color: #3366ff; font-size:14pt }
+.Content .style_default_level6
+ { color: #3366ff; font-size:12pt }
+.Content .style_default_caption
+ { color:#444444;font-style:italic }
+.Content .style_default_small_font
+ { font-size:9pt }
+@charset ""UTF-8"";
+/* CSS Document Fonts */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic, 400,700);
+html{
+	height: 100%;
+	}
+body{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 21px;
+	font-size: 0.875rem;
+	height: 100%;
+	
+	}
+	
+.Content {
+	color: black; 
+	font-size: 10.5pt; 
+	font-family: sans-serif;
+	line-height: 21px;
+}
+.Content p{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
+.Content a, .Content a:link, .Content a:visited {
+	color: #0200CE;
+	text-decoration: underline;
+}
+.Content a:hover {
+	text-decoration: underline;
+	color: #0000A6;
+}
+b{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700; 
+}
+	
+.Tree .Node.Active > .Display
+{
+    font-weight: bold;
+}
+.Content .style_website_theme_level2{
+	color: #4B5EA5;
+}
+.Content h1{
+	color: #2d5b9c;
+}
+.Content h2{
+	color: #5694d0;
+}
+.Content h3, h4, h5, h6 {
+	color: #073576;
+}@charset ""UTF-8"";
+/* CSS Document Listmenu-tab eupman*/
+
+/*Body*/
+body{
+	background-color: #F2F4F7;
+	overflow-y: scroll;
+	margin: 0px;
+	}
+#SectionTitle{
+	display: none;
+	}
+/*Page*/
+@media screen and (min-width:960px){
+#page{
+	position: relative;
+	margin-right: auto;
+	background-image: url(https://www.genturis.eu/l=eng/Images/footer960.png);
+	margin-left: auto;
+	width: 943px;
+	background-color: #bfd6ff;
+	overflow: hidden;
+	/*display: table;*/
+	/* background-repeat: no-repeat; */
+	background-position: left bottom;
+	height: auto;
+	min-height: 100%;
+	}
+	/*Content*/
+#Content{
+	display: block;
+	position:relative;
+	float:left;
+	width: 595px;
+	padding-right: 55px;
+	padding-left: 40px;
+	margin-bottom: 27px;
+	background-color: #FFF;
+	background-image: url(https://www.genturis.eu/l=eng/Images/genturis_watermerk.png);
+	padding-top: 0px;
+	}
+	#Content.fixedheight {
+	left:250px;
+}
+}
+@media screen and (max-width:959px) and (min-width:800px){
+	#page{
+	position: relative;
+	margin-right: auto;
+	background-image: url(https://www.genturis.eu/l=eng/Images/footer960.png);
+	margin-left: auto;
+	width: 99%;
+	background-color: #bfd6ff;
+	overflow:hidden;
+	/*display: table;*/
+	/*background-repeat: no-repeat; */
+	background-position: left bottom;
+	height: auto;
+	min-height: 100%;
+	}
+	/*Content*/
+#Content{
+	display: block;
+	position:relative;
+	float: left;
+	width: 65%;
+	padding-right: 5px;
+	padding-left: 15px;
+	margin-bottom: 27px;
+	background-color: #FFF;
+	background-image: url(.https://www.genturis.eu/l=eng/Images/genturis_watermerk.png);
+	padding-top: 0px;
+	}
+#Content.fixedheight {
+	left:250px;
+}
+img
+{
+	display: inline-block;
+	max-width: 95%;
+	height: 100%;
+	
+}
+}
+@media screen and (max-width:799px){
+	#page{
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	width: 99%;
+	overflow: hidden;
+	/*display: table;*/
+	/*background-repeat: no-repeat; */
+	background-position: left bottom;
+	height: auto;
+	min-height: 100%;
+	}
+	/*Content*/
+#Content{
+	display: inline-block;
+	position:relative;
+	top:-23px;
+	width: calc(100% - 10px);
+	padding-left:  5px;
+	padding-right: 5px;
+	margin: auto;
+	margin-bottom: 27px;
+	background-color: #FFF;
+	background-image: url(https://www.genturis.eu/l=eng/Images/genturis_watermerk.png);
+	padding-top: 0px;
+	}
+img
+{
+	display: inline-block;
+	max-width: 95%;
+	height: 100%;
+	
+}
+#hamburgerIcon
+{
+	top: 105px;
+    margin-left: 15px;
+    width: 35px;
+    height: 35px;
+	z-index: 1100;
+    display: block;
+    position: absolute;
+	background-image: url(https://www.genturis.eu/l=eng/Images/hamburgerIcon.png);
+	background-repeat: no-repeat;
+    background-position: center;
+	background-size: contain;
+	cursor: pointer;
+}
+#hamburgerIcon.fixedheight {
+	position: fixed;
+	top:0px;
+	background-color: rgba(255, 255, 255, .35);
+}
+#Navigation2{
+	display: none;
+	background-color: #CBD9FF;
+	position: absolute;
+	max-height: calc(100vh - 155px);
+	overflow: auto;
+	margin:auto;
+	margin-bottom: 20px;	
+	padding-right: 0px;
+	padding-left: 0px;	
+	width: 250px;
+	height: auto;
+	max-width: 280px;
+	margin-bottom: 20px;
+	z-index:1000;
+	}	
+	#Navigation2.fixedheight {
+	position: fixed;
+	top:40px;
+	max-height: calc(100vh - 50px);
+}
+}
+/*Header*/
+#Header{
+	height: 148px;
+	display: block;
+	background-image: url(https://www.genturis.eu/l=eng/Images/header960.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	overflow: visible;
+	}
+	
+
+/*List menu*/
+@media screen and (min-width:800px){
+#Navigation2{
+	display: block;
+	background-color: #CBD9FF;
+	float: left;
+	/*position: absolute;*/
+	/*height: auto;*/
+	/*overflow: hidden;*/
+	padding-bottom: 20px;
+	width: 230px;
+	max-height: calc(100vh - 155px);
+	overflow: auto;
+	margin-bottom: 20px;	
+	padding-right: 0px;
+	padding-left: 0px;	
+	width: 250px;
+	height: auto;
+	max-width: 280px;
+	margin-bottom: 20px;
+	}
+
+#Navigation2.fixedheight {
+	position: fixed;
+	max-height: calc(100vh - 25px);
+	top:0px;
+}
+}
+#Navigation2 .Active a{
+	color: #0a55bf;	
+	}
+
+#Navigation2 .Children .Active a{
+	color: #0a55bf;	
+	}
+#Navigation2 a{
+	line-height: 40px;
+	font-size: 14px;
+	line-height: 1.5625rem;
+	/*color: #2D3663; #2d3663*/
+	color: #2d5b9c;
+	text-decoration: none;
+	font-weight: bold;
+	font-style: normal;
+	}
+	
+#Navigation2 .Children a{
+	color: #cbd9f2;
+	font-size: 12px;
+	margin-left: 5px;
+	}
+
+#Navigation2 .Children .Children a{
+	color: #5694d0;
+	font-style: italic;
+	margin-left: 10px;
+	}
+	
+#Navigation2 .Active{
+	/* background-image: url(https://www.genturis.eu/l=eng/Images/active-listitem_1.png); */
+	/* background-image: url(https://www.genturis.eu/l=eng/Images/active-listitem.png);*/
+	color: #red;	
+	background-color: #0d71ff;
+	background-repeat: no-repeat;
+	background-position: right top;
+	}
+	
+
+	
+/*Tabs*/
+#Navigation3{
+	display: block;
+	float: right;
+	width: 65%;
+	/*border: thin solid #C00;*/
+	
+	padding-right: 20px;
+	padding-left: 20px;
+	border-left-style: solid;
+	border-left-color: #4B5EA5;
+	border-top-width: 2px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	border-left-width: 2px;
+	}
+ 
+#Navigation3 a{
+	display: block;
+	float: left;
+	margin: 5px;
+	background-color: #4B5EA5;
+	padding: 5px;
+	color: #FFF;
+	text-decoration: none;
+	}
+	
+	
+	
+
+
+
+/* Footer */
+#Footer
+{
+	background-image: url(https://www.genturis.eu/l=eng/Images/footer.png);
+	padding-left: 20px;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 2px;
+    height: 20px;
+    width: 100%;
+    overflow: visible!important;
+    font-size: 8pt;
+    color: white;
+	
+}
+#Footer a 
+{
+    color: white;
+
+}
+
+#FooterLogo
+{
+	display: inline-block;
+	vertical-align: -4px;
+	width: 20px;
+	height: 16px;
+	background-image: url('https://www.genturis.eu/l=eng/Images/footerlogo.png');
+}
+
+
+.Tree
+{
+    
+}
+
+.Tree .Toggle
+{
+	cursor: pointer;
+	width: 15px;
+	height: 10px;
+	
+	
+	display: inline-block;
+	float: left;
+	margin-top: 6px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+
+.Tree .Title
+{
+	margin-left: 2px;	
+   
+}
+
+/* nieuw */
+
+.Tree .Node.Node.Node.Active > .Display
+{
+    background-image: url(https://www.genturis.eu/l=eng/Images/active-listitem.png)
+}
+
+
+.Tree .Node > .Display a:hover
+{
+  
+}
+
+.Tree .Node > .Display  a
+{
+
+}
+
+.Tree .Node .Display
+{
+	min-height: 30px;	
+
+}
+
+.Tree .Node .Children .Display
+{
+	min-height: 15px;
+	background: #81a8e1;
+	
+}
+
+
+.Tree .Node .Children .Children .Display
+{
+	min-height: 15px;
+	/* background: #f2f7ff;*/
+	background: #ebf0fa;
+}
+
+
+.Tree .Container.Expanded > .Display > .Toggle
+{
+    background-image: url(""https://www.genturis.eu/l=eng/Images/PointerDown.png"");
+	width: 15px;
+}
+
+.Tree .Container.Collapsed > .Display > .Toggle
+{
+    background-image: url(""https://www.genturis.eu/l=eng/Images/PointerRight.png"");
+	width: 15px;
+}
+
+.Tree .Leaf > .Display > .Toggle
+{
+
+}
+
+.Tree .Children
+{
+    margin-left: 0px;
+}
+
+.VimeoVideo {
+	float: left;
+	height: 350px;
+	width: 620px;
+	color: red;
+	
+}
+.VimeoVideo iframe{
+	margin: 0px;
+	padding: 0px;
+	height: 350px;
+	width: 620px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	}
+
+
+}/* Main Layout style */
+/*body 
+*/
+html, body
+{ 
+    position: absolute;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+	font-size:100%;
+}
+/* General tree styling */
+
+/*.Tree
+
+
+NavSmall and Navigation1 refer to the language selection!!!!!
+*/
+
+#globe
+{
+	margin-top: 16px;
+    background-image: url('https://www.genturis.eu/l=eng/Images/GLOBE.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+	right: 3px;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+	position: absolute;
+	background-size: contain;
+}
+
+#navSmall
+{
+	margin-top: 15px;
+	margin-right: 12px;
+    background-image: url('https://www.genturis.eu/l=eng/Images/ENG.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+	float: Right;
+	width: 35px;
+	height: 27px;
+	background-size: contain;
+	cursor: pointer;
+}
+.eng
+{
+	background-image: url('https://www.genturis.eu/l=eng/Images/ENG.png')!important;
+}
+.engNoSearchResult:before {
+	   content: ""We could not find what you were looking for. Please try another term..."";
+}
+.deu
+{
+	background-image: url('https://www.genturis.eu/l=eng/Images/DEU.png')!important;
+}
+.deuNoSearchResult:before {
+	   content: ""Wir konnten nicht finden, wonach Sie gesucht haben. Bitte versuchen Sie es mit einem anderen Begriff ..."";
+}
+.esp
+{
+	background-image: url('https://www.genturis.eu/l=eng/Images/ESP.png')!important;
+}
+.espNoSearchResult:before {
+	   content: ""No pudimos encontrar lo que buscabas. Intenta con otro tÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ©rmino ..."";
+}
+.fra
+{
+	background-image: url('https://www.genturis.eu/l=eng/Images/FRA.png')!important;
+}
+.fraNoSearchResult:before {
+	   content: ""Nous n'avons pas pu trouver ce que vous cherchiez. Veuillez essayer un autre terme ..."";
+}
+.por
+{
+	background-image: url('https://www.genturis.eu/l=eng/Images/POR.png')!important;
+}
+.porNoSearchResult:before {
+	   content: ""No conseguimos encontrar o que vocÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂª estava procurando. Por favor, tente outro termo ..."";
+}
+#Navigation1.SmallNavOpen
+{
+	display: block;
+}
+#Navigation2.SmallNavOpen
+{
+	display: block;
+}
+.Tab
+{
+	padding-top: 5px;
+    padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	vertical-align: middle;
+	background-color:#81a8e1;
+   	text-decoration: none;   
+  	font-size: 10pt;  
+    
+}
+/* Main tabs */
+#Navigation1
+{
+	display: none;	
+	top:27px;
+	right:9px;
+	width: 45px;
+	font-size: 10pt;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 100; position:relative;
+}
+#Navigation1 .InnerTabset
+{
+	float:right;
+	margin-top:32px;
+	margin-left: auto;
+	margin-right: 1px;
+}
+
+#Navigation1 .Tab
+{	
+	font-weight: normal;
+	width:120px;
+	float:right;
+	border: 1px solid black;
+	vertical-align: middle;
+	margin-top:0px;
+}
+#Navigation1 a
+{	
+	display: inline-block;
+	font-weight: normal;
+	color: #cbd9f2;
+	vertical-align: middle;
+	margin-top:0px;
+	text-decoration:none;
+}
+
+
+/* Search */
+@media screen and (min-width:800px){
+#SearchContainer
+{
+	background-color:  #ffffff;
+	position: relative;	
+	top: -40px;
+	left: -10px; /* without language drop down -10px */
+	float:right;
+	border: 1px solid #3C5EA8;
+}
+}
+@media screen and (max-width:799px){
+#SearchContainer
+{
+	background-color:  #ffffff;
+	position: relative;
+	top: -40px;
+	left: -10px; /* without language drop down -10px */
+	float:right;
+	border: 1px solid #3C5EA8;
+}
+}
+#SearchContainer .Text
+{
+	padding: 2px 3px 0px 3px ;
+	border: 0px solid #3C5EA8;
+	width: 100px;
+	height: 18px;
+   	margin: 0px;
+	font-size: 11pt;	
+	color: #767F90;
+
+}
+
+#SearchContainer .Button
+{
+	margin: 0px;
+	vertical-align: top;	
+	width: 24px;
+	height: 20px;	
+	background-color:  #ffffff;
+	background-image: url('https://www.genturis.eu/l=eng/Images/go.png');
+	background-repeat: no-repeat;
+    	background-position: center;
+	cursor: pointer;
+	border: 0px solid #3C5EA8;
+}
+@media screen and (min-width:950px){
+/* Search Results */
+.SearchResults 
+{
+	font-family: sans-serif;
+	font-size: 12pt;
+	margin-left: 250px;
+	width: 690px;
+	color: #000000;
+	background-color: #ffffff;   
+	
+}
+	.SearchResults .Result
+{
+	width: 710px;
+    margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;  
+	
+	
+}
+.NoSearchResults 
+{
+	width: 600px;
+    margin-left: 50px;
+	margin-top: 100px;
+	margin-right: auto;
+	font-family: sans-serif;
+	font-size: 11pt;
+	letter-spacing: 0.1em;
+	color: #3C5EA8;	
+}
+}
+
+@media screen and (max-width:949px) and (min-width:800px){
+/* Search Results */
+.SearchResults 
+{
+	font-family: sans-serif;
+	font-size: 12pt;
+	margin-left: 250px;
+	width: 70%;
+	color: #000000;
+	 background-color: #ffffff;   
+	
+}
+.SearchResults .Result
+{
+	width: 71%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;  
+}
+.NoSearchResults 
+{
+	width: 65%;
+	margin-left: 10px;
+	margin-top: 70px;
+	margin-right: auto;
+	font-family: sans-serif;
+	font-size: 11pt;
+	letter-spacing: 0.1em;
+	color: #3C5EA8;
+	}
+
+}
+@media screen and (max-width:799px){
+/* Search Results */
+.SearchResults 
+{
+	font-family: sans-serif;
+	font-size: 12pt;
+	width: 99%;
+	color: #000000;
+	 background-color: #ffffff;   
+	
+}
+.SearchResults .Result
+{
+	width: 99%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;  
+}
+.NoSearchResults 
+{
+	width: 99%;
+	margin-left: 10px;
+	margin-top: 70px;
+	margin-right: auto;
+	font-family: sans-serif;
+	font-size: 11pt;
+	letter-spacing: 0.1em;
+	color: #3C5EA8;
+	}
+
+}
+.SearchResults a.Title
+{
+	font-family: sans-serif;
+	font-size: 11pt;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	color: #3C5EA8;
+	margin-top: 15px;
+	margin-left: 15px;
+	
+}
+
+.SearchResults .Content
+{
+	font-family: sans-serif;
+	font-size: 10pt;
+	color: #2C407D;
+	line-height: 15pt;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 3px;
+	margin-bottom: 15px;}
+
+
+/* Search highlight */
+.Highlight
+{
+    background-color: rgb(232, 128, 86);
+}
+
+/* Search Navigation */
+.SearchNavigation
+{
+    	text-align: center;
+	font-family: sans-serif;
+	padding-bottom: 30px;
+
+}
+
+.SearchNavigation .Previous, .SearchNavigation .Next
+{
+    cursor: pointer;
+    border: 1px solid #767F90;
+    margin: 0px 3px;
+    padding: 0px 3px;   
+	background-color: white;   	
+}
+
+.SearchNavigation .Previous:hover, .SearchNavigation .Next:hover
+{
+    background-color:  #E3E9F7;
+}
+
+.SearchNavigation .Pages
+{
+    margin: 0px 20px;
+
+    padding: 10px 0px;
+}
+
+.SearchNavigation .Pages .PageButton
+{
+    cursor: pointer;
+    border: 1px solid #3C5EA8;
+    margin: 0px 3px;
+    padding: 0px 3px;
+    color: #2C407D;
+    font-family: sans-serif;
+	background-color: white;   
+}
+
+.SearchNavigation .Pages .PageButton.Active
+{
+    color: #E47544;
+    background-color: #E3E9F7;
+}
+
+.SearchNavigation .Pages .PageButton:hover
+{
+    background-color: #E3E9F7;
+}
+
+.SearchNavigation .Pages .Separator
+{
+    margin: 0px 3px;
+}
+</style>
+<!--<div class=""jumbotron jumbotron-fluid"">
+<div class=""container"">
+<h1 class=""display-4"">ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ  ÃÃÃÃÂ GENTURIS Research Register</h1>
+
+<h1 class=""display-4""><img 148px="""" alt="""" src=""/logo/header960.png"" style=""height:"" /></h1>
+</div>
+</div>-->
+
+<div id=""page"">
+<div id=""Header"">
+<div id=""InnerHeader"">
+<div id=""hamburgerIcon"" onclick=""leftMenuToggle()"">&nbsp;</div>
+
+<nav id=""navSmall"" onmouseenter=""smallMenuToggle()"" onmouseleave=""smallMenuToggleClose()"">
+<div id=""globe"">&nbsp;</div>
+
+<nav id=""Navigation1"">
+<div class=""Tab"">
+<div class=""eng"" style=""display: block;width: 30px;height: 15px;float: left;background-size: contain;background-repeat: no-repeat;"">&nbsp;</div>
+<a href=""https://www.genturis.eu/l=eng/index.html""><span style="""">English</span> </a></div>
+
+<div class=""Tab"">
+<div class=""deu"" style=""display: block;width: 30px;height: 15px;float: left;background-size: contain;background-repeat: no-repeat;"">&nbsp;</div>
+<a href=""https://www.genturis.eu/l=deu/index.html""><span style="""">Deutsch</span> </a></div>
+
+<div class=""Tab"">
+<div>
+<div class=""esp"" style=""display: block;width: 30px;height: 15px;float: left;background-size: contain;background-repeat: no-repeat;"">&nbsp;</div>
+<a href=""https://www.genturis.eu/l=esp/index.html""><span style="""">Espa&Atilde;&plusmn;ol</span> </a></div>
+</div>
+
+<div class=""Tab"">
+<div>
+<div class=""fra"" style=""display: block;width: 30px;height: 15px;float: left;background-size: contain;background-repeat: no-repeat;"">&nbsp;</div>
+<a href=""https://www.genturis.eu/l=fra/index.html""><span style="""">Fran&Atilde;&sect;ais</span> </a></div>
+</div>
+
+<div class=""Tab"">
+<div>
+<div class=""por"" style=""display: block;width: 30px;height: 15px;float: left;background-size: contain;background-repeat: no-repeat;"">&nbsp;</div>
+<a href=""https://www.genturis.eu/l=por/index.html""><span style="""">Portugu&Atilde;&ordf;s</span> </a></div>
+</div>
+</nav>
+</nav>
+</div>
+</div>
+
+<div class=""InlineSearch"" id=""SearchContainer""><input class=""Text"" type=""text"" /><button class=""Button""></button></div>
+
+<nav id=""Navigation2"" class=""Tree"" data-root=""1"" data-index=""1"" data-value=""3"" data-type=""Tree"" data-allowemptyroots=""false"" data-hideroot=âtrueâ >
+<p class=âstyle_default_level2â ><a href = ""http://molgenis78.gcc.rug.nl/"">Home</a></p>
+<a href=""/menu/main/background"">Members area</a>
+<br>About
+<ul style=âdisplay:none;â>
+	<li style=âdisplay:none;â >Mission</li>
+	<li style=âdisplay:none;â >Concept</li>
+	<li>Themes </li>
+	<li>Registry Steering Committee </li>
+</ul>
+Participating health care providers
+<ul>
+	<li>Full members</li>
+	<li>Affiliated members</li>
+	<li>Non-member health care provider </li>
+</ul>
+Joining GENTURIS Registry/Registration
+<ul>
+	<li>Data access request</li>
+</ul>
+Governance, Roles and Responsibilities
+<ul>
+	<li>Data governance</li>
+	<li>Core GENTURES Registry</li>
+	<li>Data sharing agreement </li>
+</ul>
+Manual/Instruction
+<br>Links
+<br>Contact
+<br>Privacy Policy
+<br>FAQ
+</nav>
+
+<div class=""Content"" id=""Content"">
+<section id=""SectionTitle"">
+<div class=""SectionContent"">
+<p class=âstyle_default_level2"">Home </p>
+</div>
+</section>
+
+<section id=""sec4"">
+<div class=""SectionContent"">
+<h1>Welcome to the GENTURIS Registry website</h1>
+
+<h2>ERN GENTURIS</h2>
+<p>ERN GENTURIS is the European Reference Network for all patients with a genetic tumour risk syndrome (GENTURIS). The network aims to improve diagnostics, treatment and prevention of patients with genetic tumour risk syndromes trough care, guideline, research and educational activities.  ERN GENTURIS covers genetic tumour risk syndromes in four thematic disease groups:</p>
+<ul>
+	<li>Neurofibromatosis</li>
+	<li>Hereditary Breast and Ovarian Cancer</li>
+	<li>Lynch Syndrome and Polyposis </li>
+	<li> More rare and predominantly malignant genetic tumour risk syndromes </li>
+</ul>
+
+<p>Check out more information about ERNs: <a href=""https://ec.europa.eu/health/ern/videos_en"" rel=""noopener noreferrer"" target=""_blank"">videos</a> / <a href=""Assets/Flyer_ERN_A5_EN_PRINT_2017-196.pdf"" rel=""noopener noreferrer"" target=""_blank"">flyer</a> / <a href=""http://europa.eu/rapid/press-release_MEMO-17-324_en.htm"" rel=""noopener noreferrer"" target=""_blank"">FAQs</a>.</p>
+
+<h6>GENTURIS Registry</h6>
+<p>The GENTURIS Registry is a web-based platform to gather information on the <b>natural disease history</b> of patients with a genetic tumour risk syndrome. The registry includes both <b>common date elements and disease-specific elements</b> for all thematic disease groups covered by ERN GENTURIS.
+By design, the registry complies with current requirements and standards to ensure data security, patient privacy and assess management, while facilitating the sharing of data which is essential to answer questions on rare diseases.</p>
+<ul>
+		<li><h4><b>> 42000 GENTURIS patients</b></h4></li>
+		<li><h4><b>> 25 specialist health care providers</b></h4></li>
+
+</ul>
+
+
+<p>The GENTURIS Registry will accelerate new knowledge of genetic tumour risk syndromes via:</p>
+<ul>
+		<li> <b>C</b>ounting number of GENTURIS patients across Europe</li>
+		<li> <b>A</b>nalysis of data from a great number of GENTURIS patients across Europe</li>
+		<li> <b>R</b>eflection of clinical care of GENTURIS patients across countries </li>
+		<li> <b>E</b>nabling research opportunities from translational to epidemiological studies to clinical trails </li>
+
+</ul>
+
+<h2>&nbsp;&nbsp;&nbsp; Share. Care. Cure. </h2>
+
+<p>ERN GENTURIS is coordinated by Radboud university medical center in Nijmegen, The Netherlands.</p>
+
+<p><a href=""Assets/11_ERN-on-genetic-tumour-risk-syndromes-(ERN-GENTURIS)-182.pdf"" rel=""noopener noreferrer"" target=""_blank"">Download the factsheet about ERN GENTURIS</a></p>
+</div>
+</section>
+
+<section id=""sec5"">
+<div class=""SectionContent"">
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><span class=""style_default_small_font""> <em> <span style=""color: #000000;"">ERN GENTURIS is one of the 24 European Reference Networks (ERNs) approved by the ERN Board of Member States. The ERNs are&Acirc;&nbsp;co-funded by the European Commission. For more information about the ERNs and the EU health strategy, please visit</span>&Acirc;&nbsp;<a href=""http://ec.europa.eu/health/ern"" rel=""noopener noreferrer"" target=""_blank"">http://ec.europa.eu/health/ern</a></em> </span>&Acirc;&nbsp;&Acirc;&nbsp;&Acirc;&nbsp;</p>
+
+<p><img data-keepaspectratio=""true"" height=""100"" src=""https://www.genturis.eu/l=eng/Assets/ERN_Cofunded_Banner-1-456.jpg"" width=""600"" /></p>
+</div>
+</section>
+</div>
+
+<script type=""text/javascript"">
+		getLanguage();
+		addScrollListener();
+    </script>"

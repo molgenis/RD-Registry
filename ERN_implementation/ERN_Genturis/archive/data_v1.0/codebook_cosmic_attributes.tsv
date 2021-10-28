@@ -1,0 +1,10 @@
+name	label	entity	dataType	idAttribute	nillable	visible	refEntity
+code	Code	codebook_cosmic	string	TRUE	FALSE	TRUE	
+value_en	Value (English)	codebook_cosmic	string	FALSE	FALSE	TRUE	
+description_en	Description (English)	codebook_cosmic	string	FALSE	TRUE	TRUE	
+synonym	Synonym	codebook_cosmic	string	FALSE	TRUE	TRUE	
+chrLocation	Chrosome location	codebook_cosmic	string	FALSE	TRUE	TRUE	
+chrBand	Chrosome Band	codebook_cosmic	string	FALSE	TRUE	TRUE	
+locusType	Locus GroupÊ	codebook_cosmic	categorical	FALSE	TRUE	TRUE	genturis_codebook1_subClasscosmic
+codesystem	Codesystem	codebook_cosmic	string	FALSE	TRUE	TRUE	
+description_code	Description of code	codebook_cosmic	string	FALSE	TRUE	TRUE	
