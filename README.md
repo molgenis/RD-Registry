@@ -4,7 +4,7 @@ Rare Disease (RD) patient registries are spread across Europe. The EU set out to
 
 [MOLGENIS](https://www.molgenis.org) is a tool to make RD registries. For 4 ERNs we started working on implementing their needs to make a ERN specific RD registry. 
 
-The use cases are:
+For more information on specific ERN implementation:
 * [Genturis](https://www.genturis.eu/l=eng/Home.html)
 * [SKIN](https://ern-skin.eu)
 * [ITHACA](https://ern-ithaca.eu)
