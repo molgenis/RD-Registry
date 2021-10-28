@@ -1,0 +1,27 @@
+name	label	entity	dataType	idAttribute	nillable	visible	refEntity	rangeMin	rangeMax	partOfAttribute
+EU1	1. Pseudonym 	cde	compound							
+pseudonymID	EUPID (Individual ID)	cde	string	TRUE	FALSE					EU1
+EU2	2. Personal information 	cde	compound							
+biologicalSex	Sex	cde	categorical	FALSE	FALSE		PACKAGE_codebook1_sex			EU2
+dateBirth	Date of Birth	cde	date	FALSE	FALSE					EU2
+EU3	3. Patient Status 	cde	compound							
+patientStatus	Patient Status	cde	categorical	FALSE	TRUE		PACKAGE_codebook1_patientstatus			EU3
+dateDeath	Date of death	cde	date	FALSE	TRUE					EU3
+EU4	4. Care pathway 	cde	compound							
+firstContactHCP	First contact with specialised center	cde	date	FALSE	TRUE					EU4
+EU5	5. Disease history 	cde	compound							
+ageOnset	Age at onset	cde	categorical	FALSE	TRUE		PACKAGE_codebook1_onset			EU5
+dateOnset	Date of onset	cde	date	FALSE	TRUE	$('ageOnset').value().indexOf('Date')>-1				EU5
+ageDiagnose	Age at diagnosis	cde	categorical	FALSE	TRUE		PACKAGE_codebook1_onset			EU5
+dateDiagnose	Date of diagnose	cde	date	FALSE	TRUE	$('ageDiagnose').value().indexOf('Date')>-1				EU5
+EU6	6 Diagnosis 	cde	compound							
+ordo	Diagnosis of the rare disease	cde	mref	FALSE	TRUE		PACKAGE_codebook2_ordo			EU6
+hgnc	Genetic diagnosis 	cde	mref	FALSE	TRUE		PACKAGE_codebook_hgnc			EU6
+hpo	Clinical symptoms and physical findings in patient(HPO)	cde	mref	FALSE	TRUE		PACKAGE_codebook2_hpo			EU6
+EU7	7. Research 	cde	compound							
+consentRegistry	Consent for research	cde	bool	FALSE	FALSE					EU7
+consentReuse	Consent to the reuse of data	cde	bool	FALSE	FALSE					EU7
+sampleBool	Patient's biological sample available for research 	cde	bool	FALSE	TRUE					EU7
+biobank	Link to Biobank	cde	mref	FALSE	TRUE		PACKAGE_codebook_biobanks			EU7
+EU8	8.Disability 	cde	compound							
+ICF	Classification of functioning/disability (ICF)	cde	mref	FALSE	TRUE		PACKAGE_codebook1_icf			EU8

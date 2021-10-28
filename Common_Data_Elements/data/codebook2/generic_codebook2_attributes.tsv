@@ -1,0 +1,8 @@
+name	entity	label	dataType	idAttribute	nillable	labelAttribute	refEntity
+code	REPLACEME	Code	string	TRUE	FALSE		
+value_en	REPLACEME	Value (English)	string	FALSE	FALSE	TRUE	
+synonyms	REPLACEME	Synonyms	text	FALSE	TRUE		
+description_en	REPLACEME	Description (English)	text	FALSE	TRUE		
+codesystem	REPLACEME	Codesystem	string	FALSE	TRUE		
+description_code	REPLACEME	Description of code	text	FALSE	TRUE		
+parents	REPLACEME	Subclass of	mref	FALSE	TRUE		PACKAGE_REPLACEME
