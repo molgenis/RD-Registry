@@ -63,7 +63,7 @@ Write patient data into the template you download. It is likely that the followi
 1. Gather patient information (exporting or bringing different sources together)
 2. Group patients in subgroups, depending on data
 3. Check which fields (questions regarding patient) are mandatory, these fields need data(if data is missing, bulk upload will result in error)
-4. If necessary map values to identifiers, use  [overview_codebooks](/data/Overview_codebooks.xlsx) to see correct identifier.
+4. If necessary map values to identifiers, use  [overview_codebooks](/ERN_implementation/ERN_Genturis/data/Overview_codebooks.xlsx) to see correct identifier.
 5. Change date to format yyyy-mm-dd (e.g.2021-10-13)
 6. Use correct pseudoID
 
