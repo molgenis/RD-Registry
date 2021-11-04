@@ -102,7 +102,7 @@ Navigation buttons at the bottom of the pages:
 These are the steps for the ILIAD Registry:
 1.	Go to the menu bar on top of the page and click ‘Import Data’. Alternatively, you can navigate to the following url:
 [https://ern-ithaca.iliad-registry.eu/menu/plugins/importwizard](https://ern-ithaca.iliad-registry.eu/menu/plugins/importwizard)
-![Import data](/ERN_implementation/ERN_Genturis/images/import_data.png)
+![Import data](/ERN_implementation/ERN_ITHACA/images/import_data.png)
 2.	Click on ‘select a file….’ and select the Excel file with the data of gene or chromosomal anomalies (first) that needs to be added to ILIAD registry. After uploading anomalies patient data can be uploaded.
 ![Select File](/ERN_implementation/ERN_Genturis/images/select_file.png)
 3.	The document is correctly selected when the name of the document ended with .xlsx, is visible in the field. See example below (the uploaded Excel file is named: upload.xlsx):
