@@ -21,7 +21,7 @@ Make it possible to locally install the ILIAD registry, to start collecting pati
 - Log in (admin, admin)
 - Change admin password
 - Upload [ILIAD_Datamodel](/ERN_implementation/ERN_ITHACA/data/ILIAD_datamodel_v01_2021-11-04.xlsx)
-- When needed add a new table for personal information or update the ILIAD data model before importing. See manual, on information[EMX](https://molgenis.gitbook.io/molgenis/data-management/guide-emx)
+- When needed add a new table for personal information or update the ILIAD data model before importing. See manual, on [EMX](https://molgenis.gitbook.io/molgenis/data-management/guide-emx)
 - Add new [users](https://molgenis.gitbook.io/molgenis/access-control/guide-users)
 - Give users permissions this can be done by adding them to appropriate [group and role](https://molgenis.gitbook.io/molgenis/access-control/guide-groups-roles)
 
