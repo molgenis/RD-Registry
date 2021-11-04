@@ -42,21 +42,21 @@ Before you can upload any data, make sure you have the following items.
 There are four file templates available for importing data. One empty template for adding **Patients**, one empty template for adding **Gene Anomalies**, one empty template for adding **Chromosomal anomalies**, and a template file with some example data. All files contain the preferred headers and the preferred sheet names. Please make sure NOT to change the headers or sheet names. If you are importing CSV, the file should have the same name as the sheet name. Please do not add more sheets to the template file. NOTE: anomaly data needs to be imported before patient data.
 
 - [BulkUploadGeneAnomaly.xlsx](/ERN_implementation/ERN_ITHACA/templates/BulkUploadGeneAnomaly_2021-11-04.xlsx)
--[BulkUploadChromosomalAnomaly.xlsx](/ERN_implementation/ERN_ITHACA/templates/BulkUploadChromosomalAnomaly_2021-11-04.xlsx)
+- [BulkUploadChromosomalAnomaly.xlsx](/ERN_implementation/ERN_ITHACA/templates/BulkUploadChromosomalAnomaly_2021-11-04.xlsx)
 - [BulkUploadPatient.xlsx](/ERN_implementation/ERN_ITHACA/templates/BulkUploadPatient_2021-11-04.xlsx)
 - [Template_withExampleData.xlsx](/ERN_implementation/ERN_ITHACA/templates/Template_withExampleData_2021-11-04.xlsx)
 
 These files are available on the [Molgenis RD-Registry GitHub repository](https://github.com/molgenis/RD-Registry) and can be downloaded using curl.
 
-empty **Patient**template:
+empty **Patient** template:
 ```sh
 curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_ITHACA/templates/BulkUploadPatient_2021-11-04.xlsx
 ```
-empty **Gene Anomaly**template:
+empty **Gene Anomaly** template:
 ```sh
 curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_ITHACA/templates/BulkUploadGeneAnomaly_2021-11-04.xlsx
 ```
-empty **Chromosomal Anomaly**template:
+empty **Chromosomal Anomaly** template:
 ```sh
 curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_ITHACA/templates/BulkUploadChromosomalAnomaly_2021-11-04.xlsx
 ```
