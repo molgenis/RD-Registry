@@ -1,4 +1,4 @@
-![ILIAD Registry](/images/ITHACA-logo.jpg)
+![ILIAD Registry](/ERN_implementation/ERN_ITHACA/images/ITHACA-logo.jpg)
 
 # Molgenis ILIAD Patient Registry
 
@@ -24,4 +24,4 @@ The `ERN_ITHACA` repository is part of the Rare Disease registries, [RD-Registry
 - [`data`](/ERN_implementation/ERN_ITHACA/data/): This folder contains latest EMX file from the ILIAD Registry. Options used in Patient Registry are codebooks, standard optionlist, enum, text, string, date and int values. For bulkupload it is necessary to know what codes need to be used to import data correctly.
 - [`images`](/ERN_implementation/ERN_ITHACA/images/): This folder contains images used on ILIAD Registry and in this repository.
 - [`technicalDecisions`](/ERN_implementation/ERN_ITHACA/technicalDecisions/): This folder contains text files regarding technical decisions made for the ILIAD Registry. The decision files are only used on specific technical implementation for the ILIAD Registry, if there are no decision files then a "normal" Molgenis setup is used.
--[`templates`](/ERN_implementation/ERN_ITHACA/templates): This folder contains a description of how to bulk upload data to the ILIAD registry. And there are templates to use for bulk uploading patients. Check codebooks for correct identifiers.
+- [`templates`](/ERN_implementation/ERN_ITHACA/templates): This folder contains a description of how to bulk upload data to the ILIAD registry. And there are templates to use for bulk uploading patients. Check codebooks for correct identifiers.
