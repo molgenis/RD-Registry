@@ -7,7 +7,7 @@ Rare Disease (RD) patient registries are spread across Europe. The EU set out to
 For more information on specific ERN implementation:
 * [Genturis](/ERN_implementation/ERN_Genturis/)
 * [SKIN](https://ern-skin.eu)
-* [ITHACA](https://ern-ithaca.eu)
+* [ITHACA](/ERN_implementation/ERN_ITHACA/)
 * [CRANIO](https://ern-cranio.eu)
 
 DISCLAIMER: work in progress!! 
