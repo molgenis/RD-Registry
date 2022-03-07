@@ -41,8 +41,8 @@ Before you can upload any data, make sure you have the following items.
 
 There are two file templates available for importing data. One empty template for adding Patients and a template file with some example patient information. Both files contain the preferred headers, each center has its own package, so each center has its own sheet name (e.g. Radboud UMC, should use "hcp01_subject"). See the [list of centers](https://genturis-registry.eu/menu/plugins/dataexplorer?entity=genturis_organisation&hideselect=true) (you need to login to the registry to see the list) to get your ERN number the prefix to add to "prefix_subject". If you are importing CSV, the file should have the same name as the sheet name. Please do not add more sheets to the template file. Only one sheet with "prefix_subject" can be imported.
 
-- [/templates/BulkUploadSubject_2021_10_28.xlsx](/ERN_implementation/ERN_Genturis/templates/BulkUploadSubject_2021_10_28.xlsx)
-- [/templates/Template_withExampleData_2021_10_28.xlsx](/ERN_implementation/ERN_Genturis/templates/Template_withExampleData_2021_10_28.xlsx)
+- [/templates/BulkUploadSubject_2022_03_07.xlsx](/ERN_implementation/ERN_Genturis/templates/BulkUploadSubject_2022_03_07.xlsx)
+- [/templates/Template_withExampleData_2022_03_07.xlsx](/ERN_implementation/ERN_Genturis/templates/Template_withExampleData_2022_03_07.xlsx)
 
 These files are available on the [Molgenis RD-Registry GitHub repository](https://github.com/molgenis/RD-Registry) and can be downloaded using curl.
 
