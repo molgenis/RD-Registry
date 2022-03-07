@@ -49,12 +49,12 @@ These files are available on the [Molgenis RD-Registry GitHub repository](https:
 empty template:
 
 ```sh
-curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_Genturis/templates/BulkUploadSubject_2021_10_28.xlsx
+curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_Genturis/templates/BulkUploadSubject_2022_03_07.xlsx
 ```
 
 template with example data:
 ```sh
-curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_Genturis/templates/Template_withExampleData_2021_10_28.xlsx
+curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_Genturis/templates/Template_withExampleData_2022_03_07.xlsx
 ```
 Alternatively, you can download the zipped file from: https://github.com/molgenis/molgenis-solve-rd/RD-Registry/tree/master/ERN_implementation/ERN_Genturis/templates/genturisRegistryTemplates.zip?raw=true
 
