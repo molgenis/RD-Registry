@@ -1,4 +1,4 @@
-![Genturis Registry](/ERN_implementation/ERN_Genturis/images/GenturisRegistry.png)
+
 
 # Molgenis Genturis Patient Registry
 
@@ -18,8 +18,5 @@ The GENTURIS registry wishes to accomplish the following aims:
 The `ERN_Genturis` repository is part of the Rare Disease registries, [RD-Registry](https://github.com/molgenis/RD-Registry). This part of the repository contains files, scripts and other items needed for maintaining the Genturis Registry.
 
 - [`data`](/ERN_implementation/ERN_Genturis/data/): This folder contains latest EMX file from the Genturis Registry. Options used in Patient Registry are codebooks, standard optionlist, enum, text, string, date and int values. For bulkupload it is necessary to know what codes need to be used to import data correctly.
-- [`images`](/ERN_implementation/ERN_Genturis/images/): This folder contains images used on Genturis Registry and in this repository.
-- [`technicalDecisions`](/ERN_implementation/ERN_Genturis/technicalDecisions/): This folder contains text files regarding technical decisions made for the Genturis Registry. The decision files are only used on specific technical implementation for the Genturis Registry, if there are no decision files then a"normal" Molgenis setup is used.
--  [`uploadFileHomepage`](/ERN_implementation/ERN_Genturis/uploadFileHomepage/): If anonymous users want to download a file from the homepage of Genturis Registry, this is not possible. In this folder there is a workaround for uploading and giving anonymous users permissions to download the file.
 -  [`templates`](/ERN_implementation/ERN_Genturis/templates): This folder contains a description of how to bulk upload data to the Genturis registry. And there are templates to use for bulk uploading patients. Check codebooks for correct identifiers.
--  [`archive`](/ERN_implementation/ERN_Genturis/archive/): In this folder there is a method to deploy a molgenis server with an old Genturis datamodel. Since some parts of the current datamodel are not programmatically easy to deploy as in previous datamodels this method is archived. If you are interested in deploying Molgenis with an old Genturis datamodels, feel free to browse this folder. 
+
