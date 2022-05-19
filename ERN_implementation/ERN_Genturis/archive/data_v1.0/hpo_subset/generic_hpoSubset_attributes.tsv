@@ -1,4 +1,0 @@
-name	entity	label	dataType	idAttribute	nillable	labelAttribute	refEntity	readOnly	expression
-id	REPLACEME	ID	string	TRUE	FALSE			TRUE	
-labelhpo	REPLACEME	HPO refence label	xref	FALSE	FALSE		genturis_codebook2_hpo	FALSE	
-combined	REPLACEME	HPO label	string	FALSE	TRUE	TRUE		TRUE	"{""template"":""{{id}} - {{labelhpo.value_en}}""}"
