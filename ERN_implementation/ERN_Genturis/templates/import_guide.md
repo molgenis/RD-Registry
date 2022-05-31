@@ -39,22 +39,22 @@ Before you can upload any data, make sure you have the following items.
 - **Authorization**: You will need access and permission to import data using the Molgenis import wizard. If you have been given these permissions, you will be able to see the navigation link to the Import Data in menubar.
 - **Data templates**: To make the import process smoother, several data templates are available (described below).
 
-There are two file templates available for importing data. One empty template for adding Patients and a template file with some example patient information. Both files contain the preferred headers, each center has its own package, so each center has its own sheet name (e.g. Radboud UMC, should use "hcp01_subject"). See the [list of centers](https://genturis-registry.eu/menu/plugins/dataexplorer?entity=genturis_organisation&hideselect=true) (you need to login to the registry to see the list) to get your ERN number the prefix to add to "prefix_subject". If you are importing CSV, the file should have the same name as the sheet name. Please do not add more sheets to the template file. Only one sheet with "prefix_subject" can be imported.
+There are two file templates available for importing data. One empty template for adding Patients and a template file with some example patient information. Both files contain the preferred headers, each center has its own package, so each center has its own sheet name (e.g. Radboud UMC, should use "NL01_subject"). See the [list of centers](https://genturis-registry.eu/menu/plugins/dataexplorer?entity=genturis_organisation&hideselect=true) (you need to login to the registry to see the list) to get your ERN number the prefix to add to "prefix_subject". If you are importing CSV, the file should have the same name as the sheet name. Please do not add more sheets to the template file. Only one sheet with "prefix_subject" can be imported.
 
-- [/templates/BulkUploadSubject_2022_03_07.xlsx](/ERN_implementation/ERN_Genturis/templates/BulkUploadSubject_2022_03_07.xlsx)
-- [/templates/Template_withExampleData_2022_03_07.xlsx](/ERN_implementation/ERN_Genturis/templates/Template_withExampleData_2022_03_07.xlsx)
+- [/templates/BulkUploadSubject_NL01_subject_2022-05-31.xlsx](/ERN_implementation/ERN_Genturis/templates/BulkUploadSubject_NL01_subject_2022-05-31.xlsx)
+- [/templates/Template_withExampleData_NL01_subject_2022_05_31.xlsx](/ERN_implementation/ERN_Genturis/templates/Template_withExampleData_NL01_subject_2022_05_31.xlsx)
 
 These files are available on the [Molgenis RD-Registry GitHub repository](https://github.com/molgenis/RD-Registry) and can be downloaded using curl.
 
 empty template:
 
 ```sh
-curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_Genturis/templates/BulkUploadSubject_2022_03_07.xlsx
+curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_Genturis/templates/BulkUploadSubject_NL01_subject_2022-05-31.xlsx
 ```
 
 template with example data:
 ```sh
-curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_Genturis/templates/Template_withExampleData_2022_03_07.xlsx
+curl -O https://raw.githubusercontent.com/molgenis/RD-Registry/tree/master/ERN_implementation/ERN_Genturis/templates/Template_withExampleData_NL01_subject_2022_05_31.xlsx
 ```
 Alternatively, you can download the zipped file from: https://github.com/molgenis/molgenis-solve-rd/RD-Registry/tree/master/ERN_implementation/ERN_Genturis/templates/genturisRegistryTemplates.zip?raw=true
 
