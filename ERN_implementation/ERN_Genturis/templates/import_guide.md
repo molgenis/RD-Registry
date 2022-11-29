@@ -122,7 +122,7 @@ Data options:
 
 ## Importing data from the command line
 
-You can also import data via the command line using the [Molgenis Commander](https://github.com/molgenis/molgenis-tools-commander) tool. This may be useful if you would like to import the templates at the end of a workflow or schedule regular imports.
+You can also import data via the command line using the [Molgenis Commander](https://github.com/molgenis/molgenis-tools-commander) tool. This may be useful if you would like to import the templates at the end of a workflow or schedule regular imports. NOTE: before using molgenis commander, please contact, molgenis-support (molgenis-support@umcg.nl). We need to arrange access for your user to be able to use molgenis commander.
 
 For more information about Molgenis Commander, please visit the Github Repo.
 [https://github.com/molgenis/molgenis-tools-commander](https://github.com/molgenis/molgenis-tools-commander).
