@@ -7,13 +7,13 @@ To login your institute needs to be connected to the [Lifescience (LS) Login](ht
 1. Go to the ERRAS Registry and use the **Sign in** button on the right side of the screen.
    <img src="/ERN_implementation/ERN_SKIN/images/signin.png" width="400">
 2. The login screen is opened. Read and agree to privacy policy (tick box). Then use the blue button **With molgenis-auth**, you get redirected to the molgenis authenticator.
-   <img src="/ERN_implementation/ERN_SKIN/images/withMolgenisAuth.png" width="400">
+<img src="/ERN_implementation/ERN_SKIN/images/withMolgenisAuth.png" width="400">
 3. Molgenis authenticator is opened, to login, you need to use **LS Login**.
-   <img src="/ERN_implementation/ERN_SKIN/images/LSlogin.png" width="400">
+<img src="/ERN_implementation/ERN_SKIN/images/LSlogin.png" height= "400">
 4. The user is redirected to the LS login portal, where you choose your affiliation home organization. Click on correct organization and you will be redirected.
-   <img src="/ERN_implementation/ERN_SKIN/images/homeOrganization.png" width="400">
+<img src="/ERN_implementation/ERN_SKIN/images/homeOrganization.png" height= "400">
 5. If you login for the first time then you need to agree to again to privacy policy, that you share your details with ERRAS registry (MOLGENIS), **Consent**. This only must be done once, if choose Remember: **Forever**.
-   <img src="/ERN_implementation/ERN_SKIN/images/privacyPolicyAgree.png" width="400">
+<img src="/ERN_implementation/ERN_SKIN/images/privacyPolicyAgree.png" width="400">
 6. You are redirected to ERRAS registry and are logged in to see, edit or update patients.
 
 
