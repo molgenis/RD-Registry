@@ -10,10 +10,12 @@ This ERRAS Registry Manual is designed to help users navigate the ERRAS registry
 
 - **[Logging in](/ERN_implementation/ERN_SKIN/manuals/loggingin.md)**: This section provides guidelines on how to log in to the ERRAS registry.
 - **Uploading data**: This section covers how to upload patient data using different methods, including manual creation and bulk upload. It also includes guidelines for importing data using the Import Wizard, the quick importer, and the command line.
-    * Importing the data using the Import Wizard
-    * Importing the data using the quick importer
-    * Importing data from the command line
-- **Searching data**: This section provides information on how to search and retrieve data from the ERRAS registry.
+    * [Creating and Editing Patient Forms in the ERRAS Registry](/ERN_implementation/ERN_SKIN/manuals/patientForm.md)
+    * [Create template](/ERN_implementation/ERN_SKIN/manuals/createTemplate.md)
+    * [Importing the data using the Import Wizard](/ERN_implementation/ERN_SKIN/manuals/advancedDataImport.md)
+    * [Importing data from the command line](/ERN_implementation/ERN_SKIN/manuals/commandLine.md)
+    * [Importing data via API](https://molgenis.gitbook.io/molgenis/interoperability)
+- **[Searching data](/ERN_implementation/ERN_SKIN/manuals/searchingData.md)**: This section provides information on how to search and retrieve data from the ERRAS registry.
 
 ## Repository Contents
 This repository is part of the Rare Disease registries, [RD-Registry](https://github.com/molgenis/RD-Registry), and contains essential files, scripts, and manuals needed for maintaining the ERRAS registry. Here is a breakdown of the repository contents:
